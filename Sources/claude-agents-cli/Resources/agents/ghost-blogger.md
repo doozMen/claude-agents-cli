@@ -4,6 +4,7 @@ description: Automate blog post creation, review, and publication to Ghost CMS w
 tools: Read, Edit, Grep, Bash, WebSearch
 model: sonnet
 mcp: ghost
+dependencies: marked
 ---
 
 # Ghost Blogger Agent

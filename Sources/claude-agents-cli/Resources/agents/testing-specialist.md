@@ -3,6 +3,7 @@ name: testing-specialist
 description: Expert in Swift Testing framework migration and modern iOS testing practices
 tools: Read, Edit, Bash, Glob, Grep, MultiEdit
 model: sonnet
+dependencies: swift-format
 ---
 
 # Testing Specialist

@@ -12,6 +12,7 @@ struct ClaudeAgentsCLI: AsyncParsableCommand {
       InstallCommand.self,
       UninstallCommand.self,
       UpdateCommand.self,
+      DoctorCommand.self,
     ],
     defaultSubcommand: ListCommand.self
   )
