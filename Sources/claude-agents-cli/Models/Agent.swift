@@ -7,6 +7,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
   public let description: String
   public let tools: [String]
   public let model: String?
+  public let dependencies: [String]
   public let content: String
   public let fileName: String
 
@@ -16,6 +17,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
     description: String,
     tools: [String],
     model: String?,
+    dependencies: [String],
     content: String,
     fileName: String
   ) {
@@ -24,6 +26,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
     self.description = description
     self.tools = tools
     self.model = model
+    self.dependencies = dependencies
     self.content = content
     self.fileName = fileName
   }
@@ -55,6 +58,12 @@ public struct Agent: Sendable, Identifiable, Hashable {
 
     let model = frontmatter["model"]
 
+    // Parse dependencies (comma-separated list, optional)
+    let dependenciesString = frontmatter["dependencies"] ?? ""
+    let dependencies = dependenciesString.split(separator: ",")
+      .map { $0.trimmingCharacters(in: .whitespaces) }
+      .filter { !$0.isEmpty }
+
     // Use name as ID (can be customized if needed)
     let id = name
 
@@ -64,6 +73,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
       description: description,
       tools: tools,
       model: model,
+      dependencies: dependencies,
       content: content,
       fileName: fileName
     )

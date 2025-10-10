@@ -4,6 +4,7 @@ description: Expert in GitLab workflows, merge requests, and version control bes
 tools: Bash, Read, Edit, Glob, Grep
 model: sonnet
 mcp: azure-devops, github, gitlab
+dependencies: gh, glab
 ---
 
 # Git & PR Specialist

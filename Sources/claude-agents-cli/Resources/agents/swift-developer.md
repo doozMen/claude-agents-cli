@@ -3,6 +3,7 @@ name: swift-developer
 description: Expert Swift developer for implementing features, writing code, and building iOS functionality
 tools: Read, Edit, Glob, Grep, Bash, MultiEdit
 model: sonnet
+dependencies: swift-format
 ---
 
 # Swift Developer
