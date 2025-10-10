@@ -4,6 +4,7 @@ description: Publishes blog posts to Ghost CMS with duplicate detection, format 
 model: sonnet
 tools: Read, Bash, WebSearch
 mcp: ghost
+dependencies: marked
 ---
 
 # Ghost Publisher

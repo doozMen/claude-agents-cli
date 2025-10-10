@@ -3,6 +3,7 @@ name: swift-modernizer
 description: Focused on migrating legacy code to Swift 6.0 and adopting modern iOS development practices
 tools: Read, Edit, Glob, Grep, Bash, MultiEdit, WebSearch
 model: sonnet
+dependencies: swift-format
 ---
 
 # Swift Modernizer

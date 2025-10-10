@@ -147,5 +147,10 @@ public struct InstallCommand: AsyncParsableCommand {
     if failed > 0 {
       print("  Failed: \(failed)")
     }
+
+    // Tip about checking dependencies
+    if installed > 0 || overwritten > 0 {
+      print("\n💡 Tip: Run 'claude-agents doctor' to check CLI tool dependencies")
+    }
   }
 }
