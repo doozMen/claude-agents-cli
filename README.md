@@ -38,6 +38,31 @@ swift build -c release
 cp .build/release/claude-agents /usr/local/bin/
 ```
 
+## Secrets Management
+
+Some agents require credentials (Ghost CMS, Firebase, etc.). Store them securely using macOS Keychain:
+
+```bash
+# Interactive setup - stores secrets in Keychain
+./scripts/setup-secrets.sh
+
+# Load secrets into environment
+source scripts/load-secrets.sh
+
+# Update Claude MCP configuration
+./scripts/update-mcp-config.sh
+
+# Restart Claude Code to apply changes
+```
+
+See [docs/SECRETS.md](docs/SECRETS.md) for detailed documentation on:
+- Setting up Ghost CMS and Firebase credentials
+- Rotating secrets
+- Troubleshooting
+- Adding new MCP servers
+
+**Never commit secrets to version control.** The project uses `.env.template` as a reference. Actual secrets are stored in macOS Keychain.
+
 ## Usage
 
 ### List Available Agents
