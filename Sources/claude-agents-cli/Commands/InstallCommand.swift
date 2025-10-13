@@ -148,9 +148,17 @@ public struct InstallCommand: AsyncParsableCommand {
       print("  Failed: \(failed)")
     }
 
-    // Tip about checking dependencies
+    // Tips about next steps
     if installed > 0 || overwritten > 0 {
       print("\n💡 Tip: Run 'claude-agents doctor' to check CLI tool dependencies")
+
+      // Suggest setup if CLAUDE.md doesn't have agent info
+      let claudeMdService = ClaudeMdService()
+      let hasSection = try? await claudeMdService.containsAgentSection()
+
+      if hasSection == false {
+        print("💡 Tip: Run 'claude-agents setup' to add agent info to ~/.claude/CLAUDE.md")
+      }
     }
   }
 }
