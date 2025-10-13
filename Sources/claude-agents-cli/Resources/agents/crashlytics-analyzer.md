@@ -31,6 +31,12 @@ iOS applications using Firebase Crashlytics for crash reporting and monitoring:
 - Memory issues (retain cycles, over-release)
 - API incompatibilities (OS version-specific crashes)
 
+**Rossel-Specific Patterns**:
+- **VDN Multi-Clone**: 1 crash fix affects 6-10 apps simultaneously
+- **Alamofire False Crashes**: v5.x logging non-fatal network errors to Crashlytics (2,720 false crashes in 5 VDN apps)
+- **Force-Unwrapped Colors**: `UIColor(named:)!` crashes when asset missing
+- **Reference**: `NETWORKING-MIGRATION-PLAN.md` (Section 1.3, Section 4)
+
 ## Crash Triage Workflow
 
 ### Step 1: Authentication & Setup
@@ -366,6 +372,67 @@ if #available(iOS 16.0, *) {
     fallbackAPI()
 }
 ```
+
+### Pattern 5: Alamofire False Crashes (VDN Specific)
+```swift
+// Problem: Alamofire v5.x logs non-fatal network errors to Crashlytics
+// AlamofireHelper.swift
+extension DataResponse {
+    func handleError() {
+        guard case let .failure(error) = result else { return }
+        Crashlytics.record(error: error)  // ❌ Creates 2,720 false crashes
+    }
+}
+
+// Fix 1: Upgrade to v6.12.0 (recommended - eliminates false crashes)
+// Already deployed: L'Ardennais, Nord Littoral (0 Alamofire crashes)
+
+// Fix 2: Backport fix to v5.x (if upgrade delayed)
+extension DataResponse {
+    func handleError() {
+        guard case let .failure(error) = result else { return }
+
+        // Log to analytics, not Crashlytics
+        Analytics.logEvent("network_error", parameters: [
+            "code": error.responseCode ?? -1,
+            "url": request?.url?.absoluteString ?? "unknown"
+        ])
+    }
+}
+```
+
+**Impact**: 62% crash reduction in VDN apps
+**Affected Apps**: L'Union (1,650 crashes), L'Est-Éclair (1,009), Courrier Picard (982), L'Aisne Nouvelle (435), Paris Normandie (190)
+**Note**: VDN multi-clone - 1 fix affects 6-10 apps simultaneously
+**Reference**: `NETWORKING-MIGRATION-PLAN.md` Section 1.3
+
+### Pattern 6: Force-Unwrapped Asset Colors
+```swift
+// Crash (asset missing or typo in name)
+extension UIColor {
+    static let primaryBackground = UIColor(named: "PrimaryBackground")!  // ❌ Runtime crash
+}
+
+// Fix 1: Optional binding with fallback (immediate)
+extension UIColor {
+    static var primaryBackground: UIColor {
+        UIColor(named: "PrimaryBackground") ?? .systemBackground
+    }
+}
+
+// Fix 2: Design Tokens (recommended - long-term)
+struct ArticleView: View {
+    @Environment(\.designTokens) var tokens
+
+    var body: some View {
+        Text(article.title)
+            .background(tokens.colors.semanticBackgroundBase)  // ✅ Compile-time safe
+    }
+}
+```
+
+**Impact**: Zero color-related crashes
+**Reference**: `DESIGN-SYSTEM-STRATEGY.md`
 
 ## Guidelines
 - **Prioritize by impact**: Frequency × affected users = priority score
