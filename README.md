@@ -11,7 +11,7 @@ If you're new to Claude Code and agents, check out the [**Claude Code Best Pract
 The official Claude CLI (`claude-code`) includes basic agent management. This tool provides:
 
 **Key Differences:**
-- **28 Embedded Agents**: Production-ready agents for Swift, iOS, documentation, testing, and CI/CD
+- **32 Embedded Agents**: Production-ready agents for Swift, iOS, documentation, testing, and CI/CD
 - **Curated Library**: No need to write agent markdown from scratch
 - **Discovery**: Filter agents by tool usage, list with descriptions
 - **Batch Operations**: Install all agents with `--all` flag
@@ -21,12 +21,12 @@ The official Claude CLI (`claude-code`) includes basic agent management. This to
 
 ## Features
 
-- **List Agents**: Browse 28 embedded agents or view installed agents
+- **List Agents**: Browse 32 embedded agents or view installed agents
 - **Install**: Copy agents to global (~/.claude/agents/) or local (./.claude/agents/) directories
 - **Uninstall**: Remove installed agents
 - **Filter**: Find agents by tool usage
 - **Interactive**: Smart prompts for safe operations
-- **Embedded Library**: 28 production-ready agents covering Swift development, documentation, testing, and CI/CD
+- **Embedded Library**: 32 production-ready agents covering Swift development, documentation, testing, and CI/CD
 
 ## Installation
 
