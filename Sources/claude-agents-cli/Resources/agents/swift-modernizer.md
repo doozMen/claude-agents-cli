@@ -3,7 +3,6 @@ name: swift-modernizer
 description: Focused on migrating legacy code to Swift 6.0 and adopting modern iOS development practices
 tools: Read, Edit, Glob, Grep, Bash, MultiEdit, WebSearch
 model: sonnet
-dependencies: swift-format
 ---
 
 # Swift Modernizer
@@ -84,7 +83,9 @@ struct Article: Sendable {
 - **RxSwift** → **Combine** → **async/await** (Brand D specific: 162 files, 236 subscribe sites)
 - **Custom Box<T>** → **Combine @Published** (Brand C specific: extensive usage)
 - **Swinject** → **CommonInjector** (Brand D specific: standardization)
-- **Alamofire 4.9.1** → **CompanyAKit networking** (Flagship App/Brand B App: 90 files)
+- **Alamofire** → **URLSession + async/await** (Brand B App: 90 files, Regional App 1: 5 apps)
+- **Singleton** → **@Entry macro** (SwiftUI DI: 87% boilerplate reduction)
+- **UIColor(named:)!** → **Design Tokens** (Type-safe, no crashes)
 
 ## Guidelines
 - Always test thoroughly after each modernization step
@@ -154,30 +155,49 @@ class ViewModel {
 **Effort**: 200 hours (extensive usage in Brand C)
 **Impact**: Standard Apple framework, better testing, foundation for async/await
 
-### Alamofire 4.9.1 → CompanyAKit (Flagship App/Brand B App)
+### Alamofire → URLSession + async/await (Brand B App/Regional App 1)
 ```swift
 // Before: Alamofire 4.9.1 (2017 - 7 years old!)
 Alamofire.request(url).responseJSON { response in
-    // ...
+    switch response.result {
+    case .success(let json): // ...
+    case .failure(let error): // ...
+    }
 }
 
-// After: CompanyAKit with async/await
-let response = try await networkClient.fetch(url)
+// After: Modern URLSession with actor isolation
+actor NetworkService {
+    func fetch<T: Decodable>(_ type: T.Type, from url: URL) async throws -> T {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw NetworkError.httpError
+        }
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
 ```
 
-**Effort**: 80 hours (90 files in common-legacy-ios)
-**Impact**: Modern async/await, security patches, performance improvements
+**Effort**: 80 hours (90 files in Brand B App), 16 hours per Regional App 1 app
+**Impact**: Modern async/await, security patches, no external dependencies
+**Reference**: `NETWORKING-MIGRATION-PLAN.md`
 
-### Static DI → @Entry Pattern
+### Static DI → @Entry Pattern (SwiftUI)
 ```swift
-// Legacy (keep for UIKit)
-enum DI {
-    static let commonInjector = CommonInjector()
+// OLD: 15 lines per environment value
+private struct InjectorKey: EnvironmentKey {
+    static let defaultValue: CommonInjector = .init()
+}
+extension EnvironmentValues {
+    var injector: CommonInjector {
+        get { self[InjectorKey.self] }
+        set { self[InjectorKey.self] = newValue }
+    }
 }
 
-// Modern (SwiftUI)
+// NEW: 1 line per value (87% less code)
 extension EnvironmentValues {
-    @Entry var commonInjector: CommonInjector = DI.commonInjector
+    @Entry var commonInjector: CommonInjector = .init()
 }
 
 // Usage
@@ -187,7 +207,36 @@ struct ArticleView: View {
 ```
 
 **Effort**: 40 hours per app
-**Impact**: Better testability, modern SwiftUI pattern, no breaking UIKit changes
+**Impact**: 87% boilerplate reduction, better testability, SwiftUI previews work out-of-box
+**Reference**: `DEPENDENCY-INJECTION-ANALYSIS.md`
+
+### UIColor(named:)! → Design Tokens (Type-Safe Theming)
+```swift
+// Before: Force-unwrapped asset colors (runtime crash if missing)
+extension UIColor {
+    static let primaryBackground = UIColor(named: "PrimaryBackground")!  // ❌ Crash if missing
+}
+
+// After: Type-safe design tokens (compile-time verified)
+struct ArticleView: View {
+    @Environment(\.designTokens) var tokens
+
+    var body: some View {
+        Text(article.title)
+            .foregroundColor(tokens.colors.semanticForegroundPrimary)  // ✅ Compile-time safe
+            .background(tokens.colors.semanticBackgroundBase)
+    }
+}
+
+// Environment setup with @Entry
+extension EnvironmentValues {
+    @Entry var designTokens: DesignTokens = .defaultValue
+}
+```
+
+**Effort**: 80 hours per app (token definition + code generation + migration)
+**Impact**: Zero color crashes, 40-60% boilerplate reduction, dark mode built-in, multi-brand support
+**Reference**: `DESIGN-SYSTEM-STRATEGY.md` (W3C Design Tokens + Style Dictionary)
 
 ### Add Sendable Conformance
 ```swift
@@ -205,17 +254,3 @@ public actor EditorialManager: Sendable { ... }
 **Impact**: Swift 6.0 strict concurrency ready, compile-time data race prevention
 
 Your mission is to help CompanyA iOS gradually adopt Swift 6.0 features while maintaining stability and reliability.
-
-## Related Agents
-
-For modernization workflow collaboration:
-- **swift-architect**: Modern Swift 6.0 architecture patterns and design guidance
-- **testing-specialist**: Swift Testing framework migration from XCTest
-- **technical-debt-eliminator**: Technical debt identification and prioritization
-
-### Collaboration Pattern
-1. **technical-debt-eliminator** identifies legacy code patterns and debt
-2. Prioritize using impact/effort matrix
-3. **swift-modernizer** implements migration incrementally
-4. Consult **swift-architect** for modern pattern recommendations
-5. Use **testing-specialist** for test migration strategy
