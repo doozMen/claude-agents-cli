@@ -6,3 +6,20 @@ DerivedData/
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+
+# Secrets and credentials
+.env
+.env.local
+.env.*.local
+*.keychain
+*.backup
+secrets/
+credentials/
+
+# MCP configuration (contains API keys)
+mcp.json
+mcp_settings.json
+claude_desktop_config.json
+
+# Local agent installations and settings
+.claude/
