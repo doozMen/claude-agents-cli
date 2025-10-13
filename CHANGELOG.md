@@ -5,6 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-10-13
+
+### Added
+- **New General-Purpose Agents** (4 new agents):
+  - `technical-documentation-reviewer`: Orchestrator for comprehensive technical documentation reviews
+    - Coordinates multi-agent reviews across swift-architect, documentation-verifier, and crashlytics specialists
+    - 6-phase systematic review framework (Discovery → Accuracy → Consistency → Completeness → Style → Synthesis)
+    - Cross-domain validation (architecture, KMM, SPM, multi-clone, crashlytics)
+    - Generates actionable reports with priority categorization
+  - `crashlytics-cross-app-analyzer`: Multi-app crash pattern detection
+    - Discovers Firebase projects from CLAUDE.md/docs (no hardcoded data)
+    - Systemic/Regional/Isolated crash classification
+    - Priority scoring: (apps affected × occurrences × severity)
+    - Weekly ecosystem triage reports with BigQuery integration
+  - `crashlytics-architecture-correlator`: Architecture-crash rate correlation analysis
+    - Reads architecture levels from project docs (L1/L2/L3 or custom)
+    - Correlates crash rates with architecture maturity
+    - Technical debt impact analysis (debt % → crash rate)
+    - Modernization ROI prediction (L1→L2→L3 improvement curves)
+  - `crashlytics-multiclone-analyzer`: Multi-clone/white-label systemic issue detection
+    - Reads clone structure from project docs (no hardcoded clones)
+    - Systemic issue detection (crashes in 5+ clones → CRITICAL)
+    - Configuration drift analysis
+    - Fix impact ROI calculator (1 fix → N clones, 6-10x multipliers)
+- **Agent Library**: 33 total agents (32 production-ready + 1 private timestory-builder)
+
+### Changed
+- Updated agent library from 29 to 33 agents (+4 new agents)
+- Enhanced crashlytics analysis capabilities with three specialized agents
+- Improved documentation review workflows with orchestrator agent
+
+### Architecture
+- **General Workflows + Project Data Separation Pattern**:
+  - General agents contain workflows only, NO hardcoded project data
+  - Project data stored in user's CLAUDE.md and project docs
+  - Context discovery: Agents read CLAUDE.md and docs/ to discover project context
+  - Benefits: Reusable across ANY multi-app ecosystem, shareable agent library
+
+### Deprecated
+- `firebase-rossel-ecosystem-analyzer`: Replaced by 3 modular crashlytics agents (cross-app, architecture-correlator, multiclone)
+
 ## [1.0.0] - 2025-10-13
 
 ### Added
@@ -61,5 +102,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global and local installation targets
 - Interactive prompts for safe operations
 
+[1.1.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/doozMen/claude-agents-cli/compare/v0.0.1...v1.0.0
 [0.0.1]: https://github.com/doozMen/claude-agents-cli/releases/tag/v0.0.1
