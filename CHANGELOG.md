@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2025-10-13
+
+### Fixed
+- Fixed agent directory structure - moved 4 agents from Sources/AgentsCLI/ to Sources/claude-agents-cli/Resources/agents/
+- CLI now properly embeds all 33 agents (was only embedding 29)
+- Agents affected: technical-documentation-reviewer, crashlytics-cross-app-analyzer, crashlytics-architecture-correlator, crashlytics-multiclone-analyzer
+
 ## [1.1.0] - 2025-10-13
 
 ### Added
@@ -102,6 +109,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global and local installation targets
 - Interactive prompts for safe operations
 
+[1.1.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/doozMen/claude-agents-cli/compare/v0.0.1...v1.0.0
 [0.0.1]: https://github.com/doozMen/claude-agents-cli/releases/tag/v0.0.1
