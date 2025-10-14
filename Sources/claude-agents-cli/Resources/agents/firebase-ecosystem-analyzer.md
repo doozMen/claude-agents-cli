@@ -518,7 +518,7 @@ Include:
 }
 ```
 
-**Authenticated As**: user@example.com
+**Authenticated As**: firebase-admin@company-a.example
 
 ### Firebase CLI Commands
 
@@ -752,7 +752,7 @@ This agent does NOT have access to:
 - Firebase CLI installed (`npm install -g firebase-tools`)
 - Firebase CI token configured in MCP config
 - Access to all 13 Firebase projects
-- Authenticated as stijn.willems@mediahuis.be
+- Authenticated as firebase-admin@company-a.example
 
 **If authentication fails**:
 ```bash
@@ -874,7 +874,7 @@ firebase projects:list
 **Symptom**: Expected 13 projects, only see fewer
 
 **Solutions**:
-1. Verify authentication account (should be stijn.willems@mediahuis.be)
+1. Verify authentication account (should be firebase-admin@company-a.example)
 2. Check if some projects require separate authentication
 3. Confirm Regional App 1 Sports project ID (currently unknown/TBD)
 4. Contact Firebase admin for project access
