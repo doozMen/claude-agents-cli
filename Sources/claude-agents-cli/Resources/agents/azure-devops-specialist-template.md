@@ -373,6 +373,345 @@ az repos ref create --name refs/heads/feature/new-branch --repository YOUR-REPO 
    az login
    ```
 
+## Markdown Formatting & File Attachments
+
+Azure DevOps supports rich markdown formatting in work item comments, PR descriptions, and PR comments. Understanding when and how to use markdown enhances communication and documentation quality.
+
+### Markdown Support Overview
+
+**Where Markdown Works**:
+- ✅ Work item comments (via `--discussion` flag)
+- ✅ Work item descriptions (via `--description` field)
+- ✅ Pull request descriptions
+- ✅ Pull request comments
+- ✅ Pipeline annotations
+- ✅ Wiki pages
+
+**Requirement**: New Boards Hub must be enabled in Azure DevOps project settings for markdown mode in work items.
+
+### Work Item Comments with Markdown
+
+Use the `--discussion` flag (not `--comments`) to add markdown-formatted comments to work items:
+
+```bash
+# Add markdown comment to work item
+az boards work-item update --id 12345 \
+  --discussion "## Status Update
+
+**Progress**: Feature implementation complete
+
+**Next Steps**:
+- Code review scheduled
+- Testing in progress
+
+[Documentation](https://docs.example.com/feature-x)
+
+\`\`\`swift
+// Example API usage
+let result = await api.fetchData()
+\`\`\`
+"
+```
+
+**Key Differences**:
+- `--discussion`: Supports full markdown syntax (headers, lists, code blocks, links)
+- `--comments`: Plain text only, no markdown formatting
+
+### Pull Request Descriptions with Markdown
+
+Both MCP and Azure CLI support markdown in PR descriptions:
+
+**MCP Example**:
+```python
+create_pull_request(
+    repository="YOUR-REPO",
+    source_branch="feature/AB#12345-feature-x",
+    target_branch="main",
+    title="AB#12345: Add feature X",
+    description="""## Summary
+- Implemented new API endpoint
+- Added comprehensive unit tests
+- Updated documentation
+
+## Technical Details
+**Architecture**: Uses async/await pattern with actors for thread safety
+
+**Performance**: 40% faster than previous implementation
+
+## Testing
+- ✅ Unit tests (95% coverage)
+- ✅ Integration tests
+- ✅ Performance benchmarks
+
+## Related Work Items
+- AB#12345 (Feature)
+- AB#12346 (Documentation)
+
+[Design Document](https://wiki.example.com/design/feature-x)
+
+\`\`\`swift
+// Example usage
+let service = FeatureService()
+let result = await service.execute()
+\`\`\`
+""",
+    work_item_ids=[12345, 12346]
+)
+```
+
+**Azure CLI Example**:
+```bash
+az repos pr create \
+  --repository YOUR-REPO \
+  --source-branch feature/AB#12345-feature-x \
+  --target-branch main \
+  --title "AB#12345: Add feature X" \
+  --description "## Summary
+- Implemented new API endpoint
+- Added comprehensive unit tests
+
+## Technical Details
+**Architecture**: Actor-based concurrency
+
+\`\`\`swift
+let result = await service.execute()
+\`\`\`
+
+[Design Doc](https://wiki.example.com/design)
+" \
+  --work-items 12345 12346
+```
+
+### Pull Request Comments with Markdown
+
+Add markdown-formatted comments to PRs using Azure CLI:
+
+```bash
+# Add review comment with markdown
+az repos pr comment create \
+  --pr-id 123 \
+  --text "## Code Review Feedback
+
+**Overall**: Looking good! A few suggestions:
+
+### Concerns
+1. **Thread Safety**: Consider using `actor` isolation here
+2. **Error Handling**: Add explicit error cases
+
+### Example Fix
+\`\`\`swift
+actor DataService: Sendable {
+    private var cache: [String: Data] = [:]
+
+    func fetchData(key: String) async throws -> Data {
+        if let cached = cache[key] {
+            return cached
+        }
+        throw DataServiceError.notFound
+    }
+}
+\`\`\`
+
+**Recommendation**: Approve after addressing thread safety
+"
+```
+
+### Common Markdown Patterns
+
+| Pattern | Syntax | Use Case |
+|---------|--------|----------|
+| **Headers** | `## Header`, `### Subheader` | Structure PR descriptions, organize sections |
+| **Bold** | `**bold text**` | Emphasize key points, status labels |
+| **Italic** | `*italic text*` | Subtle emphasis, notes |
+| **Lists** | `- item` or `1. item` | Action items, requirements, checklists |
+| **Links** | `[text](url)` | Reference docs, work items, wikis |
+| **Code Inline** | `` `code` `` | Variable names, class names, short snippets |
+| **Code Block** | ` ```language\ncode\n``` ` | Example code, configuration, logs |
+| **Tables** | `\| col1 \| col2 \|` | Comparison, test results, metrics |
+| **Checkboxes** | `- [ ] task` or `- [x] done` | Task lists, acceptance criteria |
+| **Blockquotes** | `> quote` | Highlight quotes, requirements |
+| **Horizontal Rule** | `---` | Separate sections |
+
+### Markdown Best Practices
+
+**PR Descriptions**:
+```markdown
+## Summary
+Brief overview (1-3 sentences)
+
+## Changes
+- Feature A: Description
+- Bug fix B: Description
+
+## Testing
+- [x] Unit tests added
+- [x] Integration tests passing
+- [ ] Performance testing (in progress)
+
+## Related Work Items
+- AB#12345: Feature implementation
+- AB#12346: Documentation update
+
+[Design Document](https://wiki.example.com/design)
+```
+
+**Work Item Updates**:
+```markdown
+## Sprint Progress Update
+
+**Completed**:
+- ✅ API implementation
+- ✅ Unit tests
+
+**In Progress**:
+- 🔄 Integration testing
+- 🔄 Documentation
+
+**Blocked**:
+- ❌ Waiting for design review
+
+**Next Sprint**:
+- Performance optimization
+- Production deployment
+```
+
+**Code Review Comments**:
+```markdown
+## Suggestion: Use Actor Isolation
+
+\`\`\`swift
+// Current (not thread-safe)
+class DataService {
+    var cache: [String: Data] = [:]
+}
+
+// Suggested (thread-safe)
+actor DataService: Sendable {
+    private var cache: [String: Data] = [:]
+}
+\`\`\`
+
+**Rationale**: Prevents data races in concurrent environments
+```
+
+### File Attachments to Work Items
+
+**Important**: MCP tools do NOT currently support file attachments. File attachments require Azure DevOps REST API.
+
+#### Two-Step Process for File Attachments
+
+**Step 1: Upload File to Azure DevOps**
+
+```bash
+# Upload file and get attachment URL
+ATTACHMENT_URL=$(curl -X POST \
+  -H "Authorization: Bearer $AZURE_DEVOPS_EXT_PAT" \
+  -H "Content-Type: application/octet-stream" \
+  --data-binary "@/path/to/file.txt" \
+  "https://dev.azure.com/YOUR-ORG/YOUR-PROJECT/_apis/wit/attachments?fileName=file.txt&api-version=7.0" \
+  | jq -r '.url')
+
+echo "Attachment URL: $ATTACHMENT_URL"
+```
+
+**Step 2: Link Attachment to Work Item**
+
+```bash
+# Link attachment to work item
+curl -X PATCH \
+  -H "Authorization: Bearer $AZURE_DEVOPS_EXT_PAT" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/relations/-",
+      "value": {
+        "rel": "AttachedFile",
+        "url": "'"$ATTACHMENT_URL"'",
+        "attributes": {
+          "comment": "Design mockup for feature X"
+        }
+      }
+    }
+  ]' \
+  "https://dev.azure.com/YOUR-ORG/YOUR-PROJECT/_apis/wit/workitems/12345?api-version=7.0"
+```
+
+#### Complete File Attachment Example
+
+```bash
+#!/bin/bash
+# attach-to-work-item.sh - Attach file to Azure DevOps work item
+
+WORK_ITEM_ID=$1
+FILE_PATH=$2
+FILE_NAME=$(basename "$FILE_PATH")
+COMMENT=$3
+
+# Get PAT from environment or 1Password
+AZURE_PAT="${AZURE_DEVOPS_EXT_PAT:-$(op read 'op://Private/Azure DevOps PAT/credential')}"
+
+# Step 1: Upload file
+echo "Uploading $FILE_NAME..."
+ATTACHMENT_URL=$(curl -s -X POST \
+  -H "Authorization: Bearer $AZURE_PAT" \
+  -H "Content-Type: application/octet-stream" \
+  --data-binary "@$FILE_PATH" \
+  "https://dev.azure.com/YOUR-ORG/YOUR-PROJECT/_apis/wit/attachments?fileName=$FILE_NAME&api-version=7.0" \
+  | jq -r '.url')
+
+if [ -z "$ATTACHMENT_URL" ] || [ "$ATTACHMENT_URL" = "null" ]; then
+  echo "Error: Failed to upload file"
+  exit 1
+fi
+
+echo "Uploaded: $ATTACHMENT_URL"
+
+# Step 2: Link to work item
+echo "Linking to work item $WORK_ITEM_ID..."
+curl -s -X PATCH \
+  -H "Authorization: Bearer $AZURE_PAT" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/relations/-",
+      "value": {
+        "rel": "AttachedFile",
+        "url": "'"$ATTACHMENT_URL"'",
+        "attributes": {
+          "comment": "'"$COMMENT"'"
+        }
+      }
+    }
+  ]' \
+  "https://dev.azure.com/YOUR-ORG/YOUR-PROJECT/_apis/wit/workitems/$WORK_ITEM_ID?api-version=7.0" \
+  | jq '.id, .fields["System.Title"]'
+
+echo "File attached successfully"
+```
+
+**Usage**:
+```bash
+# Attach screenshot to work item
+./attach-to-work-item.sh 12345 "/path/to/screenshot.png" "Login screen mockup"
+
+# Attach log file
+./attach-to-work-item.sh 67890 "/path/to/error.log" "Error logs from production"
+
+# Attach document
+./attach-to-work-item.sh 11111 "/path/to/design.pdf" "Architecture design document"
+```
+
+#### Important Notes on File Attachments
+
+- **OAuth Token Required**: Must use `AZURE_DEVOPS_EXT_PAT` or similar OAuth token
+- **MCP Limitation**: MCP server does not expose file attachment APIs
+- **Size Limits**: Azure DevOps has file size limits (typically 60MB per file)
+- **Supported Formats**: Any file type supported (images, documents, logs, archives)
+- **Attachment URL**: URL returned from Step 1 is permanent and can be shared
+- **REST API Version**: Use API version 7.0 or later for attachment support
+
 ### Decision Framework: MCP vs Azure CLI
 
 **General Principle**: Start with MCP for standard supported actions (better error handling, API translation), switch to CLI when you need richer, more reliable, or more granular control.
@@ -763,6 +1102,17 @@ az pipelines runs list --branch feature/my-feature --status completed --query "[
 3. Cross-project queries: `az devops configure --defaults project=YOUR-PROJECT && az repos pr list`
 4. Pipeline approval management: `az pipelines runs approve ...`
 
+**Markdown Formatting Tasks**:
+1. Add markdown comment to work item: `az boards work-item update --id 12345 --discussion "## Update\n**Status**: Complete"`
+2. Create PR with markdown description: `create_pull_request(..., description="## Summary\n- Feature A\n\`\`\`swift\ncode\`\`\`")`
+3. Add markdown PR comment: `az repos pr comment create --pr-id 123 --text "## Review\n**Approved**"`
+4. Create work item with markdown description: `az boards work-item create --type Task --description "## Task\n- [ ] Step 1"`
+
+**File Attachment Tasks**:
+1. Upload file: `curl -X POST -H "Authorization: Bearer $PAT" --data-binary @file.txt "https://dev.azure.com/ORG/PROJECT/_apis/wit/attachments?fileName=file.txt&api-version=7.0"`
+2. Link to work item: `curl -X PATCH ... -d '[{"op":"add","path":"/relations/-","value":{"rel":"AttachedFile","url":"<URL>"}}]' ".../_apis/wit/workitems/12345?api-version=7.0"`
+3. Use script: `./attach-to-work-item.sh 12345 /path/to/file.png "Screenshot of bug"`
+
 ## Guidelines
 
 ### Tool Selection Strategy
@@ -787,6 +1137,24 @@ az pipelines runs list --branch feature/my-feature --status completed --query "[
 - **Auto-Complete**: Use auto-complete for PRs with passing policies
 - **Pipeline Verification**: Check CI status before completing PRs
 - **Merge Strategies**: Prefer squash merge for feature branches
+
+### Markdown Usage
+
+- **Work Item Comments**: ALWAYS use `--discussion` flag for markdown comments, NOT `--comments` (plain text only)
+- **Structured PR Descriptions**: Use markdown headers (##), lists, and code blocks for clear PR descriptions
+- **Code Examples**: Include code blocks with language syntax highlighting (` ```swift `) in reviews and comments
+- **Task Lists**: Use checkboxes (`- [ ]` / `- [x]`) for acceptance criteria and testing checklists
+- **Link References**: Include links to design docs, wikis, and related work items using `[text](url)` syntax
+- **Status Updates**: Use emoji (✅ ❌ 🔄) and bold text for clear status communication in work item updates
+
+### File Attachments
+
+- **MCP Limitation**: MCP tools DO NOT support file attachments—must use Azure DevOps REST API
+- **Two-Step Process**: (1) Upload file to get attachment URL, (2) Link URL to work item via PATCH operation
+- **Authentication**: Requires `AZURE_DEVOPS_EXT_PAT` OAuth token for REST API calls
+- **Automation**: Create reusable bash scripts for common attachment workflows
+- **Size Awareness**: Azure DevOps limits file attachments to ~60MB per file
+- **Documentation**: Always add descriptive comments when attaching files to work items
 
 ### Error Handling & Reliability
 
