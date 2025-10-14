@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2025-10-14
+
+### Added
+- **Automatic Dependency Installation Prompts**: InstallCommand now checks for missing CLI dependencies after successful agent installation
+  - Automatically detects missing CLI tools required by installed agents
+  - Interactive prompt: "Would you like to install missing dependencies now? (y/n)"
+  - Installs via Homebrew using existing DependencyService
+  - Special handling for Azure CLI with post-install authentication tip: "Run 'az login' to authenticate with Azure DevOps"
+  - Respects --force flag: skips interactive prompts and shows tip to use `claude-agents doctor --install` instead
+- **Azure CLI Dependency Support**: Added azure-cli to predefined CLIDependency list
+  - Dependency ID: `azure-cli`
+  - Check command: `which az`
+  - Homebrew formula: `azure-cli`
+  - Used by: `azure-devops-specialist-template` agent
+- **Agent Dependency Metadata**: Added `dependencies: azure-cli` to azure-devops-specialist-template.md frontmatter
+
+### Changed
+- Enhanced InstallCommand to provide seamless dependency installation workflow
+- Improved user experience: install agents and their required CLI tools in one flow
+- Version bumped to 1.2.1
+
+### Behavior
+- **Default Behavior**: After installing agents with dependencies, CLI checks for missing tools and prompts to install
+- **With --force**: Skips interactive prompts, shows tip to use `claude-agents doctor --install`
+- **No Dependencies**: Agents without dependencies don't trigger any prompts
+
 ## [1.2.0] - 2025-10-14
 
 ### Added
