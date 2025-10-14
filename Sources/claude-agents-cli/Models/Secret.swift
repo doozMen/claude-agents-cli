@@ -54,6 +54,7 @@ public enum KnownSecret: String, Sendable, CaseIterable {
   case ghostAdminApiKey = "ghost-admin-api-key"
   case ghostContentApiKey = "ghost-content-api-key"
   case firebaseToken = "firebase-token"
+  case azureDevopsPat = "azure-devops-pat"
 
   public var displayName: String {
     switch self {
@@ -61,6 +62,7 @@ public enum KnownSecret: String, Sendable, CaseIterable {
     case .ghostAdminApiKey: return "Ghost Admin API Key"
     case .ghostContentApiKey: return "Ghost Content API Key"
     case .firebaseToken: return "Firebase Token"
+    case .azureDevopsPat: return "Azure DevOps PAT"
     }
   }
 
@@ -70,6 +72,8 @@ public enum KnownSecret: String, Sendable, CaseIterable {
       return "claude-agents-cli.ghost"
     case .firebaseToken:
       return "claude-agents-cli.firebase"
+    case .azureDevopsPat:
+      return "claude-agents-cli.azure-devops"
     }
   }
 
@@ -79,6 +83,7 @@ public enum KnownSecret: String, Sendable, CaseIterable {
     case .ghostAdminApiKey: return "api-key"
     case .ghostContentApiKey: return "content-api-key"
     case .firebaseToken: return "token"
+    case .azureDevopsPat: return "pat"
     }
   }
 
@@ -92,6 +97,8 @@ public enum KnownSecret: String, Sendable, CaseIterable {
       return "op://Employee/Ghost/Saved on account.ghost.org/content api key"
     case .firebaseToken:
       return nil  // Not in 1Password by default
+    case .azureDevopsPat:
+      return nil  // Configure via manual input - store PAT in 1Password if needed
     }
   }
 
@@ -101,6 +108,7 @@ public enum KnownSecret: String, Sendable, CaseIterable {
     case .ghostAdminApiKey: return "GHOST_ADMIN_API_KEY"
     case .ghostContentApiKey: return "GHOST_CONTENT_API_KEY"
     case .firebaseToken: return "FIREBASE_TOKEN"
+    case .azureDevopsPat: return "AZURE_DEVOPS_EXT_PAT"
     }
   }
 }

@@ -90,6 +90,48 @@ public struct SetupSecretsCommand: AsyncParsableCommand {
     }
     print("")
 
+    // Check Azure CLI
+    let azureInfo = await service.getAzureAuthInfo()
+    print("Azure CLI:")
+    if azureInfo.version != nil {
+      if let version = azureInfo.version {
+        print("  ✅ Installed (version \(version))")
+      } else {
+        print("  ✅ Installed")
+      }
+
+      if azureInfo.isAuthenticated {
+        print("  ✅ Authenticated")
+        if let email = azureInfo.userEmail {
+          print("     User: \(email)")
+        }
+        if let subscription = azureInfo.subscriptionName {
+          print("     Subscription: \(subscription)")
+        }
+      } else {
+        print("  ❌ Not authenticated")
+        print("     Run: az login")
+      }
+    } else {
+      print("  ❌ Not installed")
+      print("     Install: brew install azure-cli")
+    }
+    print("")
+
+    // Check Azure DevOps authentication
+    let azureDevopsStatus = await service.getAzureDevOpsAuthStatus()
+    print("Azure DevOps:")
+    if azureDevopsStatus.isAuthenticated {
+      print("  ✅ Authenticated with PAT")
+      if let projectCount = azureDevopsStatus.projectCount {
+        print("     Projects accessible: \(projectCount)")
+      }
+    } else {
+      print("  ❌ Not authenticated")
+      print("     Configure PAT: claude-agents setup secrets")
+    }
+    print("")
+
     // Check Keychain secrets
     print("Keychain Secrets:")
     let keychainSecrets = try await service.loadFromKeychain()
@@ -131,6 +173,14 @@ public struct SetupSecretsCommand: AsyncParsableCommand {
           print("  \(hasUrl && hasKey ? "✅" : "❌") Ghost server configured")
         } else {
           print("  ❌ Ghost server not configured")
+        }
+
+        // Check Azure DevOps
+        if let azureDevopsConfig = config.mcpServers["azure-devops"] {
+          let hasPat = !(azureDevopsConfig.env["AZURE_DEVOPS_EXT_PAT"]?.isEmpty ?? true)
+          print("  \(hasPat ? "✅" : "❌") Azure DevOps server configured")
+        } else {
+          print("  ❌ Azure DevOps server not configured")
         }
       } catch {
         print("  ⚠️  Failed to read config: \(error)")
@@ -389,6 +439,56 @@ public struct SetupSecretsCommand: AsyncParsableCommand {
         secrets[.firebaseToken] = token
       } else {
         print("⚠️  Empty token, skipping Firebase configuration")
+      }
+    }
+
+    // Azure DevOps
+    print("")
+    print("────────────────────────────────────────────────────────────")
+    print("  Azure DevOps Configuration")
+    print("────────────────────────────────────────────────────────────")
+    print("")
+
+    let configureAzureDevops: Bool
+    if force {
+      configureAzureDevops = true
+    } else {
+      print("Configure Azure DevOps? (y/n): ", terminator: "")
+      if let response = readLine()?.lowercased(),
+        response == "y" || response == "yes"
+      {
+        configureAzureDevops = true
+      } else {
+        print("Skipped Azure DevOps configuration")
+        print("")
+        configureAzureDevops = false
+      }
+    }
+
+    if configureAzureDevops {
+      print("")
+      print("Azure DevOps Personal Access Token (PAT):")
+      print("  Create a PAT at: https://dev.azure.com/[organization]/_usersSettings/tokens")
+      print("  Required scopes: Work Items (Read), Code (Read), Build (Read)")
+      print("")
+      print("PAT: ", terminator: "")
+
+      if let pat = readLine()?.trimmingCharacters(in: .whitespaces),
+        !pat.isEmpty
+      {
+        // Verify PAT works
+        print("")
+        print("Verifying PAT...")
+        if await service.verifyAzureDevOpsAuth(pat: pat) {
+          print("✅ PAT verified successfully")
+          secrets[.azureDevopsPat] = pat
+        } else {
+          print("❌ PAT verification failed")
+          print("   The PAT may be invalid or lack required permissions")
+          print("   Continuing without Azure DevOps configuration")
+        }
+      } else {
+        print("⚠️  Empty PAT, skipping Azure DevOps configuration")
       }
     }
 
