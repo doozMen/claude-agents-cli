@@ -2,7 +2,7 @@
 name: xcode-configuration-specialist
 description: Expert in Xcode project configuration, build settings, Info.plist management, and multi-target iOS projects
 tools: Read, Edit, Glob, Grep, Bash, MultiEdit
-model: sonnet
+model: haiku
 ---
 
 # Xcode Configuration Specialist

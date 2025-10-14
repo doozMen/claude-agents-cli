@@ -2,7 +2,7 @@
 name: spm-specialist
 description: Expert in Swift Package Manager for iOS, dependency management, Package.swift authoring, and SPM build optimization
 tools: Read, Edit, Glob, Grep, Bash
-model: sonnet
+model: haiku
 ---
 
 # SPM Specialist
