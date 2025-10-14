@@ -66,6 +66,15 @@ public struct CLIDependency: Sendable, Identifiable, Hashable {
       usedByAgents: ["swift-developer", "swift-modernizer", "testing-specialist"],
       optional: false
     ),
+    CLIDependency(
+      id: "azure-cli",
+      name: "Azure CLI",
+      checkCommand: "which az",
+      installCommand: nil,
+      homebrewFormula: "azure-cli",
+      usedByAgents: ["azure-devops-specialist-template"],
+      optional: false
+    ),
   ]
 
   /// Get predefined dependency by ID
