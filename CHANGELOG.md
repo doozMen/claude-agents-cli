@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2025-10-14
+
+### Fixed
+- **azure-devops-specialist-template**: Fixed critical markdown escaping bug in work item comments
+  - **Root Cause**: Azure CLI `--discussion` parameter triple-escapes markdown characters (e.g., `\#` → `\\\#`), rendering comments as broken raw text in Azure DevOps UI
+  - **Impact**: Comments would display as `\\## Header` instead of formatted headers
+  - **Solution**: Use `az devops invoke` with JSON files instead of `--discussion` parameter to bypass escaping bug
+  - **Reference**: Azure CLI GitHub issue #1462 (Microsoft confirmed bug)
+  - Added comprehensive "Work Item Comment Escaping Bug" section with working patterns
+  - Added helper function pattern for reusable markdown comments
+  - Added debugging guide and migration path for when Microsoft fixes the bug
+  - Updated all examples to avoid broken `--discussion` parameter with markdown
+  - Added critical tool restrictions: NEVER use curl (except file attachments), ONLY use `az` CLI
+
+### Changed
+- **azure-devops-specialist-template**: Enhanced agent documentation and guidelines
+  - Updated agent description to emphasize proper markdown formatting
+  - Added "Critical Tool Restrictions" section mandating Azure CLI (`az`) usage
+  - Updated "Working Azure CLI Examples" to remove broken patterns
+  - Updated "Quick Reference" with correct approach using `az devops invoke`
+  - Updated "Critical Rules" and "Markdown Usage" guidelines with escaping workarounds
+- **git-pr-specialist**: Minor refinements to draft MR workflow documentation
+  - Clarified `--ready` and `--draft` flag usage for both numbered and current branch MRs
+  - Added shorthand `-r` flag documentation
+  - Added draft MR status checking commands
+  - Improved draft MR use case descriptions
+
 ## [1.2.1] - 2025-10-14
 
 ### Added
@@ -160,6 +187,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global and local installation targets
 - Interactive prompts for safe operations
 
+[1.2.2]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.1...v1.2.2
+[1.2.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/doozMen/claude-agents-cli/compare/v0.0.1...v1.0.0
