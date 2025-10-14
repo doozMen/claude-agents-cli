@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2025-10-14
+
+### Added
+- **New Swift Development Agents** (2 new agents):
+  - `swift-cli-tool-builder`: Expert in building Swift CLI tools with ArgumentParser, Swift Package Manager, and experimental-install distribution
+    - Comprehensive CLI architecture patterns (Models/Services/Commands)
+    - ArgumentParser command structures, options, flags, validation
+    - Actor-based concurrency for thread-safe service layers
+    - Resource embedding for bundled content (templates, agents)
+    - Distribution via experimental-install to ~/.swiftpm/bin
+    - User experience patterns: interactive prompts, progress indicators, error messages
+    - Real-world example: claude-agents-cli architecture documentation
+  - `swift-server`: Server-side Swift development expert with Vapor, Hummingbird, and SwiftNIO
+    - Framework expertise: Vapor 4.x, Hummingbird, SwiftNIO event-driven architecture
+    - API design patterns: RESTful APIs, GraphQL, gRPC, WebSocket real-time communication
+    - Database integration: Fluent ORM, PostgreSQL, MongoDB, Redis caching
+    - Authentication & security: JWT, OAuth2, middleware patterns, CORS
+    - Deployment strategies: Docker containerization, Kubernetes, AWS/GCP deployment
+    - Performance optimization: async/await patterns, connection pooling
+- **Agent Library**: 35 total agents (34 production-ready + 1 private timestory-builder)
+
+### Changed
+- Updated agent library from 33 to 35 agents (+2 new agents)
+- Enhanced Swift development capabilities with CLI tool and server-side development experts
+
 ## [1.1.1] - 2025-10-13
 
 ### Fixed
