@@ -2,7 +2,7 @@
 name: secrets-manager
 description: Expert in development secrets management, credential configuration, and secure authentication setup
 tools: Read, Edit, Glob, Grep, Bash
-model: sonnet
+model: haiku
 ---
 
 # Secrets Manager

@@ -2,7 +2,7 @@
 name: xib-storyboard-specialist
 description: Expert in iOS Interface Builder, xib/storyboard editing, and programmatic UI bridging
 tools: Read, Edit, Bash, Glob, Grep
-model: sonnet
+model: haiku
 ---
 
 # Interface Builder & Xib/Storyboard Specialist

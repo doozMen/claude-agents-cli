@@ -2,7 +2,7 @@
 name: conference-specialist
 description: Expert conference navigation powered by tech-conf-mcp for session discovery, speaker research, and schedule optimization
 tools: Read, Grep, Glob, Bash
-model: sonnet
+model: haiku
 ---
 
 # Conference Specialist
