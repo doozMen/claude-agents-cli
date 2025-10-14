@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-10-14
+
+### Changed
+- **Agent Library Optimization**: Reduced from 37 to 35 agents with improved consistency
+  - Merged `ghost-blogger` + `ghost-publisher` → `ghost-specialist` for unified Ghost CMS workflow
+  - Renamed `testing-specialist` → `swift-testing-specialist` for naming consistency
+  - Renamed `azure-devops-specialist-template` → `azure-devops` for simpler, clearer naming
+  - Deleted `firebase-rossel-ecosystem-analyzer` (100% duplicate of firebase-ecosystem-analyzer)
+  - **Cost Optimization**: Migrated 6 agents to Haiku model (93% cost reduction: $15/M → $1/M tokens)
+    - `deckset-presenter`: Template-based presentation generation
+    - `xib-storyboard-specialist`: Interface Builder operations
+    - `secrets-manager`: Deterministic secrets operations
+    - `spm-specialist`: Package.swift manipulation
+    - `xcode-configuration-specialist`: Build settings operations
+    - `conference-specialist`: Conference data retrieval
+
+### Added
+- **ghost-specialist**: Comprehensive Ghost CMS agent combining content creation and technical publishing
+  - Content creation workflows from ghost-blogger (conference posts, reviews, Belgian writing style)
+  - Technical publishing mechanics from ghost-publisher (HTML conversion, duplicate detection, validation)
+  - Critical markdown-to-HTML conversion workflow using `npx marked`
+  - Complete Ghost MCP integration with create, update, search, and validation tools
+  - Belgian direct writing style guidelines and content quality standards
+  - Tag management strategy and excerpt writing best practices
+
+### Removed
+- **ghost-blogger**: Merged into ghost-specialist
+- **ghost-publisher**: Merged into ghost-specialist
+- **firebase-rossel-ecosystem-analyzer**: Removed duplicate agent
+- **testing-specialist**: Renamed to swift-testing-specialist
+
+### Fixed
+- **azure-devops-specialist-template**: Added file upload workflow instructions
+  - Step-by-step workflow: Upload files → Link to work item → Add comment with references
+  - Complete working examples using `az rest` for file uploads
+  - Basic auth pattern with base64 encoding for Azure DevOps REST API
+  - Best practices for file attachment workflow integration
+
 ## [1.2.2] - 2025-10-14
 
 ### Fixed
@@ -187,6 +225,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global and local installation targets
 - Interactive prompts for safe operations
 
+[1.3.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.2...v1.3.0
 [1.2.2]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.1.1...v1.2.0

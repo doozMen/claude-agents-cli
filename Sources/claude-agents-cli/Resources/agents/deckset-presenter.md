@@ -2,7 +2,7 @@
 name: deckset-presenter
 description: Creates and maintains Deckset presentations from technical documentation with visual directives and code examples
 tools: Read, Edit, Glob, Grep, MultiEdit, Bash
-model: sonnet
+model: haiku
 ---
 
 # Deckset Presenter
