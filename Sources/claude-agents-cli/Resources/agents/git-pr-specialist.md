@@ -575,10 +575,7 @@ Work in progress - implementing new functionality.
 EOF
 )"
 
-# Alternative shorthand: -d flag
-glab mr create -d --title "feat: add new functionality" --description "..."
-
-# Alternative: --wip flag (older GitLab terminology)
+# Alternative: --wip flag (older GitLab terminology, still works)
 glab mr create --wip --title "feat: add new functionality" --description "..."
 ```
 
@@ -589,14 +586,20 @@ glab mr create --wip --title "feat: add new functionality" --description "..."
 
 #### Converting Draft to Ready
 ```bash
-# Mark MR as ready for review
+# Mark MR as ready for review (using MR number)
 glab mr update 123 --ready
 
-# Or update current branch's MR
+# Or mark current branch's MR as ready (auto-detects MR)
 glab mr update --ready
+
+# Shorthand using -r flag
+glab mr update 123 -r
 
 # Mark ready MR back to draft
 glab mr update 123 --draft
+
+# Or mark current branch's MR as draft
+glab mr update --draft
 ```
 
 #### When to Use Draft MRs
@@ -605,6 +608,21 @@ glab mr update 123 --draft
 - **Experimental**: Test ideas before committing to full implementation
 - **Collaboration**: Signal work in progress to team members
 - **CI validation**: Trigger CI/CD pipelines without requesting review
+
+#### Draft MR Status Checking
+```bash
+# Check if an MR is in draft state
+glab mr view 123
+
+# List only draft MRs
+glab mr list --author=@me --draft
+
+# List only non-draft MRs
+glab mr list --author=@me --not-draft
+
+# Check draft status via GitLab API
+glab api --hostname gitlab.company-a.example "/merge_requests?scope=created_by_me&state=opened&wip=yes"
+```
 
 ### Version Management Integration
 ```bash
@@ -648,6 +666,8 @@ footer (optional - breaking changes, issue refs)
 ```bash
 # Create draft MR
 glab mr create --draft --title "..." --description "..."
+# Alternative: use --wip flag
+glab mr create --wip --title "..." --description "..."
 
 # Create regular MR
 glab mr create --title "..." --description "..."
@@ -658,11 +678,18 @@ glab mr list
 # View MR details
 glab mr view 123
 
-# Mark as ready
+# Mark as ready (two options)
 glab mr update 123 --ready
+glab mr update 123 -r
 
 # Mark as draft
 glab mr update 123 --draft
+
+# Mark current branch's MR ready (auto-detect)
+glab mr update --ready
+
+# Mark current branch's MR as draft
+glab mr update --draft
 
 # Merge MR
 glab mr merge 123
