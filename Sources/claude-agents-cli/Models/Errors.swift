@@ -44,3 +44,47 @@ public enum InstallError: Error, Sendable, CustomStringConvertible {
     }
   }
 }
+
+/// Errors that can occur during secrets management operations
+public enum SecretsError: Error, Sendable, CustomStringConvertible {
+  case onePasswordNotInstalled
+  case onePasswordNotAuthenticated
+  case secretNotFound(String)
+  case keychainAccessFailed(String, Error)
+  case invalidMCPConfig(String)
+  case configFileNotFound(URL)
+  case configBackupFailed(URL, Error)
+  case invalidSecretFormat(String)
+  case missingEnvironmentVariable(String)
+
+  public var description: String {
+    switch self {
+    case .onePasswordNotInstalled:
+      return """
+        1Password CLI is not installed.
+        Install it via Homebrew: brew install --cask 1password-cli
+        Documentation: https://developer.1password.com/docs/cli
+        """
+    case .onePasswordNotAuthenticated:
+      return """
+        Not authenticated with 1Password.
+        Run: eval $(op signin)
+        Or configure Touch ID: https://developer.1password.com/docs/cli/about-biometric-unlock
+        """
+    case .secretNotFound(let reference):
+      return "Secret not found in 1Password: \(reference)"
+    case .keychainAccessFailed(let key, let error):
+      return "Failed to access Keychain for '\(key)': \(error.localizedDescription)"
+    case .invalidMCPConfig(let reason):
+      return "Invalid MCP configuration: \(reason)"
+    case .configFileNotFound(let url):
+      return "MCP configuration file not found: \(url.path)"
+    case .configBackupFailed(let url, let error):
+      return "Failed to backup config at \(url.path): \(error.localizedDescription)"
+    case .invalidSecretFormat(let details):
+      return "Invalid secret format: \(details)"
+    case .missingEnvironmentVariable(let name):
+      return "Missing environment variable: \(name)"
+    }
+  }
+}
