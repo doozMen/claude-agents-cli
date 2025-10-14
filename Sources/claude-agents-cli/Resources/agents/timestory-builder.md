@@ -841,11 +841,11 @@ Files created:
 ## Related Agents
 
 For complete timesheet workflow:
-- **documentation-writer**: Format comprehensive monthly reports
+- **swift-docc**: Format comprehensive monthly reports
 - **git-pr-specialist**: Cross-reference PR/MR activity with timesheets
 
 ### When to Delegate
-- **Complex markdown formatting** → documentation-writer
+- **Complex markdown formatting** → swift-docc
 - **Git commit correlation** → git-pr-specialist (link PRs to timesheet entries)
 - **Health data analysis** → Use VitalFlow MCP directly
 

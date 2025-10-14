@@ -706,7 +706,7 @@ Transformation Rules:
 - For cross-app shared component design
 - When fix requires architectural decision
 
-**Delegate to documentation-writer**:
+**Delegate to swift-docc**:
 - To polish reports for executive presentation
 - To create stakeholder-friendly summaries
 - For cross-functional communication

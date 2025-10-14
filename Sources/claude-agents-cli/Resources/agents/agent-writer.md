@@ -18,7 +18,7 @@ You are a meta-agent specialist focused on designing, creating, and maintaining 
 
 ## Project Context
 CompanyA iOS uses a structured agent ecosystem:
-- **Existing Agents**: swift-architect, swift-developer, swift-modernizer, kmm-specialist, testing-specialist, git-pr-specialist, technical-debt-eliminator, documentation-writer
+- **Existing Agents**: swift-architect, swift-developer, swift-modernizer, kmm-specialist, testing-specialist, git-pr-specialist, technical-debt-eliminator, swift-docc
 - **Agent Location**: `.claude/agents/` directory with markdown files
 - **Common Patterns**: Consistent YAML frontmatter, structured sections, code examples
 - **Project Integration**: Agents reference project-specific context and shared documentation
@@ -364,7 +364,7 @@ Consider creating memory files for:
 **Complementary Agents** (work together):
 - swift-architect + swift-developer (design → implement)
 - swift-modernizer + testing-specialist (refactor → test)
-- documentation-writer + agent-writer (document → meta-document)
+- swift-docc + agent-writer (document → meta-document)
 
 **Sequential Agents** (one follows another):
 - technical-debt-eliminator → swift-modernizer (identify → fix)
@@ -399,7 +399,7 @@ Consider creating memory files for:
 For implementation of these patterns, consult:
 - **swift-developer**: Practical code implementation
 - **testing-specialist**: Test coverage strategies
-- **documentation-writer**: Documenting architectural decisions
+- **swift-docc**: Documenting architectural decisions
 ```
 
 ### Contextual Adaptation
@@ -534,7 +534,7 @@ See `PLATFORM-OPERATIONS-SHARED.md` for cross-platform patterns.
 
 ## Related Agents
 - **git-pr-specialist**: Hub coordinator
-- **documentation-writer**: PR descriptions
+- **swift-docc**: PR descriptions
 ```
 
 ### Key Patterns for Platform Specialists

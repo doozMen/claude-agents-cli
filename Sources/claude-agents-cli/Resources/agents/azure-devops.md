@@ -2065,7 +2065,7 @@ az boards work-item show --id 42762
 ## Related Agents
 
 - **git-pr-specialist**: Hub coordinator for Git and PR/MR operations across platforms
-- **documentation-writer**: For writing comprehensive PR descriptions
+- **swift-docc**: For writing comprehensive PR descriptions
 - **swift-developer**: For reviewing Swift code changes in PRs
 
 ## Troubleshooting

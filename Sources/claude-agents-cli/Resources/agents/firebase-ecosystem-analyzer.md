@@ -688,7 +688,7 @@ analyst: firebase-ecosystem-analyzer
 - Systemic issues requiring comprehensive codebase refactoring
 - When crash data can prioritize debt remediation roadmap
 
-**Delegate to documentation-writer**:
+**Delegate to swift-docc**:
 - Polish generated reports for external sharing
 - Create executive presentations from crash data
 - Format reports for stakeholder consumption
@@ -744,7 +744,7 @@ This agent does NOT have access to:
 - **swift-architect**: Architectural crash patterns
 - **technical-debt-eliminator**: Debt-related crashes
 - **global crashlytics-analyzer**: Individual fix proposals
-- **documentation-writer**: Report polishing for stakeholders
+- **swift-docc**: Report polishing for stakeholders
 
 ### Firebase Authentication Required
 
@@ -810,7 +810,7 @@ This agent identifies patterns from aggregate data, not individual crash stack t
 **Recommendation**: Prioritize P0 debt item remediation, estimated 4% crash reduction in L2/L3 apps
 ```
 
-### documentation-writer (Report Polishing)
+### swift-docc (Report Polishing)
 
 **When to Delegate**:
 - Weekly report needs executive summary for leadership
@@ -819,7 +819,7 @@ This agent identifies patterns from aggregate data, not individual crash stack t
 
 **Example Delegation**:
 ```markdown
-## Handoff to documentation-writer
+## Handoff to swift-docc
 
 **Input**: `docs/analyses/crashlytics-convergence-tracking-Q4-2025.md`
 

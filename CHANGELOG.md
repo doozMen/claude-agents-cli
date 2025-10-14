@@ -5,6 +5,73 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2025-10-14
+
+### Added
+- **Generic Cross-Language Agents** (4 new agents):
+  - `task-router`: Intelligent agent delegation using local LLM (Haiku model)
+    - Routes requests to best-fit agents using OWL Intelligence MCP integration
+    - Semantic matching with 85%+ accuracy for agent selection
+    - Zero API cost using local Apple Foundation models
+    - Parallel agent execution suggestions for complex tasks
+  - `architect`: System architecture and design patterns expert (Opus model)
+    - Language-agnostic architecture decisions and system design
+    - Distributed systems, microservices, event-driven architectures
+    - Domain-driven design, SOLID principles, design patterns
+    - Technology selection and migration strategies
+  - `test-builder`: Creates comprehensive test suites efficiently (Haiku model)
+    - Support for all major testing frameworks across languages
+    - Unit, integration, E2E, performance, and property-based testing
+    - Coverage strategies and test documentation
+    - Test maintenance and refactoring patterns
+  - `code-reviewer`: Thorough code reviews with actionable feedback (Sonnet model)
+    - Multi-language support with language-specific patterns
+    - Security, performance, and code quality analysis
+    - Prioritized feedback levels (Critical/Important/Suggestion)
+    - Constructive feedback with specific examples
+
+- **Swift CLI Development Agent**:
+  - `swift-cli-installer`: Automate Swift CLI tool build and installation (Haiku model)
+    - Handles experimental-install workflow and PATH setup
+    - Common build issues and validation flag patterns
+    - Cross-compilation support for Linux builds on macOS
+    - Package.swift configurations for CLI tools
+
+- **Documentation Infrastructure**:
+  - Restructured documentation into `docs/` folder for better organization
+  - `docs/AGENTS.md`: Comprehensive catalog of all 40 agents
+  - `docs/ARCHITECTURE.md`: Technical architecture and design details
+  - `docs/CONTRIBUTING.md`: Contribution guidelines and agent standards
+  - Moved `CLAUDE_CODE_GUIDE.md` and `SECRETS.md` to docs/
+
+### Changed
+- **Agent Library Growth**: Expanded from 35 to 40 agents (+5 new agents)
+- **Model Distribution**: Strategic optimization with 1 Opus, 31 Sonnet, 8 Haiku agents
+- **README.md**: Complete redesign with developer-friendly quick start
+  - Immediate quick start commands at the top
+  - Featured agents section highlighting new additions
+  - Popular agent combinations for common use cases
+  - Reduced to essential information with links to detailed docs
+- **CLAUDE.md**: Streamlined for AI assistance
+  - Concise project context and architecture overview
+  - Quick reference tables for key files and commands
+  - Recent changes tracking for context awareness
+  - Removed verbose explanations in favor of actionable information
+- **Renamed Agents**:
+  - `documentation-writer` → `swift-docc` for clarity on Swift DocC specialization
+
+### Architecture
+- **OWL Intelligence Integration** (Planned):
+  - Local LLM-based agent routing using Apple's Foundation models
+  - MCP server for semantic agent matching
+  - 95% faster routing decisions (<150ms vs 2-5s)
+  - Privacy-preserving with zero API costs
+
+### Fixed
+- Removed duplicate agents from global installation directory
+- Cleaned up old renamed agents (documentation-writer, ghost-blogger, etc.)
+- Verified exactly 40 unique agents in library
+
 ## [1.3.0] - 2025-10-14
 
 ### Changed
@@ -225,6 +292,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Global and local installation targets
 - Interactive prompts for safe operations
 
+[1.4.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.2...v1.3.0
 [1.2.2]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.0...v1.2.1

@@ -1200,7 +1200,7 @@ For complementary expertise, consult:
 - **spm-specialist**: Swift Package Manager authentication requirements
 - **firebase-ecosystem-analyzer**: Firebase project structure, Crashlytics access
 - **git-pr-specialist**: Managing .gitignore, preventing secret commits
-- **documentation-writer**: Creating README sections for setup procedures
+- **swift-docc**: Creating README sections for setup procedures
 - **xcode-configuration-specialist**: Xcode build settings for environment variables
 
 ### When to Delegate
@@ -1208,7 +1208,7 @@ For complementary expertise, consult:
 - **SPM dependency issues** → spm-specialist
 - **Firebase project setup** → firebase-ecosystem-analyzer  
 - **Git workflow for secrets** → git-pr-specialist
-- **Documentation updates** → documentation-writer
+- **Documentation updates** → swift-docc
 - **Build configuration** → xcode-configuration-specialist
 
 Your mission is to ensure developers can securely access project resources without exposing credentials, maintaining a frictionless development experience through automated secret management workflows.

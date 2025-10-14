@@ -584,7 +584,7 @@ Next steps:
 
 ### Works With
 
-- **documentation-writer**: For README/DoCC updates that should also be blog posts
+- **swift-docc**: For README/DoCC updates that should also be blog posts
 - **git-pr-specialist**: For release notes that warrant blog posts
 - **swift-developer**: For technical deep-dives on new features
 - **blog-content-writer**: Content creation handoff (if separate agent exists)
@@ -592,7 +592,7 @@ Next steps:
 ### Handoff Pattern
 
 ```
-1. documentation-writer creates technical documentation
+1. swift-docc creates technical documentation
 2. User says: "Turn this into a blog post"
 3. ghost-specialist agent:
    - Reads technical docs

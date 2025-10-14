@@ -1209,13 +1209,13 @@ except Exception as e:
 ## Related Agents
 
 For complete PR/MR workflow:
-- **documentation-writer**: Create comprehensive PR/MR descriptions and documentation updates
+- **swift-docc**: Create comprehensive PR/MR descriptions and documentation updates
 - **testing-specialist**: Validate test coverage and testing strategy before merge
 
 ### PR/MR Creation Workflow
 1. Code changes completed
 2. **testing-specialist**: Verify tests are passing and coverage is adequate
-3. **documentation-writer**: Update documentation if needed
+3. **swift-docc**: Update documentation if needed
 4. **git-pr-specialist**: Create PR/MR with proper description and links
 5. Link work items, request reviews, manage merge process
 

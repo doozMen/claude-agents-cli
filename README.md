@@ -1,283 +1,187 @@
 # Claude Agents CLI
 
-A Swift command-line tool for managing Claude agent markdown files. Install, uninstall, and manage specialized AI agents for your projects.
+**38 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
 
-## New to Claude Code?
+[![Swift 6.1](https://img.shields.io/badge/Swift-6.1-orange.svg)](https://swift.org)
+[![macOS 13.0+](https://img.shields.io/badge/macOS-13.0+-blue.svg)](https://www.apple.com/macos)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-If you're new to Claude Code and agents, check out the [**Claude Code Best Practices Guide**](./CLAUDE_CODE_GUIDE.md) - a comprehensive introduction to agent-based development workflows.
+## Quick Start
 
-## Why Not Use Official Claude CLI?
+```bash
+# Install the CLI
+cd claude-agents-cli
+swift package experimental-install --product claude-agents
 
-The official Claude CLI (`claude-code`) includes basic agent management. This tool provides:
+# List available agents
+claude-agents list
 
-**Key Differences:**
-- **34 Embedded Agents**: Production-ready agents for Swift, iOS, documentation, testing, and CI/CD
-- **Curated Library**: No need to write agent markdown from scratch
-- **Discovery**: Filter agents by tool usage, list with descriptions
-- **Batch Operations**: Install all agents with `--all` flag
-- **Global & Local**: System-wide or project-specific installation
+# Install essential agents globally
+claude-agents install swift-architect test-builder code-reviewer --global
 
-**Use Case**: This tool is for developers who want ready-to-use specialized agents. The official Claude CLI is better for creating custom agents from scratch.
+# Install all 38 agents
+claude-agents install --all --global
+```
 
-## Features
+That's it! Your agents are ready to use in Claude Code.
 
-- **List Agents**: Browse 34 embedded agents or view installed agents
-- **Install**: Copy agents to global (~/.claude/agents/) or local (./.claude/agents/) directories
-- **Uninstall**: Remove installed agents
-- **Filter**: Find agents by tool usage
-- **Interactive**: Smart prompts for safe operations
-- **Embedded Library**: 34 production-ready agents covering Swift development, documentation, testing, and CI/CD
+## What is This?
+
+Claude Agents CLI provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 38 production-ready agents covering:
+
+- **Swift & iOS Development** - Architecture, SwiftUI, testing, modernization
+- **Cross-Platform** - Generic agents for any language (architect, test-builder, code-reviewer)
+- **Documentation** - API docs, technical writing, blog posts
+- **CI/CD & DevOps** - Azure DevOps, GitLab, GitHub automation
+- **Specialized Tools** - Firebase analytics, crash reporting, MCP servers
+
+## Popular Agent Combinations
+
+```bash
+# iOS Development
+claude-agents install swift-architect swift-developer swiftui-specialist --global
+
+# Full-Stack Development
+claude-agents install architect test-builder code-reviewer --global
+
+# Documentation & Content
+claude-agents install swift-docc blog-content-writer documentation-verifier --global
+
+# CI/CD Pipeline
+claude-agents install azure-devops git-pr-specialist --global
+```
+
+## Key Features
+
+- **🚀 38 Embedded Agents** - Production-ready, no configuration needed
+- **🧠 Smart Routing** - New task-router agent uses local LLM for intelligent delegation
+- **💰 Cost Optimized** - Mixed model strategy (Opus for complex, Haiku for simple tasks)
+- **🔧 Zero Config** - Agents work immediately after installation
+- **📁 Flexible Installation** - Global (all projects) or local (project-specific)
+- **🔍 Easy Discovery** - Filter by tools, view descriptions, find the right agent
 
 ## Installation
 
-### Using Swift Package Manager
-
-```bash
-cd claude-agents-cli
-swift package experimental-install --product claude-agents
-```
-
-This installs the `claude-agents` executable to `~/.swiftpm/bin/`. Make sure this directory is in your PATH:
-
+Ensure `~/.swiftpm/bin` is in your PATH:
 ```bash
 export PATH="$HOME/.swiftpm/bin:$PATH"
 ```
 
-### From Source
-
+Then install:
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/claude-agents-cli.git
 cd claude-agents-cli
-swift build -c release
-cp .build/release/claude-agents /usr/local/bin/
+swift package experimental-install --product claude-agents
 ```
 
-## Secrets Management
+## Core Commands
 
-Some agents require credentials (Ghost CMS, Firebase, etc.). Store them securely using macOS Keychain:
-
+### Discover Agents
 ```bash
-# Interactive setup - stores secrets in Keychain
-./scripts/setup-secrets.sh
-
-# Load secrets into environment
-source scripts/load-secrets.sh
-
-# Update Claude MCP configuration
-./scripts/update-mcp-config.sh
-
-# Restart Claude Code to apply changes
-```
-
-See [docs/SECRETS.md](docs/SECRETS.md) for detailed documentation on:
-- Setting up Ghost CMS and Firebase credentials
-- Rotating secrets
-- Troubleshooting
-- Adding new MCP servers
-
-**Never commit secrets to version control.** The project uses `.env.template` as a reference. Actual secrets are stored in macOS Keychain.
-
-## Usage
-
-### List Available Agents
-
-```bash
-# List all available agents
-claude-agents list
-
-# List with descriptions
-claude-agents list --verbose
-
-# Filter by tool
-claude-agents list --tool Bash
-```
-
-### List Installed Agents
-
-```bash
-# List globally installed agents
-claude-agents list --installed
-
-# List locally installed agents
-claude-agents list --installed --target local
+claude-agents list                    # List all 38 available agents
+claude-agents list --verbose           # Include descriptions
+claude-agents list --tool Bash         # Filter by tool capability
+claude-agents list --installed         # Show what's installed
 ```
 
 ### Install Agents
-
 ```bash
-# Install specific agents to global location
-claude-agents install swift-architect testing-specialist --global
-
-# Install to local project directory
-claude-agents install swift-architect --local
-
-# Install all available agents
-claude-agents install --all --global
-
-# Force overwrite existing agents
-claude-agents install swift-architect --global --force
+claude-agents install <agent-name> --global   # Install globally
+claude-agents install <agent-name> --local    # Install to current project
+claude-agents install --all --global          # Install everything
+claude-agents install --all --force --global  # Update all agents
 ```
 
-**Installation Targets:**
-- `--global`: Installs to `~/.claude/agents/` (default)
-- `--local`: Installs to `./.claude/agents/` (project-specific)
-
-### Uninstall Agents
-
+### Remove Agents
 ```bash
-# Uninstall from global location
-claude-agents uninstall swift-architect
-
-# Uninstall from local location
-claude-agents uninstall swift-architect --target local
+claude-agents uninstall <agent-name>          # From global
+claude-agents uninstall <agent-name> --target local  # From project
 ```
 
-### Update Agents
+## Featured Agents
 
-```bash
-# Placeholder for future Git-based updates
-claude-agents update
-```
+### 🆕 New Generic Agents (v1.4.0)
 
-Currently, use `claude-agents install --all --force --global` to update all agents.
+| Agent | Model | Purpose |
+|-------|-------|---------|
+| **task-router** | Haiku | Routes requests to best agents using local LLM |
+| **architect** | Opus | System design and architecture across all languages |
+| **test-builder** | Haiku | Creates comprehensive test suites efficiently |
+| **code-reviewer** | Sonnet | Thorough code reviews with actionable feedback |
 
-## Available Agents
+### Swift & iOS Development
 
-The CLI includes these specialized agents:
+| Agent | Purpose |
+|-------|---------|
+| **swift-architect** | Swift 6.0 patterns, actors, async/await |
+| **swift-developer** | Feature implementation, iOS development |
+| **swiftui-specialist** | SwiftUI best practices and components |
+| **swift-modernizer** | Migrate legacy code to Swift 6.0 |
+| **swift-testing-specialist** | Swift Testing framework expertise |
 
-- **swift-architect**: Swift 6.0 architecture patterns and modern iOS development
-- **swift-developer**: Feature implementation and iOS code writing
-- **swift-modernizer**: Legacy code migration to Swift 6.0
-- **swift-cli-tool-builder**: Build professional CLI tools with ArgumentParser and SPM
-- **swift-server**: Server-side Swift with Vapor, Hummingbird, and SwiftNIO
-- **testing-specialist**: Swift Testing framework expertise
-- **kmm-specialist**: Kotlin Multiplatform Mobile integration
-- **spm-specialist**: Swift Package Manager expertise
-- **xcode-configuration-specialist**: Xcode project configuration
+### Documentation & Content
 
-## Agent Structure
+| Agent | Purpose |
+|-------|---------|
+| **swift-docc** | Swift DocC and API documentation |
+| **documentation-verifier** | Review and improve documentation |
+| **blog-content-writer** | Technical blog posts and articles |
 
-Each agent is a markdown file with YAML frontmatter:
+### DevOps & CI/CD
 
-```markdown
----
-name: swift-architect
-description: Specialized in Swift 6.0 architecture patterns
-tools: Read, Edit, Glob, Grep, Bash
-model: sonnet
----
+| Agent | Purpose |
+|-------|---------|
+| **azure-devops** | Azure DevOps pipelines and automation |
+| **git-pr-specialist** | PR/MR workflows across platforms |
+| **github-specialist** | GitHub Actions and workflows |
+| **gitlab-specialist** | GitLab CI/CD pipelines |
 
-# Agent Content
+[View all 38 agents →](docs/AGENTS.md)
 
-Agent instructions and expertise...
-```
+## Why Use This Instead of Official Claude CLI?
 
-## Adding Custom Agents
+The official `claude-code` CLI includes basic agent management. This tool provides:
 
-To add your own agents:
+- **Curated Library**: 38 production-ready agents vs. starting from scratch
+- **Smart Discovery**: Filter by tools, batch operations, descriptions
+- **Model Optimization**: Strategic use of Opus/Sonnet/Haiku for cost/performance
+- **OWL Intelligence Integration**: Local LLM routing (coming soon)
 
-1. Create a `.md` file with YAML frontmatter
-2. Place it in `Sources/claude-agents-cli/Resources/agents/`
-3. Rebuild and reinstall the CLI
-
-Required frontmatter fields:
-- `name`: Agent identifier
-- `description`: Brief description
-- `tools`: Comma-separated list of available tools
-
-Optional fields:
-- `model`: Preferred AI model (e.g., "sonnet")
-
-## Development
-
-### Building
-
-```bash
-swift build
-```
-
-### Running Tests
-
-```bash
-swift test
-```
-
-### Project Structure
+## Project Structure
 
 ```
 claude-agents-cli/
-├── Package.swift
 ├── Sources/claude-agents-cli/
-│   ├── Main.swift
-│   ├── Commands/
-│   │   ├── ListCommand.swift
-│   │   ├── InstallCommand.swift
-│   │   ├── UninstallCommand.swift
-│   │   ├── UpdateCommand.swift
-│   │   └── SharedTypes.swift
-│   ├── Models/
-│   │   ├── Agent.swift
-│   │   ├── InstallTarget.swift
-│   │   ├── Errors.swift
-│   │   └── InstallResult.swift
-│   ├── Services/
-│   │   ├── AgentParser.swift
-│   │   ├── InstallService.swift
-│   │   └── GitService.swift
-│   └── Resources/
-│       └── agents/
-│           ├── swift-architect.md
-│           ├── swift-developer.md
-│           └── ...
-└── Tests/
-    └── claude-agents-cliTests/
+│   ├── Commands/              # CLI commands
+│   ├── Models/                 # Data models
+│   ├── Services/              # Business logic
+│   └── Resources/agents/      # 38 embedded agents
+└── docs/                      # Detailed documentation
 ```
-
-## Architecture
-
-### Swift 6.0 Concurrency
-
-- **Actor Isolation**: All services are actors for thread-safe operations
-- **Sendable Conformance**: All models conform to Sendable
-- **Async/Await**: Modern async patterns throughout
-
-### Design Patterns
-
-- **Dependency Injection**: Services are independent and testable
-- **Error Handling**: CustomStringConvertible errors for user-friendly messages
-- **Resource Management**: Bundle.module for embedded agent files
 
 ## Requirements
 
 - macOS 13.0+
 - Swift 6.1+
-- Xcode 16.0+ (for building)
-
-## License
-
-MIT License - See LICENSE file for details
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Add your changes with tests
-4. Submit a pull request
-
-## Roadmap
-
-- [ ] Git-based agent updates
-- [ ] Remote agent repositories
-- [ ] Agent dependencies
-- [ ] Version management
-- [ ] Agent templates
-- [ ] Bash completion scripts
-
-## Support
-
-For issues, questions, or contributions, please open an issue on GitHub.
+- Claude Code Desktop App
 
 ## Documentation
 
-- [Claude Code Best Practices Guide](./CLAUDE_CODE_GUIDE.md) - Comprehensive guide for developers new to Claude Code
-- [Official Claude Code Docs](https://docs.claude.com/en/docs/claude-code) - Anthropic's official documentation
+- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 38 agents
+- [Architecture Guide](docs/ARCHITECTURE.md) - Technical details and design
+- [Claude Code Guide](docs/CLAUDE_CODE_GUIDE.md) - Best practices for Claude Code
+- [Secrets Management](docs/SECRETS.md) - Credential setup for MCP servers
+- [Contributing](docs/CONTRIBUTING.md) - How to add new agents
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/yourusername/claude-agents-cli/issues)
+- **Docs**: [Official Claude Code Docs](https://docs.claude.com/en/docs/claude-code)
+
+## License
+
+MIT - See [LICENSE](LICENSE) file
+
+---
+
+Made with ❤️ for the Claude Code community
