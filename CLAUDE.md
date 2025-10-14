@@ -74,7 +74,7 @@ claude-agents-cli/
             ├── swift-architect.md
             ├── swift-developer.md
             ├── testing-specialist.md
-            └── ... (20+ agent files)
+            └── ... (33 agent files total)
 ```
 
 ### Key Components

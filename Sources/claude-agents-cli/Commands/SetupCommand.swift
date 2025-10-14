@@ -4,6 +4,19 @@ import Foundation
 public struct SetupCommand: AsyncParsableCommand {
   public static let configuration = CommandConfiguration(
     commandName: "setup",
+    abstract: "Configure claude-agents CLI and related services",
+    subcommands: [
+      SetupSecretsCommand.self
+    ],
+    defaultSubcommand: SetupCLAUDEMdCommand.self
+  )
+
+  public init() {}
+}
+
+public struct SetupCLAUDEMdCommand: AsyncParsableCommand {
+  public static let configuration = CommandConfiguration(
+    commandName: "claudemd",
     abstract: "Configure claude-agents CLI integration with your global CLAUDE.md file"
   )
 
