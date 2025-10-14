@@ -4,7 +4,7 @@ AI assistance guide for the Claude Agents CLI codebase.
 
 ## Project Context
 
-**What**: Swift CLI tool managing 38 specialized Claude agent markdown files
+**What**: Swift CLI tool managing 42 specialized Claude agent markdown files
 **Purpose**: Simplify agent installation/management for Claude Code users
 **Language**: Swift 6.1 with strict concurrency (actors, Sendable, async/await)
 
@@ -49,7 +49,7 @@ Models/ (Data types - all Sendable)
 | Agent.swift | Agent model | Parses YAML frontmatter without external libs |
 | AgentParser.swift | Resource loader | Uses Bundle.module for embedded .md files |
 | InstallService.swift | File operations | Handles global/local installation |
-| agents/*.md | 38 agents | Production-ready agent markdown files |
+| agents/*.md | 42 agents | Production-ready agent markdown files |
 
 ## Agent Format
 
@@ -71,7 +71,8 @@ Agent instructions...
 
 - Added 4 generic agents: task-router, architect, test-builder, code-reviewer
 - Renamed: documentation-writer → swift-docc
-- Model distribution: 1 Opus, 30 Sonnet, 7 Haiku
+- Added swift-format-specialist (Haiku) for mechanical formatting
+- Model distribution: 1 Opus, 30 Sonnet, 11 Haiku
 - OWL Intelligence integration planned for local LLM routing
 
 ## Testing
@@ -105,7 +106,7 @@ Check `AgentParser.swift` - caches parsed agents from Bundle.module
 
 - **User Guide**: [README.md](README.md) - Installation and usage
 - **Architecture**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - Technical design
-- **Agent Catalog**: [docs/AGENTS.md](docs/AGENTS.md) - All 38 agents detailed
+- **Agent Catalog**: [docs/AGENTS.md](docs/AGENTS.md) - All 42 agents detailed
 - **Best Practices**: [docs/CLAUDE_CODE_GUIDE.md](docs/CLAUDE_CODE_GUIDE.md) - Claude Code patterns
 - **Contributing**: [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) - Adding agents
 

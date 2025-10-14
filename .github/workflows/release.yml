@@ -1,0 +1,132 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v1.4.0
+
+jobs:
+  build-and-release:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for changelog
+
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '6.0'
+
+      - name: Get version from tag
+        id: version
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Build release binary
+        run: |
+          swift build --configuration release
+          cp .build/release/claude-agents ./claude-agents-${{ steps.version.outputs.VERSION }}-macos
+
+      - name: Create release archive
+        run: |
+          tar -czf claude-agents-${{ steps.version.outputs.VERSION }}-macos.tar.gz \
+            claude-agents-${{ steps.version.outputs.VERSION }}-macos
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get commits since last tag
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            CHANGELOG="Initial release"
+          else
+            CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
+          fi
+
+          # Save to file for release notes
+          cat > release-notes.md << 'EOF'
+## What's Changed
+
+$CHANGELOG
+
+## Installation
+
+### Using Homebrew (Recommended)
+\`\`\`bash
+# Coming soon
+\`\`\`
+
+### Manual Installation
+
+1. Download the binary for your platform
+2. Extract the archive:
+   \`\`\`bash
+   tar -xzf claude-agents-${{ steps.version.outputs.VERSION }}-macos.tar.gz
+   \`\`\`
+3. Move to your PATH:
+   \`\`\`bash
+   mv claude-agents-${{ steps.version.outputs.VERSION }}-macos ~/.swiftpm/bin/claude-agents
+   chmod +x ~/.swiftpm/bin/claude-agents
+   \`\`\`
+
+### Build from Source
+\`\`\`bash
+git clone https://github.com/${{ github.repository }}.git
+cd claude-agents-cli
+swift build --configuration release
+swift package experimental-install --product claude-agents
+\`\`\`
+
+## Requirements
+
+- macOS 13.0+
+- Swift 6.0+
+
+## Documentation
+
+- [README](README.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Agent Catalog](docs/AGENTS.md)
+- [Contributing](docs/CONTRIBUTING.md)
+
+**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG}...${{ steps.version.outputs.TAG }}
+EOF
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release-notes.md
+          files: |
+            claude-agents-${{ steps.version.outputs.VERSION }}-macos.tar.gz
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifact (fallback)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-agents-${{ steps.version.outputs.VERSION }}-macos
+          path: |
+            claude-agents-${{ steps.version.outputs.VERSION }}-macos
+            claude-agents-${{ steps.version.outputs.VERSION }}-macos.tar.gz
+          retention-days: 90
+
+  notify-on-failure:
+    runs-on: macos-latest
+    needs: build-and-release
+    if: failure()
+
+    steps:
+      - name: Notify failure
+        run: |
+          echo "::warning::GitHub Release failed. Binary artifacts uploaded as workflow artifacts."
+          echo "::warning::To create release manually:"
+          echo "::warning::1. Download artifacts from workflow run"
+          echo "::warning::2. Create release via gh CLI: gh release create ${{ github.ref_name }} --generate-notes"
+          echo "::warning::3. Upload binary: gh release upload ${{ github.ref_name }} claude-agents-*.tar.gz"

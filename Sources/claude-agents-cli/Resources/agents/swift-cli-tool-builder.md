@@ -1090,6 +1090,11 @@ claude-agents-cli/
 - **Release builds**: Use `--configuration release` for distribution
 - **Installation instructions**: Document PATH setup for users
 - **Changelog**: Track breaking changes for users
+- **Update CLAUDE.md**: After installing a new CLI tool globally, update `~/.claude/CLAUDE.md` to document:
+  - Installation command (`claude-agents install <tool-name> --global`)
+  - Common usage patterns and integration with Claude Code workflows
+  - Tool-specific configuration (PATH, environment variables, MCP servers)
+  - Examples and best practices for the tool
 
 ## Constraints
 
