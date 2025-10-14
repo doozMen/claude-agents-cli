@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "onePasswordVault": "Personal",
+  "services": {
+    "ghost": {
+      "url": {
+        "onePasswordRef": "op://Personal/Ghost Blog/url",
+        "keychainAccount": "ghost-url",
+        "keychainService": "claude-agents-cli.ghost",
+        "envVar": "GHOST_URL",
+        "prompt": "Ghost site URL (e.g., https://yoursite.ghost.io)",
+        "validator": "url"
+      },
+      "adminApiKey": {
+        "onePasswordRef": "op://Personal/Ghost Blog/admin api key",
+        "keychainAccount": "ghost-admin-api-key",
+        "keychainService": "claude-agents-cli.ghost",
+        "envVar": "GHOST_ADMIN_API_KEY",
+        "prompt": "Ghost Admin API Key (format: id:secret)"
+      }
+    }
+  },
+  "mcpServers": {
+    "ghost": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-ghost"],
+      "description": "Ghost CMS MCP server for blog publishing",
+      "requiredSecrets": ["ghost.url", "ghost.adminApiKey"]
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "onePasswordVault": "Engineering",
+  "services": {
+    "ghost": {
+      "url": {
+        "onePasswordRef": "op://Engineering/Company Blog/url",
+        "keychainAccount": "ghost-url",
+        "keychainService": "claude-agents-cli.ghost",
+        "envVar": "GHOST_URL",
+        "prompt": "Ghost URL"
+      },
+      "adminApiKey": {
+        "onePasswordRef": "op://Engineering/Company Blog/admin key",
+        "keychainAccount": "ghost-admin-api-key",
+        "keychainService": "claude-agents-cli.ghost",
+        "envVar": "GHOST_ADMIN_API_KEY",
+        "prompt": "Ghost Admin API Key"
+      }
+    },
+    "firebase": {
+      "token": {
+        "onePasswordRef": "op://Engineering/Firebase/ci token",
+        "keychainAccount": "firebase-token",
+        "keychainService": "claude-agents-cli.firebase",
+        "envVar": "FIREBASE_TOKEN",
+        "prompt": "Firebase CI token"
+      }
+    },
+    "azure-devops": {
+      "orgUrl": {
+        "onePasswordRef": "op://Engineering/Azure DevOps/org url",
+        "keychainAccount": "azure-devops-org-url",
+        "keychainService": "claude-agents-cli.azure",
+        "envVar": "AZURE_DEVOPS_ORG_URL",
+        "prompt": "Azure DevOps Organization URL (e.g., https://dev.azure.com/org)"
+      },
+      "pat": {
+        "onePasswordRef": "op://Engineering/Azure DevOps/pat",
+        "keychainAccount": "azure-devops-pat",
+        "keychainService": "claude-agents-cli.azure",
+        "envVar": "AZURE_DEVOPS_PAT",
+        "prompt": "Azure DevOps Personal Access Token"
+      }
+    },
+    "github": {
+      "token": {
+        "onePasswordRef": "op://Engineering/GitHub/mcp token",
+        "keychainAccount": "github-token",
+        "keychainService": "claude-agents-cli.github",
+        "envVar": "GITHUB_TOKEN",
+        "prompt": "GitHub Personal Access Token"
+      }
+    },
+    "gitlab": {
+      "url": {
+        "onePasswordRef": "op://Engineering/GitLab/instance url",
+        "keychainAccount": "gitlab-url",
+        "keychainService": "claude-agents-cli.gitlab",
+        "envVar": "GITLAB_URL",
+        "prompt": "GitLab instance URL"
+      },
+      "token": {
+        "onePasswordRef": "op://Engineering/GitLab/access token",
+        "keychainAccount": "gitlab-token",
+        "keychainService": "claude-agents-cli.gitlab",
+        "envVar": "GITLAB_TOKEN",
+        "prompt": "GitLab Personal Access Token"
+      }
+    }
+  },
+  "mcpServers": {
+    "ghost": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-ghost"],
+      "description": "Company blog publishing",
+      "requiredSecrets": ["ghost.url", "ghost.adminApiKey"]
+    },
+    "firebase": {
+      "command": "firebase",
+      "args": ["experimental:mcp"],
+      "description": "Firebase Crashlytics analysis",
+      "requiredSecrets": ["firebase.token"]
+    },
+    "azure-devops": {
+      "command": "azure-devops-mcp",
+      "args": [],
+      "description": "Azure DevOps integration",
+      "requiredSecrets": ["azure-devops.orgUrl", "azure-devops.pat"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub repository integration",
+      "requiredSecrets": ["github.token"]
+    },
+    "gitlab": {
+      "command": "gitlab-mcp-server",
+      "args": [],
+      "description": "GitLab integration",
+      "requiredSecrets": ["gitlab.url", "gitlab.token"]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "services": {
+    "ghost": {
+      "url": {
+        "onePasswordRef": null,
+        "keychainAccount": "ghost-url",
+        "keychainService": "claude-agents-cli.ghost",
+        "envVar": "GHOST_URL",
+        "prompt": "Ghost site URL (e.g., https://yoursite.ghost.io)",
+        "validator": "url"
+      },
+      "adminApiKey": {
+        "onePasswordRef": null,
+        "keychainAccount": "ghost-admin-api-key",
+        "keychainService": "claude-agents-cli.ghost",
+        "envVar": "GHOST_ADMIN_API_KEY",
+        "prompt": "Ghost Admin API Key (format: id:secret)"
+      }
+    },
+    "firebase": {
+      "token": {
+        "onePasswordRef": null,
+        "keychainAccount": "firebase-token",
+        "keychainService": "claude-agents-cli.firebase",
+        "envVar": "FIREBASE_TOKEN",
+        "prompt": "Firebase CI token (run: firebase login:ci)"
+      }
+    }
+  },
+  "mcpServers": {
+    "ghost": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-ghost"],
+      "description": "Ghost CMS MCP server",
+      "requiredSecrets": ["ghost.url", "ghost.adminApiKey"]
+    },
+    "firebase": {
+      "command": "firebase",
+      "args": ["experimental:mcp"],
+      "description": "Firebase MCP server",
+      "requiredSecrets": ["firebase.token"]
+    }
+  }
+}
