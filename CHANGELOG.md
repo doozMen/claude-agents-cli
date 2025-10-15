@@ -5,6 +5,68 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - experiment/mcp
+
+### Added
+- **MCP Server Integration** (SwiftLens + Context7):
+  - SwiftLens MCP server for semantic-level Swift code analysis using SourceKit-LSP
+    - 15 tools: Single-file analysis, cross-file navigation, symbol references, code modification
+    - Integration with Apple's SourceKit-LSP for compiler-grade accuracy
+    - Token-optimized output for efficient AI interactions
+    - Installed via `uvx swiftlens` in tools/swiftlens/
+  - Context7 MCP server for up-to-date API documentation and code examples
+    - Version-specific documentation from official sources
+    - 2 tools: Library ID resolution and documentation retrieval
+    - Installed via `npx -y @upstash/context7-mcp`
+  - Agent-local MCP deployment pattern with `.mcp.json` configuration
+  - Automation hook (`tools/auto-rebuild-swift-index.sh`) for SwiftLens index rebuilding
+    - 15-minute cooldown mechanism to prevent excessive builds
+    - Lock file pattern for concurrent execution prevention
+    - Automatic triggering on .swift file Write/Edit operations
+  - Comprehensive documentation:
+    - `docs/MCP-SETUP.md`: Full setup guide (352 lines)
+    - `QUICKSTART-MCP.md`: Quick reference (184 lines)
+    - Troubleshooting section for common issues
+    - Deployment pattern comparison (agent-local vs project-local vs global)
+- **Agent Model Enhancement**:
+  - Added `mcp` field to Agent model for MCP server metadata
+  - Parses comma-separated MCP server lists from agent frontmatter
+  - 15 agents now reference MCP servers (swiftlens, context7, github, gitlab, azure-devops, owl-intelligence)
+- **WARP.md Symlink**: Added symlink to CLAUDE.md for Warp terminal compatibility
+
+### Changed
+- Updated `.gitignore` to exclude MCP server installations and temporary files
+  - `tools/swiftlens/` directory (git clone)
+  - `/tmp/swiftlens-rebuild-*` temporary files
+- Enhanced Agent.swift with MCP server parsing (maintains Swift 6 Sendable conformance)
+
+### Architecture
+- **Agent-Local MCP Deployment Pattern**:
+  - MCP servers scoped to specific agents via frontmatter (`mcp: swiftlens, context7`)
+  - Isolated per agent - each agent has independent MCP server instances
+  - Alternative project-local pattern documented for shared usage
+  - Configuration via `.mcp.json` in worktree root
+- **Automation Hook Design**:
+  - PostToolUse hook pattern for SwiftLens index rebuilding
+  - Bash-based implementation with graceful error handling
+  - Opt-in activation via `~/.claude/settings.json`
+  - No automatic tool execution (notification-only, respects user approval)
+
+### Infrastructure
+- **Dependencies**:
+  - Python 3.10+ with `uv` package manager (installed to `~/.local/bin/uvx`)
+  - Node.js 18+ with `npx` (via nvm)
+  - Xcode with SourceKit-LSP (required for SwiftLens)
+  - jq for JSON parsing in automation hooks (with fallback)
+- **Verification**: All tooling verified production-ready by swift-mcp-server-writer agent
+- **Architecture Review**: Approved by swift-architect agent with recommendations implemented
+
+### Technical Details
+- **SwiftLens Index Building**: Requires `swift build -Xswiftc -index-store-path -Xswiftc .build/index/store`
+- **MCP Server Tools**: 17 total tools (15 SwiftLens + 2 Context7)
+- **Path Configuration**: Absolute paths to uvx/npx with environment PATH configuration
+- **Cooldown Strategy**: 900 seconds (15 minutes) between automatic index rebuilds
+
 ## [1.4.0] - 2025-10-14
 
 ### Added

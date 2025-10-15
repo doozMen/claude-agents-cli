@@ -6,6 +6,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
   public let name: String
   public let description: String
   public let tools: [String]
+  public let mcp: [String]
   public let model: String?
   public let dependencies: [String]
   public let content: String
@@ -16,6 +17,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
     name: String,
     description: String,
     tools: [String],
+    mcp: [String],
     model: String?,
     dependencies: [String],
     content: String,
@@ -25,6 +27,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
     self.name = name
     self.description = description
     self.tools = tools
+    self.mcp = mcp
     self.model = model
     self.dependencies = dependencies
     self.content = content
@@ -56,6 +59,12 @@ public struct Agent: Sendable, Identifiable, Hashable {
       .map { $0.trimmingCharacters(in: .whitespaces) }
       .filter { !$0.isEmpty }
 
+    // Parse MCP servers (comma-separated list, optional)
+    let mcpString = frontmatter["mcp"] ?? ""
+    let mcp = mcpString.split(separator: ",")
+      .map { $0.trimmingCharacters(in: .whitespaces) }
+      .filter { !$0.isEmpty }
+
     let model = frontmatter["model"]
 
     // Parse dependencies (comma-separated list, optional)
@@ -72,6 +81,7 @@ public struct Agent: Sendable, Identifiable, Hashable {
       name: name,
       description: description,
       tools: tools,
+      mcp: mcp,
       model: model,
       dependencies: dependencies,
       content: content,
