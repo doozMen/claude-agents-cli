@@ -24,3 +24,6 @@ claude_desktop_config.json
 # Local agent installations and settings
 .claude/
 .agent-workspace/
+
+# Experimental worktrees
+worktrees/

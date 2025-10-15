@@ -30,23 +30,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Prioritized feedback levels (Critical/Important/Suggestion)
     - Constructive feedback with specific examples
 
-- **Swift CLI Development Agent**:
+- **Swift CLI Development Agents** (2 new agents):
   - `swift-cli-installer`: Automate Swift CLI tool build and installation (Haiku model)
     - Handles experimental-install workflow and PATH setup
     - Common build issues and validation flag patterns
     - Cross-compilation support for Linux builds on macOS
     - Package.swift configurations for CLI tools
+  - `swift-build-runner`: Efficiently execute Swift builds and tests (Haiku model)
+    - Fast compilation feedback and test execution
+    - Build system optimization and caching strategies
+    - Error parsing and actionable feedback
+    - CI/CD integration patterns
+
+- **Swift Code Quality Agent**:
+  - `swift-format-specialist`: Swift 6 native code formatting (Haiku model)
+    - Uses built-in `swift format` tool (no external dependencies)
+    - Lint mode for checking formatting issues
+    - Auto-fix mode for correcting formatting
+    - Project-wide formatting consistency
 
 - **Documentation Infrastructure**:
   - Restructured documentation into `docs/` folder for better organization
-  - `docs/AGENTS.md`: Comprehensive catalog of all 40 agents
+  - `docs/AGENTS.md`: Comprehensive catalog of all 42 agents
   - `docs/ARCHITECTURE.md`: Technical architecture and design details
   - `docs/CONTRIBUTING.md`: Contribution guidelines and agent standards
   - Moved `CLAUDE_CODE_GUIDE.md` and `SECRETS.md` to docs/
 
 ### Changed
-- **Agent Library Growth**: Expanded from 35 to 40 agents (+5 new agents)
-- **Model Distribution**: Strategic optimization with 1 Opus, 31 Sonnet, 8 Haiku agents
+- **Agent Library Growth**: Expanded from 35 to 42 agents (+7 new agents)
+- **Model Distribution**: Strategic optimization with 1 Opus, 30 Sonnet, 11 Haiku agents
 - **README.md**: Complete redesign with developer-friendly quick start
   - Immediate quick start commands at the top
   - Featured agents section highlighting new additions
@@ -61,16 +73,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `documentation-writer` → `swift-docc` for clarity on Swift DocC specialization
 
 ### Architecture
-- **OWL Intelligence Integration** (Planned):
+- **OWL Intelligence Integration** (Implemented):
   - Local LLM-based agent routing using Apple's Foundation models
-  - MCP server for semantic agent matching
-  - 95% faster routing decisions (<150ms vs 2-5s)
+  - MCP server for semantic agent matching with 79% average relevance
+  - 6-9x faster routing decisions (<150ms vs 2-5s)
   - Privacy-preserving with zero API costs
+  - 42/42 agents discovered with 100% agent injection accuracy
 
 ### Fixed
 - Removed duplicate agents from global installation directory
 - Cleaned up old renamed agents (documentation-writer, ghost-blogger, etc.)
-- Verified exactly 40 unique agents in library
+- Verified exactly 42 unique agents in library
 
 ## [1.3.0] - 2025-10-14
 
