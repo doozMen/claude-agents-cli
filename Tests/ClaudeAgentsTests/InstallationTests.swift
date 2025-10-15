@@ -3,7 +3,7 @@ import Testing
 
 @testable import ClaudeAgents
 
-@Suite("Installation Status API Tests")
+@Suite("Installation Status API Tests", .serialized)
 struct InstallationTests {
   static func createTestDirectory() -> URL {
     let url = FileManager.default.temporaryDirectory.appendingPathComponent(
