@@ -73,7 +73,7 @@ Restart to load new MCP configuration.
       "url": {
         "onePasswordRef": "op://Personal/Ghost/url",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL"
       }
     }
@@ -162,7 +162,7 @@ eval $(op signin)
 
 ## Examples
 
-See `/Users/stijnwillems/Developer/claude-agents-cli/examples/secrets-configs/`
+See `/Users/stijnwillems/Developer/swift-agents-plugin/examples/secrets-configs/`
 
 - `template.json` - Complete template
 - `minimal-ghost.json` - Ghost only

@@ -385,7 +385,7 @@ fi
 ```json
 {
   "version": "1.5.0",
-  "name": "claude-agents-cli"
+  "name": "swift-agents-plugin"
 }
 ```
 

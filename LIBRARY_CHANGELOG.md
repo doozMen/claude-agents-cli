@@ -2,7 +2,7 @@
 
 ## Overview
 
-Successfully added a library target to the claude-agents-cli package that exposes programmatic access to all 45 agent markdown files. This enables other Swift packages (like the prompteneer MCP server) to dynamically load and query agent content.
+Successfully added a library target to the swift-agents-plugin package that exposes programmatic access to all 45 agent markdown files. This enables other Swift packages (like the prompteneer MCP server) to dynamically load and query agent content.
 
 ## Changes Made
 
@@ -20,7 +20,7 @@ Sources/
 │   ├── Resources/
 │   │   └── agents/*.md              # Copied 45 agent files
 │   └── AgentRepository.swift        # New public API
-└── claude-agents-cli/               # Existing CLI target
+└── swift-agents-plugin/               # Existing CLI target
     ├── Commands/                     # Updated to import ClaudeAgents
     ├── Services/                     # Updated to import ClaudeAgents
     └── Resources/agents/*.md         # Kept for CLI
@@ -31,7 +31,7 @@ Sources/
 ```swift
 // Added library product
 products: [
-  .executable(name: "claude-agents", targets: ["claude-agents-cli"]),
+  .executable(name: "claude-agents", targets: ["swift-agents-plugin"]),
   .library(name: "ClaudeAgents", targets: ["ClaudeAgents"])  // NEW
 ]
 
@@ -43,7 +43,7 @@ targets: [
     resources: [.copy("Resources/agents")]
   ),
   .executableTarget(
-    name: "claude-agents-cli",
+    name: "swift-agents-plugin",
     dependencies: [
       "ClaudeAgents",  // Now depends on library
       .product(name: "ArgumentParser", package: "swift-argument-parser")
@@ -181,23 +181,23 @@ None. CLI functionality unchanged. Library is additive.
 ## Files Summary
 
 ### New Files
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/ClaudeAgents/AgentRepository.swift
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/ClaudeAgents/Models/Agent.swift (copy)
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/ClaudeAgents/Models/Errors.swift (copy)
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/ClaudeAgents/Services/AgentParser.swift (copy)
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/ClaudeAgents/Resources/agents/*.md (45 files, copied)
-- /Users/stijnwillems/Developer/claude-agents-cli/LIBRARY_USAGE.md
-- /Users/stijnwillems/Developer/claude-agents-cli/LIBRARY_CHANGELOG.md
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/ClaudeAgents/AgentRepository.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/ClaudeAgents/Models/Agent.swift (copy)
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/ClaudeAgents/Models/Errors.swift (copy)
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/ClaudeAgents/Services/AgentParser.swift (copy)
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/ClaudeAgents/Resources/agents/*.md (45 files, copied)
+- /Users/stijnwillems/Developer/swift-agents-plugin/LIBRARY_USAGE.md
+- /Users/stijnwillems/Developer/swift-agents-plugin/LIBRARY_CHANGELOG.md
 
 ### Modified Files
-- /Users/stijnwillems/Developer/claude-agents-cli/Package.swift (added library product and target)
-- /Users/stijnwillems/Developer/claude-agents-cli/README.md (added Library Usage section)
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Commands/ListCommand.swift
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Commands/InstallCommand.swift
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Commands/DoctorCommand.swift
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Commands/UpdateCommand.swift
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Services/InstallService.swift
-- /Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Services/DependencyService.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Package.swift (added library product and target)
+- /Users/stijnwillems/Developer/swift-agents-plugin/README.md (added Library Usage section)
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Commands/ListCommand.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Commands/InstallCommand.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Commands/DoctorCommand.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Commands/UpdateCommand.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Services/InstallService.swift
+- /Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Services/DependencyService.swift
 
 ## Confirmation
 

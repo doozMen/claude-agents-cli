@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the implementation plan for transitioning from hardcoded 1Password references to a configuration-based approach for secrets management in `claude-agents-cli`.
+This document outlines the implementation plan for transitioning from hardcoded 1Password references to a configuration-based approach for secrets management in `swift-agents-plugin`.
 
 **Goal**: Make the secrets management system generic, reusable, and configurable across different organizations and team structures.
 

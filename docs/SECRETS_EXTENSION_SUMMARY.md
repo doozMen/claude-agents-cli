@@ -18,7 +18,7 @@ Extend the existing secrets management system to support:
 │  (Models/Secret.swift)                                      │
 │                                                             │
 │  • displayName         → "Azure DevOps PAT"                 │
-│  • keychainService     → "claude-agents-cli.azure-devops"   │
+│  • keychainService     → "swift-agents-plugin.azure-devops"   │
 │  • keychainAccount     → "pat"                              │
 │  • onePasswordReference → "op://Employee/CompanyA/..."        │
 │  • environmentVariable  → "AZURE_DEVOPS_PAT"                │
@@ -69,14 +69,14 @@ Extend the existing secrets management system to support:
 | Secret | Keychain Service | Keychain Account | 1Password Reference | Environment Variable |
 |--------|-----------------|------------------|---------------------|---------------------|
 | **Azure DevOps** | | | | |
-| azureDevOpsOrgUrl | claude-agents-cli.azure-devops | org-url | nil (manual) | AZURE_DEVOPS_ORG_URL |
-| azureDevOpsPat | claude-agents-cli.azure-devops | pat | `op://.../gitlab private access token api` | AZURE_DEVOPS_PAT |
-| azureDevOpsDefaultProject | claude-agents-cli.azure-devops | default-project | nil (manual) | AZURE_DEVOPS_DEFAULT_PROJECT |
+| azureDevOpsOrgUrl | swift-agents-plugin.azure-devops | org-url | nil (manual) | AZURE_DEVOPS_ORG_URL |
+| azureDevOpsPat | swift-agents-plugin.azure-devops | pat | `op://.../gitlab private access token api` | AZURE_DEVOPS_PAT |
+| azureDevOpsDefaultProject | swift-agents-plugin.azure-devops | default-project | nil (manual) | AZURE_DEVOPS_DEFAULT_PROJECT |
 | **GitLab** | | | | |
-| gitlabPersonalAccessToken | claude-agents-cli.gitlab | personal-access-token | `op://.../gitlab mcp full access...` | GITLAB_PERSONAL_ACCESS_TOKEN |
-| gitlabApiUrl | claude-agents-cli.gitlab | api-url | nil (default) | GITLAB_API_URL |
+| gitlabPersonalAccessToken | swift-agents-plugin.gitlab | personal-access-token | `op://.../gitlab mcp full access...` | GITLAB_PERSONAL_ACCESS_TOKEN |
+| gitlabApiUrl | swift-agents-plugin.gitlab | api-url | nil (default) | GITLAB_API_URL |
 | **Google Cloud** | | | | |
-| gcloudCredentialsPath | claude-agents-cli.gcloud | credentials-path | nil (gcloud default) | GOOGLE_APPLICATION_CREDENTIALS |
+| gcloudCredentialsPath | swift-agents-plugin.gcloud | credentials-path | nil (gcloud default) | GOOGLE_APPLICATION_CREDENTIALS |
 
 ---
 
@@ -451,7 +451,7 @@ All changes are **backward compatible**:
 ### 1. Install Latest Version
 
 ```bash
-cd ~/Developer/claude-agents-cli
+cd ~/Developer/swift-agents-plugin
 rm -f ~/.swiftpm/bin/claude-agents
 swift package experimental-install --product claude-agents
 ```

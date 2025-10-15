@@ -56,7 +56,7 @@ public enum KnownSecret: String, Sendable, CaseIterable {
       "url": {
         "onePasswordRef": "op://Employee/Ghost/my site",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL",
         "prompt": "Ghost URL"
       }
@@ -302,7 +302,7 @@ claude-agents setup secrets --use-config
       "url": {
         "onePasswordRef": "op://Personal/Ghost/url",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL"
       }
     }
@@ -341,7 +341,7 @@ claude-agents setup secrets --use-config
       "url": {
         "onePasswordRef": null,
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL",
         "prompt": "Ghost URL"
       }

@@ -1,4 +1,4 @@
-# Claude Agents CLI
+# Swift Agents Plugin
 
 **45 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
 
@@ -10,7 +10,7 @@
 
 ```bash
 # Install the CLI
-cd claude-agents-cli
+cd swift-agents-plugin
 swift package experimental-install --product claude-agents
 
 # List available agents
@@ -27,7 +27,7 @@ That's it! Your agents are ready to use in Claude Code.
 
 ## What is This?
 
-Claude Agents CLI provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 45 production-ready agents covering:
+Swift Agents Plugin provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 45 production-ready agents covering:
 
 - **Swift & iOS Development** - Architecture, SwiftUI, testing, modernization
 - **Cross-Platform** - Generic agents for any language (architect, test-builder, code-reviewer)
@@ -69,8 +69,8 @@ export PATH="$HOME/.swiftpm/bin:$PATH"
 
 Then install:
 ```bash
-git clone https://github.com/yourusername/claude-agents-cli.git
-cd claude-agents-cli
+git clone https://github.com/doozMen/swift-agents-plugin.git
+cd swift-agents-plugin
 swift package experimental-install --product claude-agents
 ```
 
@@ -146,12 +146,12 @@ This CLI is available as a Claude Code plugin for easy discovery and installatio
 
 **Complete Installation:**
 ```bash
-# Install the claude-agents-cli plugin
-/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen
+# Install the swift-agents-plugin
+/plugin marketplace add doozMen/swift-agents-plugin && /plugin install swift-agents-plugin@doozMen
 ```
 
 This installs:
-- **claude-agents-cli**: 45 production-ready AI agents for specialized tasks
+- **swift-agents-plugin**: 45 production-ready AI agents for specialized tasks
 
 All 45 agents are available immediately after installation!
 
@@ -178,8 +178,8 @@ swift package experimental-install --product prompteneer
 ### Manual CLI Installation
 
 ```bash
-git clone https://github.com/doozMen/claude-agents-cli.git
-cd claude-agents-cli
+git clone https://github.com/doozMen/swift-agents-plugin.git
+cd swift-agents-plugin
 swift package experimental-install --product claude-agents
 claude-agents install --all --global
 ```
@@ -211,7 +211,7 @@ The official `claude-code` CLI includes basic agent management. This tool provid
 ## Project Structure
 
 ```
-claude-agents-cli/
+swift-agents-plugin/
 ├── .claude-plugin/            # Plugin manifests for marketplace
 │   ├── plugin.json            # Plugin metadata
 │   └── marketplace.json       # Marketplace submission
@@ -236,7 +236,7 @@ claude-agents-cli/
 
 ```swift
 // Add to your Package.swift
-.package(url: "https://github.com/doozMen/claude-agents-cli.git", from: "1.5.0")
+.package(url: "https://github.com/doozMen/swift-agents-plugin.git", from: "1.5.0")
 
 // Use in your code
 import ClaudeAgents
@@ -266,7 +266,7 @@ Perfect for:
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/claude-agents-cli/issues)
+- **Issues**: [GitHub Issues](https://github.com/doozMen/swift-agents-plugin/issues)
 - **Docs**: [Official Claude Code Docs](https://docs.claude.com/en/docs/claude-code)
 
 ## License

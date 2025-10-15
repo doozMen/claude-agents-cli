@@ -705,7 +705,7 @@ private func setupWithConfig(
       "url": {
         "onePasswordRef": "op://YOUR_VAULT/Ghost/url",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL",
         "prompt": "Ghost site URL (e.g., https://yoursite.ghost.io)",
         "validator": "url"
@@ -713,7 +713,7 @@ private func setupWithConfig(
       "adminApiKey": {
         "onePasswordRef": "op://YOUR_VAULT/Ghost/admin api key",
         "keychainAccount": "ghost-admin-api-key",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_ADMIN_API_KEY",
         "prompt": "Ghost Admin API Key (format: id:secret)"
       }
@@ -722,7 +722,7 @@ private func setupWithConfig(
       "token": {
         "onePasswordRef": null,
         "keychainAccount": "firebase-token",
-        "keychainService": "claude-agents-cli.firebase",
+        "keychainService": "swift-agents-plugin.firebase",
         "envVar": "FIREBASE_TOKEN",
         "prompt": "Firebase CI token (run: firebase login:ci)"
       }

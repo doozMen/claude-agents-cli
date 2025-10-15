@@ -1,9 +1,9 @@
 {
-  "id": "com.dooz.claude-agents-cli",
-  "name": "Claude Agents CLI",
+  "id": "com.dooz.swift-agents-plugin",
+  "name": "Swift Agents Plugin",
   "version": "1.5.0",
   "description": "43 production-ready AI agents for Claude Code with smart routing, cost optimization, and zero configuration",
-  "longDescription": "Claude Agents CLI provides a curated library of specialized AI agents covering:\n\n**Swift & iOS Development** (15 agents): Architecture patterns, SwiftUI, testing, modernization, CLI tools, server-side Swift, MCP servers, state machines, SPM, databases\n\n**Testing & Quality** (7 agents): Test builders, code review, Swift Testing framework, Xcode integration, build runners, formatting, technical debt elimination\n\n**Xcode & Build** (3 agents): Project configuration, Interface Builder, XIB/Storyboard management\n\n**Documentation** (5 agents): Swift DocC, documentation verification, technical reviews, Deckset presentations, blog writing\n\n**DevOps & CI/CD** (2 agents): Azure DevOps automation, Git PR/MR workflows\n\n**Firebase & Analytics** (5 agents): Ecosystem analysis, Crashlytics debugging, cross-app patterns, architecture correlation\n\n**Content & Publishing** (4 agents): Blog posts, Ghost CMS, conference talks, presentations\n\n**Specialized Tools** (6 agents): Agent creation, plugin building, secrets management, timelines, CLI installation, intelligent routing\n\n**Architecture** (2 agents): System design expert (Opus), Swift architecture specialist\n\n**Key Features**:\n- 🧠 Smart Routing: task-router agent uses local LLM (OWL Intelligence) for intelligent delegation\n- 💰 Cost Optimized: Mixed model strategy (1 Opus, 31 Sonnet, 11 Haiku)\n- 🔧 Zero Config: Agents work immediately after installation\n- 📁 Flexible: Global (all projects) or local (project-specific) installation\n- 🚀 MCP Integration: 15 agents with built-in MCP server support (SwiftLens, Context7, SourceKit-LSP)\n- ⚡ High Performance: 3-80x faster than baselines",
+  "longDescription": "Swift Agents Plugin provides a curated library of specialized AI agents covering:\n\n**Swift & iOS Development** (15 agents): Architecture patterns, SwiftUI, testing, modernization, CLI tools, server-side Swift, MCP servers, state machines, SPM, databases\n\n**Testing & Quality** (7 agents): Test builders, code review, Swift Testing framework, Xcode integration, build runners, formatting, technical debt elimination\n\n**Xcode & Build** (3 agents): Project configuration, Interface Builder, XIB/Storyboard management\n\n**Documentation** (5 agents): Swift DocC, documentation verification, technical reviews, Deckset presentations, blog writing\n\n**DevOps & CI/CD** (2 agents): Azure DevOps automation, Git PR/MR workflows\n\n**Firebase & Analytics** (5 agents): Ecosystem analysis, Crashlytics debugging, cross-app patterns, architecture correlation\n\n**Content & Publishing** (4 agents): Blog posts, Ghost CMS, conference talks, presentations\n\n**Specialized Tools** (6 agents): Agent creation, plugin building, secrets management, timelines, CLI installation, intelligent routing\n\n**Architecture** (2 agents): System design expert (Opus), Swift architecture specialist\n\n**Key Features**:\n- 🧠 Smart Routing: task-router agent uses local LLM (OWL Intelligence) for intelligent delegation\n- 💰 Cost Optimized: Mixed model strategy (1 Opus, 31 Sonnet, 11 Haiku)\n- 🔧 Zero Config: Agents work immediately after installation\n- 📁 Flexible: Global (all projects) or local (project-specific) installation\n- 🚀 MCP Integration: 15 agents with built-in MCP server support (SwiftLens, Context7, SourceKit-LSP)\n- ⚡ High Performance: 3-80x faster than baselines",
   "author": {
     "name": "Stijn Willems",
     "email": "stijn@dooz.be",
@@ -34,43 +34,43 @@
     "swiftui",
     "xcode"
   ],
-  "icon": "https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/icon.png",
+  "icon": "https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/icon.png",
   "screenshots": [
     {
-      "url": "https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/screenshot-list.png",
+      "url": "https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/screenshot-list.png",
       "caption": "Browse all 43 available agents with filtering"
     },
     {
-      "url": "https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/screenshot-install.png",
+      "url": "https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/screenshot-install.png",
       "caption": "One-command installation to global or local"
     },
     {
-      "url": "https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/screenshot-mcp.png",
+      "url": "https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/screenshot-mcp.png",
       "caption": "MCP integration with SwiftLens + Context7"
     }
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/doozMen/claude-agents-cli"
+    "url": "https://github.com/doozMen/swift-agents-plugin"
   },
-  "homepage": "https://github.com/doozMen/claude-agents-cli",
-  "documentation": "https://github.com/doozMen/claude-agents-cli/blob/main/README.md",
-  "changelog": "https://github.com/doozMen/claude-agents-cli/blob/main/CHANGELOG.md",
+  "homepage": "https://github.com/doozMen/swift-agents-plugin",
+  "documentation": "https://github.com/doozMen/swift-agents-plugin/blob/main/README.md",
+  "changelog": "https://github.com/doozMen/swift-agents-plugin/blob/main/CHANGELOG.md",
   "installation": {
     "method": "git-clone",
-    "url": "https://github.com/doozMen/claude-agents-cli.git",
+    "url": "https://github.com/doozMen/swift-agents-plugin.git",
     "branch": "main",
     "steps": [
       {
         "step": 1,
         "description": "Clone repository",
-        "command": "git clone https://github.com/doozMen/claude-agents-cli.git"
+        "command": "git clone https://github.com/doozMen/swift-agents-plugin.git"
       },
       {
         "step": 2,
         "description": "Navigate to directory",
-        "command": "cd claude-agents-cli"
+        "command": "cd swift-agents-plugin"
       },
       {
         "step": 3,
@@ -88,11 +88,11 @@
         "command": "claude-agents list"
       }
     ],
-    "quickInstall": "git clone https://github.com/doozMen/claude-agents-cli.git && cd claude-agents-cli && swift package experimental-install --product claude-agents && claude-agents install --all --global",
+    "quickInstall": "git clone https://github.com/doozMen/swift-agents-plugin.git && cd swift-agents-plugin && swift package experimental-install --product claude-agents && claude-agents install --all --global",
     "postInstall": [
-      "echo '✅ Claude Agents CLI installed successfully!'",
+      "echo '✅ Swift Agents Plugin installed successfully!'",
       "echo 'Run: claude-agents list --verbose'",
-      "echo 'Docs: https://github.com/doozMen/claude-agents-cli/blob/main/README.md'"
+      "echo 'Docs: https://github.com/doozMen/swift-agents-plugin/blob/main/README.md'"
     ]
   },
   "requirements": {
@@ -156,10 +156,10 @@
     "✅ Performance: 3-80x better than baselines"
   ],
   "support": {
-    "issues": "https://github.com/doozMen/claude-agents-cli/issues",
-    "documentation": "https://github.com/doozMen/claude-agents-cli/blob/main/docs/",
+    "issues": "https://github.com/doozMen/swift-agents-plugin/issues",
+    "documentation": "https://github.com/doozMen/swift-agents-plugin/blob/main/docs/",
     "email": "stijn@dooz.be",
-    "community": "https://github.com/doozMen/claude-agents-cli/discussions"
+    "community": "https://github.com/doozMen/swift-agents-plugin/discussions"
   },
   "ratings": {
     "average": 0,

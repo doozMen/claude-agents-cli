@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "claude-agents-cli",
+  name: "swift-agents-plugin",
   platforms: [.macOS(.v13)],
   products: [
     // CLI tool for managing and installing agent markdown files

@@ -1,4 +1,4 @@
-# Claude Agents CLI v1.4.0 Release Notes
+# Swift Agents Plugin v1.4.0 Release Notes
 
 **Release Date**: October 15, 2025
 **Total Agents**: 42 (up from 38)
@@ -219,8 +219,8 @@ Swift 6 code formatting expert using native `swift format` command for mechanica
 ### New Installation
 ```bash
 # Install CLI
-git clone https://github.com/YOUR_USERNAME/claude-agents-cli.git
-cd claude-agents-cli
+git clone https://github.com/YOUR_USERNAME/swift-agents-plugin.git
+cd swift-agents-plugin
 swift build --configuration release
 swift package experimental-install --product claude-agents
 
@@ -231,7 +231,7 @@ claude-agents install --all --global
 ### Upgrade from v1.3.0
 ```bash
 # Pull latest changes
-cd claude-agents-cli
+cd swift-agents-plugin
 git pull
 
 # Remove old agents
@@ -292,12 +292,12 @@ claude-agents install --all --force --global
 
 ## 🔗 Resources
 
-- **Repository**: https://github.com/YOUR_USERNAME/claude-agents-cli
+- **Repository**: https://github.com/YOUR_USERNAME/swift-agents-plugin
 - **Documentation**: [docs/](docs/)
-- **Issues**: https://github.com/YOUR_USERNAME/claude-agents-cli/issues
-- **Discussions**: https://github.com/YOUR_USERNAME/claude-agents-cli/discussions
+- **Issues**: https://github.com/YOUR_USERNAME/swift-agents-plugin/issues
+- **Discussions**: https://github.com/YOUR_USERNAME/swift-agents-plugin/discussions
 - **OWL Intelligence**: https://github.com/YOUR_USERNAME/owl-intelligence
 
 ---
 
-**Full Changelog**: https://github.com/YOUR_USERNAME/claude-agents-cli/compare/v1.3.0...v1.4.0
+**Full Changelog**: https://github.com/YOUR_USERNAME/swift-agents-plugin/compare/v1.3.0...v1.4.0

@@ -11,7 +11,7 @@
   },
   "plugins": [
     {
-      "name": "claude-agents-cli",
+      "name": "swift-agents-plugin",
       "source": "./.claude-plugin/plugin.json",
       "description": "45 production-ready AI agents for Claude Code - Swift, testing, documentation, CI/CD, Firebase, and more",
       "version": "1.5.0",

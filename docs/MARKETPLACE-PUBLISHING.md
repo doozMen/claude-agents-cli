@@ -1,6 +1,6 @@
 # Claude Code Marketplace Publishing Guide
 
-Complete guide for publishing claude-agents-cli to Claude Code marketplaces.
+Complete guide for publishing swift-agents-plugin to Claude Code marketplaces.
 
 ## Current Status ✅
 
@@ -23,9 +23,9 @@ Your plugin is **submission-ready** with complete infrastructure:
 
 1. **Submit via Official Portal**:
    - Visit: https://claudecodecommands.directory/submit
-   - Provide repository URL: `https://github.com/doozMen/claude-agents-cli`
+   - Provide repository URL: `https://github.com/doozMen/swift-agents-plugin`
    - Contact email: `stijn@dooz.be`
-   - Plugin name: `Claude Agents CLI`
+   - Plugin name: `Swift Agents Plugin`
    - Category: `development-tools`
 
 2. **Review Criteria**:
@@ -44,16 +44,16 @@ Your plugin is **submission-ready** with complete infrastructure:
 claude plugin validate .
 
 # Test installation locally
-git clone https://github.com/doozMen/claude-agents-cli.git /tmp/test-plugin
+git clone https://github.com/doozMen/swift-agents-plugin.git /tmp/test-plugin
 cd /tmp/test-plugin
 swift package experimental-install --product claude-agents
 claude-agents install --all --global
 
 # Verify assets accessible
-curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/icon.png
-curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/screenshot-list.png
-curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/screenshot-install.png
-curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/screenshot-mcp.png
+curl -I https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/icon.png
+curl -I https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/screenshot-list.png
+curl -I https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/screenshot-install.png
+curl -I https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/screenshot-mcp.png
 ```
 
 ---
@@ -68,13 +68,13 @@ curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/
 
 **Installation for Users:**
 ```bash
-# Install the claude-agents-cli plugin
-/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen
+# Install the swift-agents-plugin plugin
+/plugin marketplace add doozMen/swift-agents-plugin && /plugin install swift-agents-plugin@doozMen
 ```
 
 #### Plugin Ecosystem
 
-**claude-agents-cli** (Claude Code Plugin):
+**swift-agents-plugin** (Claude Code Plugin):
 - 45 production-ready AI agents
 - Specialized expertise (Swift, testing, docs, CI/CD)
 - Works standalone
@@ -105,7 +105,7 @@ swift package experimental-install --product prompteneer
 - Best-in-class Claude Code agent experience
 
 #### Marketplace URL
-`github.com/doozMen/claude-agents-cli`
+`github.com/doozMen/swift-agents-plugin`
 
 #### Benefits
 - Immediate availability (no approval needed)
@@ -139,8 +139,8 @@ swift package experimental-install --product prompteneer
 1. Fork the community marketplace repository
 2. Add your plugin entry to their `marketplace.json` or catalog
 3. Submit pull request with:
-   - Plugin name: `claude-agents-cli`
-   - Source: `github.com/doozMen/claude-agents-cli`
+   - Plugin name: `swift-agents-plugin`
+   - Source: `github.com/doozMen/swift-agents-plugin`
    - Description: "43 production-ready AI agents for Claude Code"
    - Category: `development-tools`
 4. Wait for maintainer approval
@@ -202,8 +202,8 @@ Use GitHub MCP for repository operations:
 claude plugin validate .
 
 # 2. Test complete installation
-/plugin marketplace add doozMen/claude-agents-cli
-/plugin install claude-agents-cli@doozMen
+/plugin marketplace add doozMen/swift-agents-plugin
+/plugin install swift-agents-plugin@doozMen
 
 # 3. Verify plugin installed
 /plugin list
@@ -301,11 +301,11 @@ When releasing new versions (e.g., v1.6.0):
 
 ### Plugin Not Found
 
-**Symptom**: `/plugin install claude-agents-cli@doozMen` fails
+**Symptom**: `/plugin install swift-agents-plugin@doozMen` fails
 
 **Solutions**:
 1. Verify marketplace added: `/plugin marketplace list`
-2. Check repository public: Visit github.com/doozMen/claude-agents-cli
+2. Check repository public: Visit github.com/doozMen/swift-agents-plugin
 3. Validate plugin.json: `claude plugin validate .`
 4. Check branch: Ensure `main` branch is default
 
@@ -316,7 +316,7 @@ When releasing new versions (e.g., v1.6.0):
 **Solutions**:
 1. Verify URLs accessible:
    ```bash
-   curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/icon.png
+   curl -I https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/assets/icon.png
    ```
 2. Check file committed: `git log --all -- assets/icon.png`
 3. Verify GitHub raw content URL format
@@ -364,8 +364,8 @@ When releasing new versions (e.g., v1.6.0):
 - **Community Plugins Hub**: https://github.com/jeremylongshore/claude-code-plugins
 
 ### Project Resources
-- **GitHub Issues**: https://github.com/doozMen/claude-agents-cli/issues
-- **Discussions**: https://github.com/doozMen/claude-agents-cli/discussions
+- **GitHub Issues**: https://github.com/doozMen/swift-agents-plugin/issues
+- **Discussions**: https://github.com/doozMen/swift-agents-plugin/discussions
 - **Email Support**: stijn@dooz.be
 
 ---

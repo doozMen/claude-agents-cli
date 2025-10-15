@@ -312,10 +312,10 @@ Based on swift-architect's plan, consider integrating OWL Intelligence into:
 
 ## Files Modified
 
-1. `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Resources/agents/swift-build-runner.md`
-2. `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Resources/agents/crashlytics-analyzer.md`
-3. `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Resources/agents/technical-debt-eliminator.md`
-4. `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Resources/agents/firebase-ecosystem-analyzer.md`
+1. `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Resources/agents/swift-build-runner.md`
+2. `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Resources/agents/crashlytics-analyzer.md`
+3. `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Resources/agents/technical-debt-eliminator.md`
+4. `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Resources/agents/firebase-ecosystem-analyzer.md`
 
 **Total Changes**: 4 agent files updated with consistent OWL Intelligence integration patterns.
 

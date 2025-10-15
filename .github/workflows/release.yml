@@ -76,7 +76,7 @@ $CHANGELOG
 ### Build from Source
 \`\`\`bash
 git clone https://github.com/${{ github.repository }}.git
-cd claude-agents-cli
+cd swift-agents-plugin
 swift build --configuration release
 swift package experimental-install --product claude-agents
 \`\`\`

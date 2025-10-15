@@ -1,4 +1,4 @@
-# Claude Agents CLI - Agent Catalog
+# Swift Agents Plugin - Agent Catalog
 
 **Version**: 1.5.1
 **Last Updated**: 2025-10-15
@@ -6,7 +6,7 @@
 
 ## Overview
 
-This catalog documents all 45 production-ready agents available through the claude-agents-cli. Each agent is a specialized markdown file designed to work with Claude Code, providing focused expertise across Swift development, testing, documentation, DevOps, Firebase, content publishing, and specialized tools.
+This catalog documents all 45 production-ready agents available through the swift-agents-plugin. Each agent is a specialized markdown file designed to work with Claude Code, providing focused expertise across Swift development, testing, documentation, DevOps, Firebase, content publishing, and specialized tools.
 
 ## Model Distribution
 
@@ -619,7 +619,7 @@ To add a new agent to the catalog:
 
 ## Resources
 
-- **CLI Repository**: [claude-agents-cli](https://github.com/username/claude-agents-cli)
+- **CLI Repository**: [swift-agents-plugin](https://github.com/username/swift-agents-plugin)
 - **Documentation**: [docs/](.)
 - **Architecture Guide**: [ARCHITECTURE.md](ARCHITECTURE.md)
 - **Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTING.md)

@@ -1,6 +1,6 @@
 # Architecture Guide
 
-Technical architecture of the Claude Agents CLI.
+Technical architecture of the Swift Agents Plugin.
 
 ## System Design
 
@@ -77,7 +77,7 @@ Agents are embedded using Bundle.module:
 ```swift
 // Package.swift
 .target(
-    name: "claude-agents-cli",
+    name: "swift-agents-plugin",
     dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser")
     ],
@@ -277,17 +277,17 @@ func testAgentParsing() async throws {
 ```swift
 // Package.swift
 let package = Package(
-    name: "claude-agents-cli",
+    name: "swift-agents-plugin",
     platforms: [.macOS(.v13)],
     products: [
-        .executable(name: "claude-agents", targets: ["claude-agents-cli"])
+        .executable(name: "claude-agents", targets: ["swift-agents-plugin"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.0")
     ],
     targets: [
         .executableTarget(
-            name: "claude-agents-cli",
+            name: "swift-agents-plugin",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],

@@ -1,4 +1,4 @@
-# Secrets Management with claude-agents-cli
+# Secrets Management with swift-agents-plugin
 
 The `claude-agents setup secrets` command provides secure secrets management for MCP (Model Context Protocol) servers using either 1Password or macOS Keychain.
 
@@ -115,10 +115,10 @@ Secrets are stored in macOS Keychain with the following service/account identifi
 
 | Secret | Service | Account |
 |--------|---------|---------|
-| Ghost URL | `claude-agents-cli.ghost` | `url` |
-| Ghost Admin API Key | `claude-agents-cli.ghost` | `api-key` |
-| Ghost Content API Key | `claude-agents-cli.ghost` | `content-api-key` |
-| Firebase Token | `claude-agents-cli.firebase` | `token` |
+| Ghost URL | `swift-agents-plugin.ghost` | `url` |
+| Ghost Admin API Key | `swift-agents-plugin.ghost` | `api-key` |
+| Ghost Content API Key | `swift-agents-plugin.ghost` | `content-api-key` |
+| Firebase Token | `swift-agents-plugin.firebase` | `token` |
 
 ### Manual Access
 
@@ -126,13 +126,13 @@ View secrets using Keychain Access.app or `security` command:
 
 ```bash
 # View Ghost URL
-security find-generic-password -a url -s claude-agents-cli.ghost -w
+security find-generic-password -a url -s swift-agents-plugin.ghost -w
 
 # View Ghost Admin API Key
-security find-generic-password -a api-key -s claude-agents-cli.ghost -w
+security find-generic-password -a api-key -s swift-agents-plugin.ghost -w
 
 # View Firebase Token
-security find-generic-password -a token -s claude-agents-cli.firebase -w
+security find-generic-password -a token -s swift-agents-plugin.firebase -w
 ```
 
 ## MCP Configuration
@@ -312,7 +312,7 @@ Secret not found in 1Password: op://Employee/Ghost/my site
 ### Keychain Access Denied
 
 ```
-Failed to access Keychain for 'claude-agents-cli.ghost:url'
+Failed to access Keychain for 'swift-agents-plugin.ghost:url'
 ```
 
 **Solution**: Grant access when macOS prompts for Keychain authorization.
@@ -368,4 +368,4 @@ Potential improvements:
 
 ---
 
-For questions or issues, open an issue at https://github.com/yourusername/claude-agents-cli/issues
+For questions or issues, open an issue at https://github.com/yourusername/swift-agents-plugin/issues

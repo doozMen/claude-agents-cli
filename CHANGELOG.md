@@ -349,7 +349,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Resource embedding for bundled content (templates, agents)
     - Distribution via experimental-install to ~/.swiftpm/bin
     - User experience patterns: interactive prompts, progress indicators, error messages
-    - Real-world example: claude-agents-cli architecture documentation
+    - Real-world example: swift-agents-plugin architecture documentation
   - `swift-server`: Server-side Swift development expert with Vapor, Hummingbird, and SwiftNIO
     - Framework expertise: Vapor 4.x, Hummingbird, SwiftNIO event-driven architecture
     - API design patterns: RESTful APIs, GraphQL, gRPC, WebSocket real-time communication
@@ -460,20 +460,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.1] - 2025-10-10
 
 ### Added
-- Initial release of claude-agents-cli
+- Initial release of swift-agents-plugin
 - DoctorCommand for checking CLI tool dependencies
 - Basic agent management (list, install, uninstall)
 - 22 initial embedded agents
 - Global and local installation targets
 - Interactive prompts for safe operations
 
-[1.5.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.4.0...v1.5.0
-[1.4.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.3.0...v1.4.0
-[1.3.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.2...v1.3.0
-[1.2.2]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.1...v1.2.2
-[1.2.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.2.0...v1.2.1
-[1.2.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.1.1...v1.2.0
-[1.1.1]: https://github.com/doozMen/claude-agents-cli/compare/v1.1.0...v1.1.1
-[1.1.0]: https://github.com/doozMen/claude-agents-cli/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/doozMen/claude-agents-cli/compare/v0.0.1...v1.0.0
-[0.0.1]: https://github.com/doozMen/claude-agents-cli/releases/tag/v0.0.1
+[1.5.0]: https://github.com/doozMen/swift-agents-plugin/compare/v1.4.0...v1.5.0
+[1.4.0]: https://github.com/doozMen/swift-agents-plugin/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/doozMen/swift-agents-plugin/compare/v1.2.2...v1.3.0
+[1.2.2]: https://github.com/doozMen/swift-agents-plugin/compare/v1.2.1...v1.2.2
+[1.2.1]: https://github.com/doozMen/swift-agents-plugin/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/doozMen/swift-agents-plugin/compare/v1.1.1...v1.2.0
+[1.1.1]: https://github.com/doozMen/swift-agents-plugin/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/doozMen/swift-agents-plugin/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/doozMen/swift-agents-plugin/compare/v0.0.1...v1.0.0
+[0.0.1]: https://github.com/doozMen/swift-agents-plugin/releases/tag/v0.0.1

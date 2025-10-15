@@ -182,7 +182,7 @@ No configuration required. I automatically:
 ## Integration
 
 Works seamlessly with:
-- Claude Agents CLI for agent installation
+- Swift Agents Plugin for agent installation
 - Prompteneer MCP for local inference
 - All specialized agents in the library
 - Custom project-specific agents

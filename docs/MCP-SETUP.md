@@ -1,6 +1,6 @@
-# MCP Integration Setup for Claude Agents CLI
+# MCP Integration Setup for Swift Agents Plugin
 
-This document describes the Model Context Protocol (MCP) integration for the claude-agents-cli project, specifically covering SwiftLens and Context7 MCP servers for enhanced Swift development capabilities.
+This document describes the Model Context Protocol (MCP) integration for the swift-agents-plugin project, specifically covering SwiftLens and Context7 MCP servers for enhanced Swift development capabilities.
 
 ## Table of Contents
 
@@ -312,7 +312,7 @@ npx --version
 ## Directory Structure
 
 ```
-claude-agents-cli/worktrees/mcp/
+swift-agents-plugin/worktrees/mcp/
 ├── .mcp.json                          # MCP server configuration
 ├── tools/
 │   ├── swiftlens/                     # SwiftLens MCP server (git clone)
@@ -342,7 +342,7 @@ When adding new MCP servers to this configuration:
 
 ## License
 
-This MCP configuration is part of the claude-agents-cli project and follows the same license.
+This MCP configuration is part of the swift-agents-plugin project and follows the same license.
 
 ---
 

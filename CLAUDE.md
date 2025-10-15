@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-AI assistance guide for the Claude Agents CLI codebase.
+AI assistance guide for the Swift Agents Plugin codebase.
 
 ## Project Context
 

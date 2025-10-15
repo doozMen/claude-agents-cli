@@ -1,5 +1,5 @@
 {
-  "name": "claude-agents-cli",
+  "name": "swift-agents-plugin",
   "version": "1.5.0",
   "description": "45 production-ready AI agents for Claude Code - Install specialized agents for Swift, testing, documentation, CI/CD, and more",
   "author": {
@@ -8,8 +8,8 @@
     "url": "https://github.com/doozMen"
   },
   "license": "MIT",
-  "repository": "https://github.com/doozMen/claude-agents-cli",
-  "homepage": "https://github.com/doozMen/claude-agents-cli",
+  "repository": "https://github.com/doozMen/swift-agents-plugin",
+  "homepage": "https://github.com/doozMen/swift-agents-plugin",
   "keywords": [
     "agents",
     "swift",
@@ -192,8 +192,8 @@
     "changelog": "CHANGELOG.md"
   },
   "support": {
-    "issues": "https://github.com/doozMen/claude-agents-cli/issues",
-    "documentation": "https://github.com/doozMen/claude-agents-cli/blob/main/docs/",
+    "issues": "https://github.com/doozMen/swift-agents-plugin/issues",
+    "documentation": "https://github.com/doozMen/swift-agents-plugin/blob/main/docs/",
     "email": "stijn@dooz.be"
   }
 }

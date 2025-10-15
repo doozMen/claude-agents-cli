@@ -1,6 +1,6 @@
 # ClaudeAgents Library
 
-The `ClaudeAgents` library provides programmatic access to all 45 Claude agent markdown files included in the claude-agents-cli package. This allows Swift applications to dynamically load, query, and access agent content at runtime.
+The `ClaudeAgents` library provides programmatic access to all 45 Claude agent markdown files included in the swift-agents-plugin package. This allows Swift applications to dynamically load, query, and access agent content at runtime.
 
 ## Installation
 
@@ -14,13 +14,13 @@ let package = Package(
     name: "YourProject",
     platforms: [.macOS(.v13)],
     dependencies: [
-        .package(url: "https://github.com/stijnwillems/claude-agents-cli.git", from: "1.5.0")
+        .package(url: "https://github.com/stijnwillems/swift-agents-plugin.git", from: "1.5.0")
     ],
     targets: [
         .executableTarget(
             name: "YourProject",
             dependencies: [
-                .product(name: "ClaudeAgents", package: "claude-agents-cli")
+                .product(name: "ClaudeAgents", package: "swift-agents-plugin")
             ]
         )
     ]
@@ -30,7 +30,7 @@ let package = Package(
 Or for local development:
 
 ```swift
-.package(path: "/path/to/claude-agents-cli")
+.package(path: "/path/to/swift-agents-plugin")
 ```
 
 ## Usage
@@ -336,4 +336,4 @@ To add new agents:
 
 ## License
 
-Same as claude-agents-cli package.
+Same as swift-agents-plugin package.

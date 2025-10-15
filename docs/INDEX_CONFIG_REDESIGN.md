@@ -38,7 +38,7 @@
 ## Document Structure
 
 ```
-claude-agents-cli/
+swift-agents-plugin/
 ├── QUICK_START_CONFIG.md              # Start here
 ├── REDESIGN_DELIVERABLES.md           # Complete overview
 ├── IMPLEMENTATION_SUMMARY.md          # Project-wide summary (updated)
@@ -154,7 +154,7 @@ claude-agents-cli/
 
 **Format**: `service:account`
 
-**Example**: `claude-agents-cli.ghost:url`
+**Example**: `swift-agents-plugin.ghost:url`
 
 **Storage**: macOS Keychain
 

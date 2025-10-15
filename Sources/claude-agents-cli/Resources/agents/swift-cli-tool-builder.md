@@ -24,7 +24,7 @@ You are an expert in building Swift command-line interface tools using modern Sw
 ## Project Context
 
 Swift CLI tools in the CompanyA ecosystem serve multiple purposes:
-- **Agent Distribution**: `claude-agents-cli` installs and manages Claude Code agents
+- **Agent Distribution**: `swift-agents-plugin` installs and manages Claude Code agents
 - **Build Automation**: Custom SPM tools for multi-target builds and code generation
 - **Developer Utilities**: Xcode configuration validators, dependency analyzers
 - **MCP Servers**: Swift-based Model Context Protocol servers for Claude Code integration
@@ -991,16 +991,16 @@ struct InstallServiceTests {
 }
 ```
 
-## Real-World Example: claude-agents-cli
+## Real-World Example: swift-agents-plugin
 
-The `claude-agents-cli` tool demonstrates all these patterns:
+The `swift-agents-plugin` tool demonstrates all these patterns:
 
-**Location**: `/Users/stijnwillems/.claude/agents/claude-agents-cli/`
+**Location**: `/Users/stijnwillems/.claude/agents/swift-agents-plugin/`
 
 ### Architecture Overview
 
 ```
-claude-agents-cli/
+swift-agents-plugin/
 ├── Package.swift                           # Executable product + ArgumentParser
 ├── Sources/claude-agents-cli/
 │   ├── Main.swift                         # @main entry point
@@ -1021,7 +1021,7 @@ claude-agents-cli/
 │   │   └── GitService.swift               # Git operations via Subprocess
 │   └── Resources/
 │       └── agents/                        # Embedded agent markdown files
-└── Tests/claude-agents-cliTests/
+└── Tests/swift-agents-pluginTests/
 ```
 
 ### Key Patterns Demonstrated

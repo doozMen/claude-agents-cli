@@ -35,7 +35,7 @@ Project-specific configs override user-specific configs. This allows:
       "url": {
         "onePasswordRef": "op://Employee/Ghost/my site",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL",
         "prompt": "Ghost site URL (e.g., https://yoursite.ghost.io)",
         "validator": "url"
@@ -43,7 +43,7 @@ Project-specific configs override user-specific configs. This allows:
       "adminApiKey": {
         "onePasswordRef": "op://Employee/Ghost/admin api key",
         "keychainAccount": "ghost-admin-api-key",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_ADMIN_API_KEY",
         "prompt": "Ghost Admin API Key (format: id:secret)"
       }
@@ -52,7 +52,7 @@ Project-specific configs override user-specific configs. This allows:
       "token": {
         "onePasswordRef": null,
         "keychainAccount": "firebase-token",
-        "keychainService": "claude-agents-cli.firebase",
+        "keychainService": "swift-agents-plugin.firebase",
         "envVar": "FIREBASE_TOKEN",
         "prompt": "Firebase CI token (run: firebase login:ci)"
       }
@@ -61,7 +61,7 @@ Project-specific configs override user-specific configs. This allows:
       "orgUrl": {
         "onePasswordRef": "op://Employee/Azure/org url",
         "keychainAccount": "azure-devops-org-url",
-        "keychainService": "claude-agents-cli.azure",
+        "keychainService": "swift-agents-plugin.azure",
         "envVar": "AZURE_DEVOPS_ORG_URL",
         "prompt": "Azure DevOps Organization URL",
         "validator": "url"
@@ -69,7 +69,7 @@ Project-specific configs override user-specific configs. This allows:
       "pat": {
         "onePasswordRef": "op://Employee/Azure/pat",
         "keychainAccount": "azure-devops-pat",
-        "keychainService": "claude-agents-cli.azure",
+        "keychainService": "swift-agents-plugin.azure",
         "envVar": "AZURE_DEVOPS_PAT",
         "prompt": "Azure DevOps Personal Access Token"
       }
@@ -272,14 +272,14 @@ claude-agents setup secrets --config ~/.claude-agents/secrets-prod.json
       "url": {
         "onePasswordRef": "op://Personal/Ghost Blog/url",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL",
         "prompt": "Ghost URL"
       },
       "adminApiKey": {
         "onePasswordRef": "op://Personal/Ghost Blog/admin api key",
         "keychainAccount": "ghost-admin-api-key",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_ADMIN_API_KEY",
         "prompt": "Ghost Admin API Key"
       }
@@ -307,13 +307,13 @@ claude-agents setup secrets --config ~/.claude-agents/secrets-prod.json
       "url": {
         "onePasswordRef": "op://Engineering/Company Blog/url",
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL"
       },
       "adminApiKey": {
         "onePasswordRef": "op://Engineering/Company Blog/admin key",
         "keychainAccount": "ghost-admin-api-key",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_ADMIN_API_KEY"
       }
     },
@@ -321,13 +321,13 @@ claude-agents setup secrets --config ~/.claude-agents/secrets-prod.json
       "orgUrl": {
         "onePasswordRef": "op://Engineering/Azure DevOps/org url",
         "keychainAccount": "azure-devops-org-url",
-        "keychainService": "claude-agents-cli.azure",
+        "keychainService": "swift-agents-plugin.azure",
         "envVar": "AZURE_DEVOPS_ORG_URL"
       },
       "pat": {
         "onePasswordRef": "op://Engineering/Azure DevOps/pat",
         "keychainAccount": "azure-devops-pat",
-        "keychainService": "claude-agents-cli.azure",
+        "keychainService": "swift-agents-plugin.azure",
         "envVar": "AZURE_DEVOPS_PAT"
       }
     },
@@ -335,7 +335,7 @@ claude-agents setup secrets --config ~/.claude-agents/secrets-prod.json
       "token": {
         "onePasswordRef": "op://Engineering/GitHub/mcp token",
         "keychainAccount": "github-token",
-        "keychainService": "claude-agents-cli.github",
+        "keychainService": "swift-agents-plugin.github",
         "envVar": "GITHUB_TOKEN"
       }
     }
@@ -373,14 +373,14 @@ claude-agents setup secrets --config ~/.claude-agents/secrets-prod.json
       "url": {
         "onePasswordRef": null,
         "keychainAccount": "ghost-url",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_URL",
         "prompt": "Ghost URL"
       },
       "adminApiKey": {
         "onePasswordRef": null,
         "keychainAccount": "ghost-admin-api-key",
-        "keychainService": "claude-agents-cli.ghost",
+        "keychainService": "swift-agents-plugin.ghost",
         "envVar": "GHOST_ADMIN_API_KEY",
         "prompt": "Ghost Admin API Key"
       }

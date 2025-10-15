@@ -105,8 +105,8 @@ claude-agents list --verbose | grep "release-manager"
 ### 5. GitHub Marketplace Installation
 ```bash
 # Test marketplace installation command
-/plugin marketplace add doozMen/claude-agents-cli
-/plugin install claude-agents-cli@doozMen
+/plugin marketplace add doozMen/swift-agents-plugin
+/plugin install swift-agents-plugin@doozMen
 /plugin list
 ```
 **Expected**: Plugin installs successfully
@@ -182,8 +182,8 @@ gh release create v1.5.1 \
 
 ### Installation
 \`\`\`bash
-/plugin marketplace add doozMen/claude-agents-cli
-/plugin install claude-agents-cli@doozMen
+/plugin marketplace add doozMen/swift-agents-plugin
+/plugin install swift-agents-plugin@doozMen
 \`\`\`
 
 ### Library Usage
@@ -237,7 +237,7 @@ let agents = try await repo.loadAgents()
 ## Notes
 
 - prompteneer MCP is responsible for its own setup (writing to CLAUDE.md, installing commands)
-- claude-agents-cli documents that 5 agents use prompteneer when available
+- swift-agents-plugin documents that 5 agents use prompteneer when available
 - Library API enables other Swift packages to access agent content
 - Version kept at 1.5.0 (or bump to 1.5.1 if desired)
 

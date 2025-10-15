@@ -2,7 +2,7 @@
 
 ## Overview
 
-Complete redesign of the secrets management system to use configuration files instead of hardcoded 1Password references. This makes `claude-agents-cli` generic, reusable, and suitable for open-source distribution.
+Complete redesign of the secrets management system to use configuration files instead of hardcoded 1Password references. This makes `swift-agents-plugin` generic, reusable, and suitable for open-source distribution.
 
 ## Problem Solved
 
@@ -433,20 +433,20 @@ claude-agents setup secrets --keychain
 ## Related Files
 
 ### Documentation
-- `/Users/stijnwillems/Developer/claude-agents-cli/docs/CONFIG_BASED_SECRETS.md`
-- `/Users/stijnwillems/Developer/claude-agents-cli/docs/REDESIGN_SUMMARY.md`
-- `/Users/stijnwillems/Developer/claude-agents-cli/docs/IMPLEMENTATION_PLAN_CONFIG.md`
-- `/Users/stijnwillems/Developer/claude-agents-cli/docs/CODE_SNIPPETS_CONFIG_SECRETS.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/docs/CONFIG_BASED_SECRETS.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/docs/REDESIGN_SUMMARY.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/docs/IMPLEMENTATION_PLAN_CONFIG.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/docs/CODE_SNIPPETS_CONFIG_SECRETS.md`
 
 ### Examples
-- `/Users/stijnwillems/Developer/claude-agents-cli/examples/secrets-configs/template.json`
-- `/Users/stijnwillems/Developer/claude-agents-cli/examples/secrets-configs/minimal-ghost.json`
-- `/Users/stijnwillems/Developer/claude-agents-cli/examples/secrets-configs/enterprise-multi-service.json`
-- `/Users/stijnwillems/Developer/claude-agents-cli/examples/secrets-configs/manual-only.json`
-- `/Users/stijnwillems/Developer/claude-agents-cli/examples/secrets-configs/README.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/examples/secrets-configs/template.json`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/examples/secrets-configs/minimal-ghost.json`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/examples/secrets-configs/enterprise-multi-service.json`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/examples/secrets-configs/manual-only.json`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/examples/secrets-configs/README.md`
 
 ### Updated Files
-- `/Users/stijnwillems/Developer/claude-agents-cli/IMPLEMENTATION_SUMMARY.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/IMPLEMENTATION_SUMMARY.md`
 
 ## Next Steps
 
@@ -497,7 +497,7 @@ claude-agents setup secrets --keychain
 
 ## Conclusion
 
-This redesign transforms `claude-agents-cli` from a tool with hardcoded, organization-specific references to a **generic, configurable, and reusable** secrets management system.
+This redesign transforms `swift-agents-plugin` from a tool with hardcoded, organization-specific references to a **generic, configurable, and reusable** secrets management system.
 
 **Key Achievements:**
 - Generic architecture (no hardcoded values)

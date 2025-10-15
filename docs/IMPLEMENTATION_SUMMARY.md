@@ -2,14 +2,14 @@
 
 ## Overview
 
-Native Swift secrets management system for `claude-agents-cli` with a **generic, configurable architecture**. The system supports 1Password and macOS Keychain through a user-managed configuration file, eliminating hardcoded organization-specific references.
+Native Swift secrets management system for `swift-agents-plugin` with a **generic, configurable architecture**. The system supports 1Password and macOS Keychain through a user-managed configuration file, eliminating hardcoded organization-specific references.
 
 **Key Design Principle**: Configuration over hardcoded values. All 1Password references are defined in a user-managed config file, making the tool reusable across different organizations and team structures.
 
 ## Files Created
 
 ### Models
-- `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Models/Secret.swift`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Models/Secret.swift`
   - `Secret`: Sendable struct for secret data
   - `SecretSource`: Enum for secret sources (1Password, Keychain, Manual)
   - `MCPServerConfig`: Codable struct for MCP server configuration
@@ -17,7 +17,7 @@ Native Swift secrets management system for `claude-agents-cli` with a **generic,
   - `KnownSecret`: Enum of predefined secrets with 1Password references and Keychain identifiers
 
 ### Services
-- `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Services/SecretsService.swift`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Services/SecretsService.swift`
   - Actor-based service for thread-safe secrets operations
   - 1Password CLI integration (`op` commands)
   - macOS Keychain operations (`security` commands)
@@ -25,7 +25,7 @@ Native Swift secrets management system for `claude-agents-cli` with a **generic,
   - High-level sync and load operations
 
 ### Commands
-- `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Commands/SetupSecretsCommand.swift`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Commands/SetupSecretsCommand.swift`
   - `setup secrets` subcommand implementation
   - Interactive mode with 1Password/Keychain selection
   - Status checking (`--check`)
@@ -35,7 +35,7 @@ Native Swift secrets management system for `claude-agents-cli` with a **generic,
   - Force mode (`--force`)
 
 ### Documentation
-- `/Users/stijnwillems/Developer/claude-agents-cli/docs/SECRETS_MANAGEMENT.md`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/docs/SECRETS_MANAGEMENT.md`
   - Comprehensive user guide
   - Command reference
   - Workflow examples
@@ -46,13 +46,13 @@ Native Swift secrets management system for `claude-agents-cli` with a **generic,
 ## Files Modified
 
 ### Commands
-- `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Commands/SetupCommand.swift`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Commands/SetupCommand.swift`
   - Restructured as parent command with subcommands
   - Added `SetupSecretsCommand` as subcommand
   - Renamed original to `SetupCLAUDEMdCommand` (default subcommand)
 
 ### Models
-- `/Users/stijnwillems/Developer/claude-agents-cli/Sources/claude-agents-cli/Models/Errors.swift`
+- `/Users/stijnwillems/Developer/swift-agents-plugin/Sources/claude-agents-cli/Models/Errors.swift`
   - Added `SecretsError` enum with comprehensive error cases
   - Errors for 1Password, Keychain, and MCP config operations
 
@@ -75,7 +75,7 @@ Native Swift secrets management system for `claude-agents-cli` with a **generic,
 - Stores secrets: `security add-generic-password`
 - Fetches secrets: `security find-generic-password -w`
 - Deletes secrets: `security delete-generic-password`
-- Service prefix: `claude-agents-cli.*`
+- Service prefix: `swift-agents-plugin.*`
 
 #### MCP Configuration
 - Path: `~/.config/claude/mcp.json`
@@ -125,10 +125,10 @@ claude-agents setup secrets --one-password --force
 - Token: Not in 1Password by default (manual input)
 
 ### Keychain Storage
-- Ghost URL: `claude-agents-cli.ghost` / `url`
-- Ghost Admin API Key: `claude-agents-cli.ghost` / `api-key`
-- Ghost Content API Key: `claude-agents-cli.ghost` / `content-api-key`
-- Firebase Token: `claude-agents-cli.firebase` / `token`
+- Ghost URL: `swift-agents-plugin.ghost` / `url`
+- Ghost Admin API Key: `swift-agents-plugin.ghost` / `api-key`
+- Ghost Content API Key: `swift-agents-plugin.ghost` / `content-api-key`
+- Firebase Token: `swift-agents-plugin.firebase` / `token`
 
 ## Testing
 
@@ -299,22 +299,22 @@ claude-agents setup secrets --keychain
 
 ## Related Documentation
 
-- Project CLAUDE.md: `/Users/stijnwillems/Developer/claude-agents-cli/CLAUDE.md`
-- Secrets Guide: `/Users/stijnwillems/Developer/claude-agents-cli/docs/SECRETS_MANAGEMENT.md`
-- Main README: `/Users/stijnwillems/Developer/claude-agents-cli/README.md`
+- Project CLAUDE.md: `/Users/stijnwillems/Developer/swift-agents-plugin/CLAUDE.md`
+- Secrets Guide: `/Users/stijnwillems/Developer/swift-agents-plugin/docs/SECRETS_MANAGEMENT.md`
+- Main README: `/Users/stijnwillems/Developer/swift-agents-plugin/README.md`
 
 ## Installation Instructions
 
 ### For Development
 ```bash
-cd ~/Developer/claude-agents-cli
+cd ~/Developer/swift-agents-plugin
 swift build
 .build/debug/claude-agents setup secrets --check
 ```
 
 ### For Production
 ```bash
-cd ~/Developer/claude-agents-cli
+cd ~/Developer/swift-agents-plugin
 rm -f ~/.swiftpm/bin/claude-agents
 swift package experimental-install --product claude-agents
 claude-agents setup secrets --check

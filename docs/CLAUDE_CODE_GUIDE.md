@@ -63,16 +63,16 @@ Claude Code is available as a desktop application or CLI tool.
 2. Install and authenticate with your Anthropic account
 3. Open a project directory
 
-**Install Claude Agents CLI Plugin:**
+**Install Swift Agents Plugin Plugin:**
 
 Complete installation with enhanced capabilities (recommended):
 ```bash
-# Install the claude-agents-cli plugin
-/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen
+# Install the swift-agents-plugin plugin
+/plugin marketplace add doozMen/swift-agents-plugin && /plugin install swift-agents-plugin@doozMen
 ```
 
 This installs:
-- **claude-agents-cli**: 45 specialized AI agents for development tasks
+- **swift-agents-plugin**: 45 specialized AI agents for development tasks
 
 **Enhanced Capabilities with prompteneer MCP Server:**
 
@@ -768,7 +768,7 @@ TDD Approach:
 
 ### Agent Management
 
-**Claude Agents CLI** (this project):
+**Swift Agents Plugin** (this project):
 ```bash
 # List available agents
 claude-agents list

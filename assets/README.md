@@ -1,6 +1,6 @@
 # Assets
 
-Plugin marketplace assets for Claude Agents CLI.
+Plugin marketplace assets for Swift Agents Plugin.
 
 ## Required Images
 
@@ -65,7 +65,7 @@ Images are referenced in:
 
 URLs use GitHub raw content:
 ```
-https://raw.githubusercontent.com/stijnwillems/claude-agents-cli/main/assets/icon.png
+https://raw.githubusercontent.com/stijnwillems/swift-agents-plugin/main/assets/icon.png
 ```
 
 ## Notes

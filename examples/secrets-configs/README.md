@@ -70,7 +70,7 @@ Each configuration file follows this structure:
   "api-key": {
     "onePasswordRef": "op://MyVault/MyService/api key",
     "keychainAccount": "my-service-api-key",
-    "keychainService": "claude-agents-cli.my-service",
+    "keychainService": "swift-agents-plugin.my-service",
     "envVar": "MY_SERVICE_API_KEY",
     "prompt": "My Service API Key"
   }
@@ -115,7 +115,7 @@ Set `onePasswordRef` to `null`:
   "token": {
     "onePasswordRef": null,
     "keychainAccount": "firebase-token",
-    "keychainService": "claude-agents-cli.firebase",
+    "keychainService": "swift-agents-plugin.firebase",
     "envVar": "FIREBASE_TOKEN",
     "prompt": "Firebase CI token"
   }
@@ -136,7 +136,7 @@ claude-agents setup secrets --validate-config
 2. **File Location**: 
    - User-specific: `~/.claude-agents/secrets-config.json`
    - Project-specific: `./.claude-agents-secrets.json`
-3. **Keychain Naming**: Use consistent service/account naming (e.g., `claude-agents-cli.service`)
+3. **Keychain Naming**: Use consistent service/account naming (e.g., `swift-agents-plugin.service`)
 4. **Environment Variables**: Use uppercase with underscores (e.g., `GHOST_ADMIN_API_KEY`)
 5. **Secret Paths**: Use dot notation (e.g., `ghost.adminApiKey`)
 

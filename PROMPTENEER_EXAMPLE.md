@@ -12,14 +12,14 @@ let package = Package(
     name: "prompteneer",
     platforms: [.macOS(.v13)],
     dependencies: [
-        .package(url: "https://github.com/doozMen/claude-agents-cli.git", from: "1.5.0"),
+        .package(url: "https://github.com/doozMen/swift-agents-plugin.git", from: "1.5.0"),
         .package(url: "https://github.com/modelcontextprotocol/swift-sdk.git", from: "0.1.0")
     ],
     targets: [
         .executableTarget(
             name: "prompteneer",
             dependencies: [
-                .product(name: "ClaudeAgents", package: "claude-agents-cli"),
+                .product(name: "ClaudeAgents", package: "swift-agents-plugin"),
                 .product(name: "MCP", package: "swift-sdk")
             ]
         )
@@ -300,12 +300,12 @@ cp .build/release/prompteneer ~/.local/bin/
 ## Updates
 
 To update agents:
-1. Update claude-agents-cli dependency version in Package.swift
+1. Update swift-agents-plugin dependency version in Package.swift
 2. Rebuild: `swift build`
 3. Restart MCP server
 
 ```swift
-.package(url: "https://github.com/doozMen/claude-agents-cli.git", from: "1.6.0")
+.package(url: "https://github.com/doozMen/swift-agents-plugin.git", from: "1.6.0")
 ```
 
 New agents automatically available after restart!

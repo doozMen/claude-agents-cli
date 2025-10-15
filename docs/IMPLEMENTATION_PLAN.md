@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This document outlines the implementation plan for extending the secrets management system in `claude-agents-cli` to support:
+This document outlines the implementation plan for extending the secrets management system in `swift-agents-plugin` to support:
 1. Azure DevOps (PAT-based authentication)
 2. GitLab (token-based and OAuth support)
 3. Google Cloud (gcloud application default credentials)
@@ -59,7 +59,7 @@ Additionally, we'll address the timeout issue with the `--force` flag when using
 - Alternative: Use dedicated Azure DevOps field in 1Password
 
 **Keychain Storage Strategy**:
-- Service: `claude-agents-cli.azure-devops`
+- Service: `swift-agents-plugin.azure-devops`
 - Accounts: `org-url`, `pat`, `default-project`
 
 **MCP Configuration**:
@@ -92,7 +92,7 @@ Additionally, we'll address the timeout issue with the `--force` flag when using
 - `op://Employee/CompanyA Azure - Gitlab/private key` (SSH key for git operations)
 
 **Keychain Storage Strategy**:
-- Service: `claude-agents-cli.gitlab`
+- Service: `swift-agents-plugin.gitlab`
 - Accounts: `personal-access-token`, `api-url`, `ssh-private-key` (optional)
 
 **MCP Configuration**:
@@ -122,7 +122,7 @@ Additionally, we'll address the timeout issue with the `--force` flag when using
 
 **Keychain Storage Strategy**:
 - Option 1: Store path to credentials file
-  - Service: `claude-agents-cli.gcloud`
+  - Service: `swift-agents-plugin.gcloud`
   - Account: `credentials-path`
 - Option 2: Store entire JSON content (not recommended due to size)
 
@@ -203,11 +203,11 @@ public enum KnownSecret: String, Sendable, CaseIterable {
     switch self {
     // ... existing cases
     case .azureDevOpsOrgUrl, .azureDevOpsPat, .azureDevOpsDefaultProject:
-      return "claude-agents-cli.azure-devops"
+      return "swift-agents-plugin.azure-devops"
     case .gitlabPersonalAccessToken, .gitlabApiUrl:
-      return "claude-agents-cli.gitlab"
+      return "swift-agents-plugin.gitlab"
     case .gcloudCredentialsPath:
-      return "claude-agents-cli.gcloud"
+      return "swift-agents-plugin.gcloud"
     }
   }
   
@@ -804,11 +804,11 @@ case .gcloudCredentialsPath: return "Google Cloud Credentials Path"
 
 // Add to keychainService property
 case .azureDevOpsOrgUrl, .azureDevOpsPat, .azureDevOpsDefaultProject:
-  return "claude-agents-cli.azure-devops"
+  return "swift-agents-plugin.azure-devops"
 case .gitlabPersonalAccessToken, .gitlabApiUrl:
-  return "claude-agents-cli.gitlab"
+  return "swift-agents-plugin.gitlab"
 case .gcloudCredentialsPath:
-  return "claude-agents-cli.gcloud"
+  return "swift-agents-plugin.gcloud"
 
 // Add to keychainAccount property
 case .azureDevOpsOrgUrl: return "org-url"

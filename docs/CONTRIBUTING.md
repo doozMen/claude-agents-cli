@@ -1,6 +1,6 @@
-# Contributing to Claude Agents CLI
+# Contributing to Swift Agents Plugin
 
-Thank you for contributing to the Claude Agents CLI project!
+Thank you for contributing to the Swift Agents Plugin project!
 
 ## Adding New Agents
 
@@ -74,8 +74,8 @@ Only include tools the agent actually needs:
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/claude-agents-cli.git
-cd claude-agents-cli
+git clone https://github.com/yourusername/swift-agents-plugin.git
+cd swift-agents-plugin
 
 # Build project
 swift build
@@ -295,4 +295,4 @@ Contributors are listed in:
 - Start a discussion
 - Review existing documentation
 
-Thank you for improving Claude Agents CLI!
+Thank you for improving Swift Agents Plugin!

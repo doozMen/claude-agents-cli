@@ -233,17 +233,17 @@ let package = Package(
 import PackageDescription
 
 let package = Package(
-    name: "claude-agents-cli",
+    name: "swift-agents-plugin",
     platforms: [.macOS(.v13)],
     products: [
-        .executable(name: "claude-agents", targets: ["claude-agents-cli"])
+        .executable(name: "claude-agents", targets: ["swift-agents-plugin"])
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0")
     ],
     targets: [
         .executableTarget(
-            name: "claude-agents-cli",
+            name: "swift-agents-plugin",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ],

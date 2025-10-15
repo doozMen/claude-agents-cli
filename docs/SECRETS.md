@@ -1,6 +1,6 @@
 # Secrets Management
 
-This document describes how to securely manage secrets and credentials for the Claude Agents CLI project.
+This document describes how to securely manage secrets and credentials for the Swift Agents Plugin project.
 
 ## Overview
 
@@ -83,7 +83,7 @@ Interactive script to store secrets in Keychain.
 - Uses macOS Keychain for secure storage
 
 **Storage Location**: macOS Keychain (login keychain)
-**Service Names**: `claude-agents-cli.{ghost|firebase|custom}`
+**Service Names**: `swift-agents-plugin.{ghost|firebase|custom}`
 
 ### `load-secrets.sh`
 
@@ -117,9 +117,9 @@ View all stored secrets (names only, not values).
   Stored Secrets in Keychain
 ════════════════════════════════════════════════════════════
 
-  claude-agents-cli.ghost → url
-  claude-agents-cli.ghost → api-key
-  claude-agents-cli.firebase → token
+  swift-agents-plugin.ghost → url
+  swift-agents-plugin.ghost → api-key
+  swift-agents-plugin.firebase → token
 ```
 
 ### `update-mcp-config.sh`
@@ -257,13 +257,13 @@ security unlock-keychain login.keychain
 # View specific secret
 security find-generic-password \
   -a "url" \
-  -s "claude-agents-cli.ghost" \
+  -s "swift-agents-plugin.ghost" \
   -w
 
 # View with details
 security find-generic-password \
   -a "api-key" \
-  -s "claude-agents-cli.ghost"
+  -s "swift-agents-plugin.ghost"
 ```
 
 ### Delete Secret
@@ -272,7 +272,7 @@ security find-generic-password \
 # Delete specific secret
 security delete-generic-password \
   -a "url" \
-  -s "claude-agents-cli.ghost"
+  -s "swift-agents-plugin.ghost"
 ```
 
 ### Update Secret Manually
@@ -281,12 +281,12 @@ security delete-generic-password \
 # Delete old secret
 security delete-generic-password \
   -a "api-key" \
-  -s "claude-agents-cli.ghost"
+  -s "swift-agents-plugin.ghost"
 
 # Add new secret
 security add-generic-password \
   -a "api-key" \
-  -s "claude-agents-cli.ghost" \
+  -s "swift-agents-plugin.ghost" \
   -w "new_secret_value"
 ```
 
@@ -308,7 +308,7 @@ Add export statements:
 
 ```bash
 # Load Custom MCP credentials
-export CUSTOM_MCP_TOKEN=$(get_secret "claude-agents-cli.custom-mcp" "token")
+export CUSTOM_MCP_TOKEN=$(get_secret "swift-agents-plugin.custom-mcp" "token")
 ```
 
 ### 3. Update update-mcp-config.sh
