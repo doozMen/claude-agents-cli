@@ -1,11 +1,15 @@
 {
   "name": "claude-agents-cli",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "43 production-ready AI agents for Claude Code - Install specialized agents for Swift, testing, documentation, CI/CD, and more",
-  "author": "Stijn Willems <stijn@dooz.be>",
+  "author": {
+    "name": "Stijn Willems",
+    "email": "stijn@dooz.be",
+    "url": "https://github.com/doozMen"
+  },
   "license": "MIT",
-  "repository": "https://github.com/stijnwillems/claude-agents-cli",
-  "homepage": "https://github.com/stijnwillems/claude-agents-cli",
+  "repository": "https://github.com/doozMen/claude-agents-cli",
+  "homepage": "https://github.com/doozMen/claude-agents-cli",
   "keywords": [
     "agents",
     "swift",
@@ -184,8 +188,8 @@
     "changelog": "CHANGELOG.md"
   },
   "support": {
-    "issues": "https://github.com/stijnwillems/claude-agents-cli/issues",
-    "documentation": "https://github.com/stijnwillems/claude-agents-cli/blob/main/docs/",
+    "issues": "https://github.com/doozMen/claude-agents-cli/issues",
+    "documentation": "https://github.com/doozMen/claude-agents-cli/blob/main/docs/",
     "email": "stijn@dooz.be"
   }
 }
