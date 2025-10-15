@@ -144,15 +144,36 @@ This CLI is available as a Claude Code plugin for easy discovery and installatio
 
 ### Install from GitHub Marketplace (Recommended) ⭐
 
+**Complete Installation (Both Plugins):**
 ```bash
-# Add the GitHub marketplace
-/plugin marketplace add doozMen/claude-agents-cli
-
-# Install the plugin
-/plugin install claude-agents-cli@doozMen
+# Install both plugins for full functionality
+/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen agents-plugin@doozMen
 ```
 
+This single command installs:
+- **claude-agents-cli**: 45 production-ready AI agents for specialized tasks
+- **agents-plugin**: Local LLM capabilities, prompt optimization, and privacy-preserving agent routing
+
 All 45 agents are available immediately after installation!
+
+**Individual Installation:**
+```bash
+# Add the marketplace
+/plugin marketplace add doozMen/claude-agents-cli
+
+# Install just the agents (basic functionality)
+/plugin install claude-agents-cli@doozMen
+
+# Install agents-plugin separately for enhanced features (optional but recommended)
+/plugin install agents-plugin@doozMen
+```
+
+**What agents-plugin provides:**
+- On-device LLM analysis via MCP for privacy-preserving operations
+- Intelligent agent routing and task delegation
+- Prompt optimization and enhancement
+- Local semantic analysis without cloud roundtrips
+- Enhanced task-router agent capabilities
 
 ### Manual CLI Installation
 

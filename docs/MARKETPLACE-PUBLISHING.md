@@ -66,13 +66,45 @@ curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/
 
 #### Installation for Users
 
+**Complete Installation (Recommended):**
+```bash
+# Install both plugins for full functionality
+/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen agents-plugin@doozMen
+```
+
+**Individual Installation:**
 ```bash
 # Add your marketplace
 /plugin marketplace add doozMen/claude-agents-cli
 
-# Install the plugin
+# Install just the agents
 /plugin install claude-agents-cli@doozMen
+
+# Optional: Install agents-plugin for enhanced capabilities
+/plugin install agents-plugin@doozMen
 ```
+
+#### Plugin Ecosystem
+
+**claude-agents-cli** (Base Plugin):
+- 45 production-ready AI agents
+- Specialized expertise (Swift, testing, docs, CI/CD)
+- Works standalone
+- Core agent management
+
+**agents-plugin** (Enhancement Plugin):
+- Local LLM via MCP for privacy-preserving analysis
+- Intelligent agent routing with on-device processing
+- Prompt optimization and semantic analysis
+- Enhances task-router agent with local LLM capabilities
+- No cloud roundtrips for sensitive operations
+
+**Why Install Both?**
+- agents-plugin provides the local LLM backend that task-router uses
+- Privacy-preserving operations stay on your device
+- Faster routing decisions without API calls
+- Enhanced agent coordination and delegation
+- Best-in-class Claude Code agent experience
 
 #### Marketplace URL
 `github.com/doozMen/claude-agents-cli`
@@ -82,6 +114,7 @@ curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/
 - Full control over releases
 - Perfect for team/organization distribution
 - Beta testing before official submission
+- Enhanced capabilities with agents-plugin integration
 
 ---
 
@@ -170,22 +203,16 @@ Use GitHub MCP for repository operations:
 # 1. Validate plugin locally
 claude plugin validate .
 
-# 2. Test GitHub marketplace installation
+# 2. Test complete installation
 /plugin marketplace add doozMen/claude-agents-cli
-/plugin install claude-agents-cli@doozMen
+/plugin install claude-agents-cli@doozMen agents-plugin@doozMen
 
-# 3. Update README with installation instructions
-echo "
-## Installation via Marketplace
+# 3. Verify both plugins installed
+/plugin list
 
-\`\`\`bash
-# Add marketplace
-/plugin marketplace add doozMen/claude-agents-cli
-
-# Install plugin
-/plugin install claude-agents-cli@doozMen
-\`\`\`
-" >> README.md
+# 4. Test agent functionality
+claude-agents list
+claude-agents install task-router --global
 ```
 
 ### This Week

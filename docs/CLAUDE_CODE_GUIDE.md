@@ -63,6 +63,28 @@ Claude Code is available as a desktop application or CLI tool.
 2. Install and authenticate with your Anthropic account
 3. Open a project directory
 
+**Install Claude Agents CLI Plugin:**
+
+Complete installation with enhanced capabilities (recommended):
+```bash
+# Install both plugins for full functionality
+/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen agents-plugin@doozMen
+```
+
+This installs:
+- **claude-agents-cli**: 45 specialized AI agents for development tasks
+- **agents-plugin**: Local LLM capabilities for privacy-preserving routing and optimization
+
+Individual installation (basic functionality):
+```bash
+# Just the agents
+/plugin marketplace add doozMen/claude-agents-cli
+/plugin install claude-agents-cli@doozMen
+
+# Add agents-plugin later for enhanced features
+/plugin install agents-plugin@doozMen
+```
+
 **CLI (if available):**
 ```bash
 # Installation method varies by platform
