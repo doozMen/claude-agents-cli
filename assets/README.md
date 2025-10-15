@@ -38,9 +38,9 @@ Plugin marketplace assets for Claude Agents CLI.
 ## Current Status
 
 - [x] icon.png - ✅ Complete (1024x1024px, PNG format)
-- [ ] screenshot-list.png - Pending capture
-- [ ] screenshot-install.png - Pending capture
-- [ ] screenshot-mcp.png - Pending capture
+- [x] screenshot-list.png - ✅ Complete (2.8MB, shows all 43 agents with descriptions)
+- [x] screenshot-install.png - ✅ Complete (439KB, installation workflow)
+- [x] screenshot-mcp.png - ✅ Complete (313KB, MCP integration demo)
 
 ## Design Guidelines
 
