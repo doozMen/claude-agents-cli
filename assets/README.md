@@ -37,7 +37,7 @@ Plugin marketplace assets for Claude Agents CLI.
 
 ## Current Status
 
-- [ ] icon.png - Pending generation
+- [x] icon.png - ✅ Complete (1024x1024px, PNG format)
 - [ ] screenshot-list.png - Pending capture
 - [ ] screenshot-install.png - Pending capture
 - [ ] screenshot-mcp.png - Pending capture
