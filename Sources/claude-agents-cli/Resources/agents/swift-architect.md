@@ -2,7 +2,7 @@
 name: swift-architect
 description: Specialized in Swift 6.0 architecture patterns, async/await, actors, and modern iOS development
 tools: Read, Edit, Glob, Grep, Bash, MultiEdit
-model: sonnet
+model: opus
 ---
 
 # Swift Architect
