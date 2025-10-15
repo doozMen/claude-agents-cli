@@ -1,6 +1,6 @@
 # Claude Agents CLI
 
-**42 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
+**43 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
 
 [![Swift 6.1](https://img.shields.io/badge/Swift-6.1-orange.svg)](https://swift.org)
 [![macOS 13.0+](https://img.shields.io/badge/macOS-13.0+-blue.svg)](https://www.apple.com/macos)
@@ -19,7 +19,7 @@ claude-agents list
 # Install essential agents globally
 claude-agents install swift-architect test-builder code-reviewer --global
 
-# Install all 42 agents
+# Install all 43 agents
 claude-agents install --all --global
 ```
 
@@ -27,7 +27,7 @@ That's it! Your agents are ready to use in Claude Code.
 
 ## What is This?
 
-Claude Agents CLI provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 42 production-ready agents covering:
+Claude Agents CLI provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 43 production-ready agents covering:
 
 - **Swift & iOS Development** - Architecture, SwiftUI, testing, modernization
 - **Cross-Platform** - Generic agents for any language (architect, test-builder, code-reviewer)
@@ -53,7 +53,7 @@ claude-agents install azure-devops git-pr-specialist --global
 
 ## Key Features
 
-- **🚀 42 Embedded Agents** - Production-ready, no configuration needed
+- **🚀 43 Embedded Agents** - Production-ready, no configuration needed
 - **🧠 Smart Routing** - New task-router agent uses local LLM for intelligent delegation
 - **💰 Cost Optimized** - Mixed model strategy (Opus for complex, Haiku for simple tasks)
 - **🔧 Zero Config** - Agents work immediately after installation
@@ -78,7 +78,7 @@ swift package experimental-install --product claude-agents
 
 ### Discover Agents
 ```bash
-claude-agents list                    # List all 42 available agents
+claude-agents list                    # List all 43 available agents
 claude-agents list --verbose           # Include descriptions
 claude-agents list --tool Bash         # Filter by tool capability
 claude-agents list --installed         # Show what's installed
@@ -136,13 +136,55 @@ claude-agents uninstall <agent-name> --target local  # From project
 | **github-specialist** | GitHub Actions and workflows |
 | **gitlab-specialist** | GitLab CI/CD pipelines |
 
-[View all 42 agents →](docs/AGENTS.md)
+[View all 43 agents →](docs/AGENTS.md)
+
+## Plugin & Marketplace Distribution
+
+This CLI is available as a Claude Code plugin for easy discovery and installation.
+
+### Install from Development Marketplace
+
+1. Add the development marketplace to your Claude Code settings (`~/.claude/settings.json`):
+```json
+{
+  "marketplaces": [
+    {
+      "name": "Development",
+      "type": "local",
+      "path": "/Users/stijnwillems/claude-marketplaces/dev-marketplace"
+    }
+  ]
+}
+```
+
+2. Browse the marketplace in Claude Code and install the plugin
+
+### Manual Installation (Current Method)
+
+```bash
+git clone https://github.com/stijnwillems/claude-agents-cli.git
+cd claude-agents-cli
+swift package experimental-install --product claude-agents
+claude-agents install --all --global
+```
+
+### Distribution Options
+
+- **GitHub**: Clone repository and install manually
+- **Development Marketplace**: Local testing environment at `~/claude-marketplaces/dev-marketplace/`
+- **Official Marketplace**: Coming soon - submit via `.claude-plugin/marketplace.json`
+
+**Plugin Features**:
+- All 43 agents included
+- Smart routing with OWL Intelligence
+- MCP integration (SwiftLens, Context7, SourceKit-LSP)
+- Cost-optimized model distribution (1 Opus, 31 Sonnet, 11 Haiku)
 
 ## Why Use This Instead of Official Claude CLI?
 
 The official `claude-code` CLI includes basic agent management. This tool provides:
 
-- **Curated Library**: 42 production-ready agents vs. starting from scratch
+- **Curated Library**: 43 production-ready agents vs. starting from scratch
 - **Smart Discovery**: Filter by tools, batch operations, descriptions
 - **Model Optimization**: Strategic use of Opus/Sonnet/Haiku for cost/performance
 - **OWL Intelligence Integration**: Local LLM routing (coming soon)
@@ -151,11 +193,15 @@ The official `claude-code` CLI includes basic agent management. This tool provid
 
 ```
 claude-agents-cli/
+├── .claude-plugin/            # Plugin manifests for marketplace
+│   ├── plugin.json            # Plugin metadata
+│   └── marketplace.json       # Marketplace submission
 ├── Sources/claude-agents-cli/
 │   ├── Commands/              # CLI commands
 │   ├── Models/                 # Data models
 │   ├── Services/              # Business logic
-│   └── Resources/agents/      # 42 embedded agents
+│   └── Resources/agents/      # 43 embedded agents
+├── assets/                    # Marketplace images
 └── docs/                      # Detailed documentation
 ```
 
@@ -167,7 +213,7 @@ claude-agents-cli/
 
 ## Documentation
 
-- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 42 agents
+- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 43 agents
 - [Architecture Guide](docs/ARCHITECTURE.md) - Technical details and design
 - [Claude Code Guide](docs/CLAUDE_CODE_GUIDE.md) - Best practices for Claude Code
 - [Secrets Management](docs/SECRETS.md) - Credential setup for MCP servers
