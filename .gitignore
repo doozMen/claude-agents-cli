@@ -27,3 +27,11 @@ claude_desktop_config.json
 
 # Experimental worktrees
 worktrees/
+
+# MCP server installations
+tools/swiftlens/
+tools/node_modules/
+
+# SwiftLens automation temporary files
+/tmp/swiftlens-rebuild-lock
+/tmp/swiftlens-rebuild-timestamp
