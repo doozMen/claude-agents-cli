@@ -172,18 +172,77 @@ Create `plugin.json` with complete metadata:
   "description": "Clear, concise plugin description",
   "author": {
     "name": "Author Name",
-    "email": "author@example.com"
+    "email": "author@example.com",
+    "url": "https://github.com/username"
   },
   "homepage": "https://docs.example.com",
   "repository": "https://github.com/user/plugin",
   "license": "MIT",
   "keywords": ["keyword1", "keyword2"],
+  "icon": "https://raw.githubusercontent.com/user/plugin/main/assets/icon.png",
   "commands": ["./custom/commands/special.md"],
   "agents": "./custom/agents/",
   "hooks": "./config/hooks.json",
   "mcpServers": "./.mcp.json"
 }
 ```
+
+**Important**: Use object format for `author` (not string). This is required for marketplace validation.
+
+### Phase 3.5: Asset Preparation
+Prepare visual assets for marketplace distribution:
+
+#### Required Assets
+
+**Icon** (`assets/icon.png`):
+- **Size**: 512x512px minimum (1024x1024px recommended)
+- **Format**: PNG with transparency
+- **Style**: Professional, recognizable at small sizes
+- **Design**: Represent plugin purpose visually
+
+**Screenshots** (3-5 recommended):
+- **Size**: 1280x800px or larger
+- **Format**: PNG or JPEG
+- **Content**: Show plugin in action
+  - Installation workflow
+  - Key features demonstrated
+  - Command execution examples
+  - MCP integration (if applicable)
+
+#### Asset Hosting
+
+**GitHub Raw URLs** (recommended):
+```
+https://raw.githubusercontent.com/username/repo/main/assets/icon.png
+https://raw.githubusercontent.com/username/repo/main/assets/screenshot-1.png
+```
+
+**Benefits**:
+- Free hosting via GitHub
+- Automatic versioning with commits
+- Accessible to all marketplaces
+- No external dependencies
+
+**Reference in manifests**:
+```json
+{
+  "icon": "https://raw.githubusercontent.com/username/plugin/main/assets/icon.png",
+  "screenshots": [
+    {
+      "url": "https://raw.githubusercontent.com/username/plugin/main/assets/screenshot-1.png",
+      "caption": "Installation workflow"
+    }
+  ]
+}
+```
+
+**Asset Checklist**:
+- [ ] Icon created and optimized (512x512px+)
+- [ ] 3-5 screenshots captured
+- [ ] Assets committed to repository
+- [ ] GitHub raw URLs verified accessible
+- [ ] URLs added to manifests
+- [ ] Images display correctly in browser
 
 ### Phase 4: Local Testing
 Set up development marketplace:
@@ -227,6 +286,52 @@ dev-marketplace/
 ```
 
 ### Phase 5: Validation
+
+#### Manifest Validation
+
+Use built-in validation commands:
+
+```bash
+# Validate plugin manifest
+claude plugin validate .claude-plugin/plugin.json
+
+# Validate marketplace catalog
+claude plugin validate .claude-plugin/marketplace.json
+
+# Validate submission metadata
+claude plugin validate .claude-plugin/submission-metadata.json
+```
+
+**Common Validation Errors**:
+
+| Error | Fix |
+|-------|-----|
+| `author: Expected object, received string` | Use `{"name": "...", "email": "..."}` format |
+| `source: Invalid input: must start with "./"` | Change `"source": "plugin.json"` to `"source": "./plugin.json"` |
+| `owner: Required` | Add `"owner": {"name": "..."}` to marketplace.json |
+| `plugins: Required` | Add `"plugins": [...]` array to marketplace.json |
+
+**Fix Examples**:
+```json
+// ❌ Wrong - String format
+"author": "John Doe <john@example.com>"
+
+// ✅ Correct - Object format
+"author": {
+  "name": "John Doe",
+  "email": "john@example.com",
+  "url": "https://github.com/johndoe"
+}
+
+// ❌ Wrong - Missing "./"
+"source": "plugin.json"
+
+// ✅ Correct - Relative path
+"source": "./.claude-plugin/plugin.json"
+```
+
+#### Runtime Validation
+
 Use debugging tools:
 
 ```bash
@@ -240,7 +345,8 @@ claude --debug
 ```
 
 **Validation Checklist**:
-- [ ] `plugin.json` has valid JSON syntax
+- [ ] `plugin.json` passes `claude plugin validate`
+- [ ] `marketplace.json` passes validation (if using)
 - [ ] All paths are relative and start with `./`
 - [ ] Scripts are executable (755 permissions)
 - [ ] `${CLAUDE_PLUGIN_ROOT}` used for all plugin paths
@@ -248,52 +354,289 @@ claude --debug
 - [ ] Agents appear in `/agents`
 - [ ] Hooks fire on expected events
 - [ ] MCP servers connect successfully
+- [ ] Assets (icon, screenshots) are accessible via URLs
 
 ### Phase 6: Distribution
-Prepare for marketplace distribution:
 
-1. **Documentation**:
-   - Comprehensive README.md
+#### Understanding marketplace.json Formats
+
+**Two distinct formats for different purposes**:
+
+##### Format 1: Marketplace Catalog (Self-Hosting)
+
+For hosting your own marketplace on GitHub, GitLab, Azure DevOps, etc:
+
+```json
+{
+  "name": "my-marketplace",
+  "owner": {
+    "name": "Team Name",
+    "email": "team@company.com",
+    "url": "https://github.com/teamname"
+  },
+  "description": "Brief marketplace description",
+  "metadata": {
+    "description": "Detailed marketplace information"
+  },
+  "plugins": [
+    {
+      "name": "my-plugin",
+      "source": "./.claude-plugin/plugin.json",
+      "description": "Plugin description",
+      "version": "1.0.0",
+      "author": {
+        "name": "Author Name",
+        "email": "author@email.com",
+        "url": "https://github.com/author"
+      },
+      "category": "development-tools",
+      "tags": ["tag1", "tag2"]
+    }
+  ]
+}
+```
+
+**Usage**:
+```bash
+/plugin marketplace add github.com/username/marketplace-repo
+/plugin install my-plugin@username
+```
+
+##### Format 2: Submission Metadata (Official Marketplace)
+
+For submitting to official Claude Code marketplace (https://claudecodecommands.directory):
+
+```json
+{
+  "id": "com.company.plugin-name",
+  "name": "Plugin Display Name",
+  "version": "1.0.0",
+  "description": "Short description (60-100 chars)",
+  "longDescription": "Detailed multi-paragraph description with features, use cases, benefits",
+  "author": {
+    "name": "Author Name",
+    "email": "author@email.com",
+    "url": "https://github.com/author"
+  },
+  "category": "development-tools",
+  "subcategories": ["swift", "testing"],
+  "tags": ["agents", "swift", "ios"],
+  "icon": "https://raw.githubusercontent.com/username/plugin/main/assets/icon.png",
+  "screenshots": [
+    {
+      "url": "https://raw.githubusercontent.com/username/plugin/main/assets/screenshot-1.png",
+      "caption": "Feature description"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/plugin"
+  },
+  "homepage": "https://github.com/username/plugin",
+  "documentation": "https://github.com/username/plugin/blob/main/README.md",
+  "changelog": "https://github.com/username/plugin/blob/main/CHANGELOG.md",
+  "requirements": {
+    "claudeCode": ">=1.0.0",
+    "os": ["darwin", "linux", "win32"]
+  },
+  "features": [
+    {
+      "name": "Feature Name",
+      "description": "Feature description",
+      "icon": "🚀"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/username/plugin/issues",
+    "documentation": "https://github.com/username/plugin/blob/main/docs/",
+    "email": "support@company.com"
+  }
+}
+```
+
+**Recommended Setup**:
+1. Create `.claude-plugin/marketplace.json` for self-hosting (Format 1)
+2. Create `.claude-plugin/submission-metadata.json` for official submission (Format 2)
+3. Both can coexist for maximum distribution flexibility
+
+#### Distribution Options
+
+##### Option 1: GitHub Self-Hosted Marketplace ⭐ Recommended
+
+**Best for**: Immediate distribution, team/corporate use, no approval needed
+
+**Setup**:
+1. Create `.claude-plugin/marketplace.json` (catalog format)
+2. Commit and push to GitHub
+3. Share installation instructions:
+   ```bash
+   /plugin marketplace add github.com/username/plugin-repo
+   /plugin install plugin-name@username
+   ```
+
+**Benefits**:
+- ✅ Available immediately
+- ✅ No approval process
+- ✅ Full control over releases
+- ✅ Perfect for internal/team distribution
+- ✅ Can be private or public
+
+**Limitations**:
+- ❌ Less discoverable than official marketplace
+- ❌ No centralized listing
+- ❌ Users must know repository URL
+
+##### Option 2: Official Claude Code Marketplace
+
+**Best for**: Maximum visibility, community distribution, verified badge
+
+**Submission Process**:
+1. Create `.claude-plugin/submission-metadata.json` (submission format)
+2. Prepare assets (icon + 3-5 screenshots)
+3. Submit via https://claudecodecommands.directory/submit
+4. Provide:
+   - Repository URL
+   - Contact email
+   - Plugin category
+5. Wait for community review (1-7 days)
+
+**Review Criteria**:
+- Valid plugin.json and submission-metadata.json
+- Working installation workflow
+- Quality assets (icon, screenshots)
+- Complete documentation
+- No malicious code
+
+**Benefits**:
+- ✅ Maximum discoverability
+- ✅ Official listing
+- ✅ Verified badge potential
+- ✅ Centralized catalog
+
+**Limitations**:
+- ❌ Requires approval
+- ❌ 1-7 day review time
+- ❌ Must meet quality standards
+
+##### Option 3: Community Marketplaces
+
+**Best for**: Additional visibility, community engagement
+
+**Popular Hubs**:
+1. **jeremylongshore/claude-code-plugins** (226+ plugins)
+   - Submit PR with plugin entry
+   - Fork, add to catalog, create PR
+
+2. **ananddtyagi/claude-code-marketplace**
+   - Submit PR to marketplace catalog
+   - Community-maintained
+
+**Process**:
+1. Fork community marketplace repository
+2. Add plugin entry to their catalog
+3. Submit pull request with description
+4. Wait for maintainer approval
+
+**Benefits**:
+- ✅ Additional discovery channels
+- ✅ Community engagement
+- ✅ Social proof
+
+**Limitations**:
+- ❌ Depends on maintainer responsiveness
+- ❌ Multiple submissions needed
+
+#### Recommended Distribution Strategy
+
+**Phase 1** (Day 1): GitHub self-hosted
+- Get plugin working immediately
+- Gather user feedback
+- Iterate quickly
+
+**Phase 2** (Week 1): Official marketplace
+- Polish based on feedback
+- Submit to claudecodecommands.directory
+- Wait for approval
+
+**Phase 3** (Week 2): Community marketplaces
+- Submit PRs to community hubs
+- Share on social media
+- Engage with users
+
+This staged approach maximizes distribution while maintaining quality.
+
+#### Documentation Requirements
+
+1. **README.md**:
+   - Comprehensive overview
    - Installation instructions
    - Usage examples
    - Troubleshooting guide
 
-2. **Versioning**:
+2. **CHANGELOG.md**:
+   - Version history
    - Follow semantic versioning (MAJOR.MINOR.PATCH)
-   - Update CHANGELOG.md
-   - Tag releases in git
+   - Document breaking changes
 
-3. **Marketplace Setup**:
-   ```json
-   {
-     "name": "team-marketplace",
-     "owner": {
-       "name": "Team Name",
-       "email": "team@company.com"
-     },
-     "metadata": {
-       "description": "Team plugin collection",
-       "version": "1.0.0"
-     },
-     "plugins": [
-       {
-         "name": "production-plugin",
-         "source": {
-           "source": "github",
-           "repo": "company/plugin-repo"
-         },
-         "description": "Production-ready plugin",
-         "version": "1.2.0",
-         "category": "productivity"
-       }
-     ]
-   }
+3. **Tag releases in git**:
+   ```bash
+   git tag -a v1.0.0 -m "Release v1.0.0"
+   git push origin v1.0.0
    ```
 
-## Team Plugin Workflows
+## Enterprise & Corporate Distribution
 
-### Repository-Level Configuration
-Enable automatic plugin installation for teams via `.claude/settings.json`:
+### Private Marketplace Setup
+
+For internal company/team distribution:
+
+#### Azure DevOps Git Repos
+
+**Status**: ✅ Supported (no Azure Marketplace equivalent for Claude Code)
+
+**Setup**:
+1. Create Azure DevOps Git repository
+2. Add `.claude-plugin/marketplace.json` (catalog format)
+3. Configure repository permissions
+4. Share with team:
+   ```bash
+   /plugin marketplace add dev.azure.com/org/project/_git/claude-plugins
+   /plugin install plugin-name@company
+   ```
+
+**Benefits**:
+- Works with existing Azure DevOps infrastructure
+- Integrates with company auth
+- Can be private to organization
+- Git-based versioning
+
+#### GitLab Private Repositories
+
+**Setup**:
+1. Create GitLab repository (private or internal)
+2. Add `.claude-plugin/marketplace.json`
+3. Configure access tokens if needed
+4. Installation:
+   ```bash
+   /plugin marketplace add gitlab.com/company/plugins
+   /plugin install plugin-name@company
+   ```
+
+#### GitHub Enterprise
+
+Same setup as GitHub public, works with Enterprise instances.
+
+### Team Rollout Strategy
+
+**Centralized Distribution**:
+1. Create team marketplace repository
+2. Add all team plugins to catalog
+3. Distribute installation instructions
+4. Track usage via repository insights
+
+**Repository-Level Auto-Installation**:
+Configure `.claude/settings.json` in project repositories:
 
 ```json
 {
@@ -306,18 +649,17 @@ Enable automatic plugin installation for teams via `.claude/settings.json`:
     }
   },
   "enabledPlugins": {
-    "deployment-tools@team-tools": {},
-    "code-review@team-tools": {}
+    "code-standards@team-tools": {},
+    "deployment-tools@team-tools": {}
   }
 }
 ```
 
-**Team Rollout Strategy**:
-1. Create private GitHub repository for team marketplace
-2. Add marketplace configuration to project `.claude/settings.json`
-3. Team members trust repository folder
-4. Plugins install automatically
-5. Track plugin usage and gather feedback
+**Benefits**:
+- Plugins install automatically when team members clone repo
+- Consistent tooling across team
+- Centralized plugin management
+- Version control for plugin configurations
 
 ## Common Patterns and Solutions
 
@@ -462,7 +804,11 @@ Invoke this agent when:
 - Adding commands, agents, hooks, or MCP servers to plugins
 - Setting up local development marketplaces
 - Debugging plugin loading or component issues
-- Preparing plugins for team or community distribution
+- **Preparing plugins for marketplace distribution** (GitHub, official, community)
+- **Validating plugin manifests** with `claude plugin validate`
+- **Creating marketplace.json** for self-hosted or official submission
+- **Managing plugin assets** (icons, screenshots) for marketplace listings
+- **Setting up enterprise/corporate private marketplaces** (Azure DevOps, GitLab, GitHub Enterprise)
 - Configuring repository-level plugin workflows
 - Converting existing tools into Claude Code plugins
 - Optimizing plugin architecture and organization
