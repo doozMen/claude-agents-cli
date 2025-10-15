@@ -23,8 +23,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Comprehensive debugging and validation guidance
 - **Agent Library**: 43 total agents (+1 from previous 42)
 
+- **Plugin Infrastructure for Marketplace Distribution**:
+  - `.claude-plugin/plugin.json`: Complete plugin manifest with all 43 agents
+    - Categorized agents: swift-development (15), testing-quality (7), xcode-build (3), documentation (5), devops-cicd (2), firebase-analytics (5), content-publishing (4), specialized-tools (6), architecture (2)
+    - Installation scripts with pre/post hooks for automated setup
+    - Features metadata: Smart routing, MCP integration, cost optimization
+    - Requirements: macOS 13.0+, Swift 6.1+, Claude Code 1.0+
+  - `.claude-plugin/marketplace.json`: Official marketplace submission metadata
+    - Comprehensive long description detailing all 43 agents by category
+    - 8 feature highlights with icons and descriptions
+    - Installation workflow (5 steps + quick install command)
+    - Screenshots placeholders for marketplace listing
+    - Metadata: 43 agents, 97.2% test coverage, 3-80x performance
+    - Tags and categories for discoverability
+  - Development marketplace setup at `~/claude-marketplaces/dev-marketplace/`
+    - `catalog.json`: Local plugin catalog for testing
+    - README with setup instructions and testing workflow
+    - Enables local plugin testing before distribution
+  - `assets/`: Directory for marketplace images (icon, screenshots)
+    - README with design guidelines and requirements
+    - Placeholder structure for icon.png and 3 screenshots
+
 ### Changed
 - **Model Distribution**: 1 Opus, 31 Sonnet, 11 Haiku agents
+- **Git Configuration**: Updated `.gitignore` to track plugin manifests
+  - `.claude/` remains ignored (user settings)
+  - `!.claude-plugin/` exception added (plugin manifests tracked)
+  - Ensures plugin infrastructure is version controlled
 
 ## [1.4.0 + MCP Integration] - experiment/mcp merged to main
 

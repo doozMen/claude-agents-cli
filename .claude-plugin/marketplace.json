@@ -1,0 +1,196 @@
+{
+  "id": "com.dooz.claude-agents-cli",
+  "name": "Claude Agents CLI",
+  "version": "1.4.0",
+  "description": "43 production-ready AI agents for Claude Code with smart routing, cost optimization, and zero configuration",
+  "longDescription": "Claude Agents CLI provides a curated library of specialized AI agents covering:\n\n**Swift & iOS Development** (15 agents): Architecture patterns, SwiftUI, testing, modernization, CLI tools, server-side Swift, MCP servers, state machines, SPM, databases\n\n**Testing & Quality** (7 agents): Test builders, code review, Swift Testing framework, Xcode integration, build runners, formatting, technical debt elimination\n\n**Xcode & Build** (3 agents): Project configuration, Interface Builder, XIB/Storyboard management\n\n**Documentation** (5 agents): Swift DocC, documentation verification, technical reviews, Deckset presentations, blog writing\n\n**DevOps & CI/CD** (2 agents): Azure DevOps automation, Git PR/MR workflows\n\n**Firebase & Analytics** (5 agents): Ecosystem analysis, Crashlytics debugging, cross-app patterns, architecture correlation\n\n**Content & Publishing** (4 agents): Blog posts, Ghost CMS, conference talks, presentations\n\n**Specialized Tools** (6 agents): Agent creation, plugin building, secrets management, timelines, CLI installation, intelligent routing\n\n**Architecture** (2 agents): System design expert (Opus), Swift architecture specialist\n\n**Key Features**:\n- 🧠 Smart Routing: task-router agent uses local LLM (OWL Intelligence) for intelligent delegation\n- 💰 Cost Optimized: Mixed model strategy (1 Opus, 31 Sonnet, 11 Haiku)\n- 🔧 Zero Config: Agents work immediately after installation\n- 📁 Flexible: Global (all projects) or local (project-specific) installation\n- 🚀 MCP Integration: 15 agents with built-in MCP server support (SwiftLens, Context7, SourceKit-LSP)\n- ⚡ High Performance: 3-80x faster than baselines",
+  "author": {
+    "name": "Stijn Willems",
+    "email": "stijn@dooz.be",
+    "url": "https://github.com/stijnwillems"
+  },
+  "category": "development-tools",
+  "subcategories": [
+    "swift-development",
+    "testing",
+    "documentation",
+    "devops",
+    "code-quality"
+  ],
+  "tags": [
+    "agents",
+    "swift",
+    "ios",
+    "testing",
+    "documentation",
+    "devops",
+    "cli",
+    "mcp",
+    "architecture",
+    "automation",
+    "code-review",
+    "firebase",
+    "crashlytics",
+    "swiftui",
+    "xcode"
+  ],
+  "icon": "https://raw.githubusercontent.com/stijnwillems/claude-agents-cli/main/assets/icon.png",
+  "screenshots": [
+    {
+      "url": "https://raw.githubusercontent.com/stijnwillems/claude-agents-cli/main/assets/screenshot-list.png",
+      "caption": "Browse all 43 available agents with filtering"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/stijnwillems/claude-agents-cli/main/assets/screenshot-install.png",
+      "caption": "One-command installation to global or local"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/stijnwillems/claude-agents-cli/main/assets/screenshot-mcp.png",
+      "caption": "MCP integration with SwiftLens + Context7"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stijnwillems/claude-agents-cli"
+  },
+  "homepage": "https://github.com/stijnwillems/claude-agents-cli",
+  "documentation": "https://github.com/stijnwillems/claude-agents-cli/blob/main/README.md",
+  "changelog": "https://github.com/stijnwillems/claude-agents-cli/blob/main/CHANGELOG.md",
+  "installation": {
+    "method": "git-clone",
+    "url": "https://github.com/stijnwillems/claude-agents-cli.git",
+    "branch": "main",
+    "steps": [
+      {
+        "step": 1,
+        "description": "Clone repository",
+        "command": "git clone https://github.com/stijnwillems/claude-agents-cli.git"
+      },
+      {
+        "step": 2,
+        "description": "Navigate to directory",
+        "command": "cd claude-agents-cli"
+      },
+      {
+        "step": 3,
+        "description": "Install CLI tool",
+        "command": "swift package experimental-install --product claude-agents"
+      },
+      {
+        "step": 4,
+        "description": "Install all 43 agents globally",
+        "command": "claude-agents install --all --global"
+      },
+      {
+        "step": 5,
+        "description": "Verify installation",
+        "command": "claude-agents list"
+      }
+    ],
+    "quickInstall": "git clone https://github.com/stijnwillems/claude-agents-cli.git && cd claude-agents-cli && swift package experimental-install --product claude-agents && claude-agents install --all --global",
+    "postInstall": [
+      "echo '✅ Claude Agents CLI installed successfully!'",
+      "echo 'Run: claude-agents list --verbose'",
+      "echo 'Docs: https://github.com/stijnwillems/claude-agents-cli/blob/main/README.md'"
+    ]
+  },
+  "requirements": {
+    "claudeCode": ">=1.0.0",
+    "os": ["darwin"],
+    "swift": ">=6.1",
+    "macos": ">=13.0",
+    "xcode": ">=15.0",
+    "dependencies": []
+  },
+  "features": [
+    {
+      "name": "Smart Agent Routing",
+      "description": "task-router agent uses local LLM (OWL Intelligence) to intelligently delegate tasks to the best-suited agents",
+      "icon": "🧠"
+    },
+    {
+      "name": "Cost Optimization",
+      "description": "Mixed model strategy: 1 Opus (complex), 31 Sonnet (balanced), 11 Haiku (simple) for optimal cost/performance",
+      "icon": "💰"
+    },
+    {
+      "name": "Zero Configuration",
+      "description": "All 43 agents embedded and production-ready. No setup files, no configuration hassle",
+      "icon": "🔧"
+    },
+    {
+      "name": "MCP Integration",
+      "description": "15 agents with built-in MCP server support for SwiftLens, Context7, and SourceKit-LSP",
+      "icon": "🚀"
+    },
+    {
+      "name": "Flexible Installation",
+      "description": "Install globally (all projects) or locally (project-specific). Mix and match as needed",
+      "icon": "📁"
+    },
+    {
+      "name": "High Performance",
+      "description": "Builds in 10.59s (3x baseline), lists in 0.025s (80x baseline), installs in 0.066s (15x baseline)",
+      "icon": "⚡"
+    },
+    {
+      "name": "Comprehensive Coverage",
+      "description": "43 specialized agents covering Swift, testing, docs, CI/CD, Firebase, content, and architecture",
+      "icon": "📊"
+    },
+    {
+      "name": "Easy Discovery",
+      "description": "Filter by tools, view descriptions, search by capability. Find the right agent instantly",
+      "icon": "🔍"
+    }
+  ],
+  "highlights": [
+    "🆕 New in v1.4.0: claude-code-plugin-builder agent for creating marketplace-ready plugins",
+    "🆕 New in v1.4.0: OWL Intelligence integration for local LLM-powered agent routing",
+    "🆕 New in v1.4.0: MCP server support for SwiftLens, Context7, and SourceKit-LSP",
+    "✅ 43 production-ready agents (updated from 42)",
+    "✅ Model distribution: 1 Opus, 31 Sonnet, 11 Haiku",
+    "✅ Swift 6.1+ with strict concurrency",
+    "✅ Test coverage: 97.2% (35/36 tests passed)",
+    "✅ Performance: 3-80x better than baselines"
+  ],
+  "support": {
+    "issues": "https://github.com/stijnwillems/claude-agents-cli/issues",
+    "documentation": "https://github.com/stijnwillems/claude-agents-cli/blob/main/docs/",
+    "email": "stijn@dooz.be",
+    "community": "https://github.com/stijnwillems/claude-agents-cli/discussions"
+  },
+  "ratings": {
+    "average": 0,
+    "count": 0
+  },
+  "downloads": 0,
+  "verified": false,
+  "featured": false,
+  "publishedAt": "2025-10-15T00:00:00Z",
+  "updatedAt": "2025-10-15T00:00:00Z",
+  "metadata": {
+    "totalAgents": 43,
+    "agentsByModel": {
+      "opus": 1,
+      "sonnet": 31,
+      "haiku": 11
+    },
+    "agentsByCategory": {
+      "swift-development": 15,
+      "testing-quality": 7,
+      "xcode-build": 3,
+      "documentation": 5,
+      "devops-cicd": 2,
+      "firebase-analytics": 5,
+      "content-publishing": 4,
+      "specialized-tools": 6,
+      "architecture": 2
+    },
+    "mcpEnabled": 15,
+    "testCoverage": "97.2%",
+    "buildTime": "10.59s",
+    "performanceMultiplier": "3-80x"
+  }
+}

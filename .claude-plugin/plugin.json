@@ -1,0 +1,191 @@
+{
+  "name": "claude-agents-cli",
+  "version": "1.4.0",
+  "description": "43 production-ready AI agents for Claude Code - Install specialized agents for Swift, testing, documentation, CI/CD, and more",
+  "author": "Stijn Willems <stijn@dooz.be>",
+  "license": "MIT",
+  "repository": "https://github.com/stijnwillems/claude-agents-cli",
+  "homepage": "https://github.com/stijnwillems/claude-agents-cli",
+  "keywords": [
+    "agents",
+    "swift",
+    "ios",
+    "testing",
+    "documentation",
+    "devops",
+    "mcp",
+    "cli",
+    "development-tools"
+  ],
+  "components": {
+    "agents": [
+      "agent-writer",
+      "architect",
+      "azure-devops",
+      "blog-content-writer",
+      "claude-code-plugin-builder",
+      "code-reviewer",
+      "conference-specialist",
+      "crashlytics-analyzer",
+      "crashlytics-architecture-correlator",
+      "crashlytics-cross-app-analyzer",
+      "crashlytics-multiclone-analyzer",
+      "deckset-presenter",
+      "documentation-verifier",
+      "firebase-ecosystem-analyzer",
+      "ghost-specialist",
+      "git-pr-specialist",
+      "grdb-sqlite-specialist",
+      "hummingbird-developer",
+      "kmm-specialist",
+      "secrets-manager",
+      "spm-specialist",
+      "swift-architect",
+      "swift-build-runner",
+      "swift-cli-installer",
+      "swift-cli-tool-builder",
+      "swift-developer",
+      "swift-docc",
+      "swift-format-specialist",
+      "swift-grpc-temporal-developer",
+      "swift-mcp-server-writer",
+      "swift-modernizer",
+      "swift-server",
+      "swift-state-machine-specialist",
+      "swift-testing-specialist",
+      "swift-testing-xcode-specialist",
+      "swiftui-specialist",
+      "task-router",
+      "technical-debt-eliminator",
+      "technical-documentation-reviewer",
+      "test-builder",
+      "timestory-builder",
+      "xcode-configuration-specialist",
+      "xib-storyboard-specialist"
+    ],
+    "commands": [],
+    "hooks": []
+  },
+  "requirements": {
+    "claudeCode": ">=1.0.0",
+    "os": ["darwin"],
+    "swift": ">=6.1",
+    "macos": ">=13.0"
+  },
+  "installation": {
+    "type": "script",
+    "preInstall": [
+      "export PATH=\"$HOME/.swiftpm/bin:$PATH\""
+    ],
+    "command": "swift package experimental-install --product claude-agents",
+    "postInstall": [
+      "echo 'Installing all 43 agents globally...'",
+      "claude-agents install --all --global",
+      "echo 'Installation complete! Run claude-agents list to see all available agents.'"
+    ]
+  },
+  "features": {
+    "smartRouting": {
+      "enabled": true,
+      "description": "Task-router agent uses local LLM (OWL Intelligence) for intelligent agent delegation"
+    },
+    "mcpIntegration": {
+      "enabled": true,
+      "servers": ["SwiftLens", "Context7", "SourceKit-LSP"],
+      "description": "15 agents with built-in MCP server support for enhanced capabilities"
+    },
+    "costOptimization": {
+      "enabled": true,
+      "distribution": {
+        "opus": 1,
+        "sonnet": 31,
+        "haiku": 11
+      },
+      "description": "Mixed model strategy optimizes cost vs performance (Opus for complex, Haiku for simple)"
+    }
+  },
+  "categories": {
+    "swift-development": [
+      "swift-architect",
+      "swift-developer",
+      "swiftui-specialist",
+      "swift-modernizer",
+      "swift-testing-specialist",
+      "swift-testing-xcode-specialist",
+      "swift-cli-tool-builder",
+      "swift-server",
+      "swift-mcp-server-writer",
+      "swift-grpc-temporal-developer",
+      "swift-state-machine-specialist",
+      "spm-specialist",
+      "hummingbird-developer",
+      "grdb-sqlite-specialist",
+      "kmm-specialist"
+    ],
+    "testing-quality": [
+      "test-builder",
+      "code-reviewer",
+      "swift-testing-specialist",
+      "swift-testing-xcode-specialist",
+      "swift-build-runner",
+      "swift-format-specialist",
+      "technical-debt-eliminator"
+    ],
+    "xcode-build": [
+      "xcode-configuration-specialist",
+      "xib-storyboard-specialist",
+      "swift-build-runner"
+    ],
+    "documentation": [
+      "swift-docc",
+      "documentation-verifier",
+      "technical-documentation-reviewer",
+      "deckset-presenter",
+      "blog-content-writer"
+    ],
+    "devops-cicd": [
+      "azure-devops",
+      "git-pr-specialist"
+    ],
+    "firebase-analytics": [
+      "firebase-ecosystem-analyzer",
+      "crashlytics-analyzer",
+      "crashlytics-cross-app-analyzer",
+      "crashlytics-architecture-correlator",
+      "crashlytics-multiclone-analyzer"
+    ],
+    "content-publishing": [
+      "blog-content-writer",
+      "ghost-specialist",
+      "conference-specialist",
+      "deckset-presenter"
+    ],
+    "specialized-tools": [
+      "agent-writer",
+      "claude-code-plugin-builder",
+      "secrets-manager",
+      "timestory-builder",
+      "swift-cli-installer",
+      "task-router"
+    ],
+    "architecture": [
+      "architect",
+      "swift-architect"
+    ]
+  },
+  "documentation": {
+    "readme": "README.md",
+    "quickstart": "QUICKSTART-MCP.md",
+    "agents": "docs/AGENTS.md",
+    "architecture": "docs/ARCHITECTURE.md",
+    "contributing": "docs/CONTRIBUTING.md",
+    "secrets": "docs/SECRETS.md",
+    "mcpSetup": "docs/MCP-SETUP.md",
+    "changelog": "CHANGELOG.md"
+  },
+  "support": {
+    "issues": "https://github.com/stijnwillems/claude-agents-cli/issues",
+    "documentation": "https://github.com/stijnwillems/claude-agents-cli/blob/main/docs/",
+    "email": "stijn@dooz.be"
+  }
+}
