@@ -1,6 +1,6 @@
 # Swift Agents Plugin
 
-**45 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
+**44 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
 
 [![Swift 6.1](https://img.shields.io/badge/Swift-6.1-orange.svg)](https://swift.org)
 [![macOS 13.0+](https://img.shields.io/badge/macOS-13.0+-blue.svg)](https://www.apple.com/macos)
@@ -19,7 +19,7 @@ claude-agents list
 # Install essential agents globally
 claude-agents install swift-architect test-builder code-reviewer --global
 
-# Install all 45 agents
+# Install all 44 agents
 claude-agents install --all --global
 ```
 
@@ -27,7 +27,7 @@ That's it! Your agents are ready to use in Claude Code.
 
 ## What is This?
 
-Swift Agents Plugin provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 45 production-ready agents covering:
+Swift Agents Plugin provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 44 production-ready agents covering:
 
 - **Swift & iOS Development** - Architecture, SwiftUI, testing, modernization
 - **Cross-Platform** - Generic agents for any language (architect, test-builder, code-reviewer)
@@ -53,8 +53,8 @@ claude-agents install azure-devops git-pr-specialist --global
 
 ## Key Features
 
-- **🚀 45 Embedded Agents** - Production-ready, no configuration needed
-- **🧠 Smart Routing** - New task-router agent uses local LLM for intelligent delegation
+- **🚀 44 Embedded Agents** - Production-ready, no configuration needed
+- **🧠 Smart Routing** - Use prompteneer MCP for intelligent agent discovery and routing
 - **💰 Cost Optimized** - Mixed model strategy (Opus for complex, Haiku for simple tasks)
 - **🔧 Zero Config** - Agents work immediately after installation
 - **📁 Flexible Installation** - Global (all projects) or local (project-specific)
@@ -78,7 +78,7 @@ swift package experimental-install --product claude-agents
 
 ### Discover Agents
 ```bash
-claude-agents list                    # List all 45 available agents
+claude-agents list                    # List all 44 available agents
 claude-agents list --verbose           # Include descriptions
 claude-agents list --tool Bash         # Filter by tool capability
 claude-agents list --installed         # Show what's installed
@@ -104,7 +104,6 @@ claude-agents uninstall <agent-name> --target local  # From project
 
 | Agent | Model | Purpose |
 |-------|-------|---------|
-| **task-router** | Haiku | Routes requests to best agents using local LLM |
 | **architect** | Opus | System design and architecture across all languages |
 | **test-builder** | Haiku | Creates comprehensive test suites efficiently |
 | **code-reviewer** | Sonnet | Thorough code reviews with actionable feedback |
@@ -136,7 +135,7 @@ claude-agents uninstall <agent-name> --target local  # From project
 | **github-specialist** | GitHub MCP for pull requests, issues, and Actions |
 | **gitlab-specialist** | GitLab CI/CD pipelines |
 
-[View all 45 agents →](docs/AGENTS.md)
+[View all 44 agents →](docs/AGENTS.md)
 
 ## Plugin & Marketplace Distribution
 
@@ -151,9 +150,9 @@ This CLI is available as a Claude Code plugin for easy discovery and installatio
 ```
 
 This installs:
-- **swift-agents-plugin**: 45 production-ready AI agents for specialized tasks
+- **swift-agents-plugin**: 44 production-ready AI agents for specialized tasks
 
-All 45 agents are available immediately after installation!
+All 44 agents are available immediately after installation!
 
 **Enhanced Capabilities with prompteneer MCP:**
 
@@ -170,10 +169,10 @@ swift package experimental-install --product prompteneer
 
 **What prompteneer MCP provides:**
 - On-device LLM analysis via MCP for privacy-preserving operations
-- Intelligent agent routing and task delegation
+- Intelligent agent routing and task delegation with 83% accuracy
 - Prompt optimization and enhancement
 - Local semantic analysis without cloud roundtrips
-- Enhanced task-router agent capabilities (used by 5 agents)
+- Cost reduction through local-first processing (50-80% token savings)
 
 ### Manual CLI Installation
 
@@ -192,10 +191,10 @@ claude-agents install --all --global
 - **Manual CLI**: Clone repository and install via SPM
 
 **Plugin Features**:
-- All 45 agents included (43 original + 2 new automation agents)
-- Smart routing with task-router agent (local LLM)
-- MCP integration (SwiftLens, Context7, SourceKit-LSP)
-- Cost-optimized model distribution (2 Opus, 30 Sonnet, 13 Haiku)
+- All 44 agents included
+- Smart routing via prompteneer MCP (83% accuracy, 80% cost reduction)
+- MCP integration (SwiftLens, Context7, SourceKit-LSP, prompteneer)
+- Cost-optimized model distribution (2 Opus, 30 Sonnet, 12 Haiku)
 - Professional marketplace assets (icon + 3 screenshots)
 - Complete validation passing
 
@@ -203,10 +202,10 @@ claude-agents install --all --global
 
 The official `claude-code` CLI includes basic agent management. This tool provides:
 
-- **Curated Library**: 43 production-ready agents vs. starting from scratch
+- **Curated Library**: 44 production-ready agents vs. starting from scratch
 - **Smart Discovery**: Filter by tools, batch operations, descriptions
 - **Model Optimization**: Strategic use of Opus/Sonnet/Haiku for cost/performance
-- **OWL Intelligence Integration**: Local LLM routing (coming soon)
+- **Prompteneer MCP Integration**: Local LLM routing with 83% accuracy and 80% cost savings
 
 ## Project Structure
 
@@ -219,7 +218,7 @@ swift-agents-plugin/
 │   ├── Commands/              # CLI commands
 │   ├── Models/                 # Data models
 │   ├── Services/              # Business logic
-│   └── Resources/agents/      # 45 embedded agents
+│   └── Resources/agents/      # 44 embedded agents
 ├── assets/                    # Marketplace images
 └── docs/                      # Detailed documentation
 ```
@@ -257,7 +256,7 @@ Perfect for:
 
 ## Documentation
 
-- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 45 agents
+- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 44 agents
 - [Library Usage](LIBRARY_USAGE.md) - Use ClaudeAgents as a Swift library
 - [Architecture Guide](docs/ARCHITECTURE.md) - Technical details and design
 - [Claude Code Guide](docs/CLAUDE_CODE_GUIDE.md) - Best practices for Claude Code

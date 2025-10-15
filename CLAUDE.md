@@ -69,11 +69,11 @@ Agent instructions...
 
 ## Recent Changes (v1.4.0)
 
-- Added 4 generic agents: task-router, architect, test-builder, code-reviewer
+- Added 3 generic agents: architect, test-builder, code-reviewer
 - Renamed: documentation-writer → swift-docc
 - Added swift-format-specialist (Haiku) for mechanical formatting
-- Model distribution: 1 Opus, 30 Sonnet, 11 Haiku
-- OWL Intelligence integration planned for local LLM routing
+- Model distribution: 2 Opus, 30 Sonnet, 12 Haiku
+- Removed task-router (redundant with direct prompteneer MCP calls)
 
 ## Testing
 

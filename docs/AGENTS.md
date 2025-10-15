@@ -2,17 +2,17 @@
 
 **Version**: 1.5.1
 **Last Updated**: 2025-10-15
-**Total Agents**: 45
+**Total Agents**: 44
 
 ## Overview
 
-This catalog documents all 45 production-ready agents available through the swift-agents-plugin. Each agent is a specialized markdown file designed to work with Claude Code, providing focused expertise across Swift development, testing, documentation, DevOps, Firebase, content publishing, and specialized tools.
+This catalog documents all 44 production-ready agents available through the swift-agents-plugin. Each agent is a specialized markdown file designed to work with Claude Code, providing focused expertise across Swift development, testing, documentation, DevOps, Firebase, content publishing, and specialized tools.
 
 ## Model Distribution
 
 - **Opus (2)**: Complex architectural decisions and system design
 - **Sonnet (30)**: Feature implementation, code writing, and most development tasks
-- **Haiku (13)**: Fast mechanical operations (formatting, builds, installation)
+- **Haiku (12)**: Fast mechanical operations (formatting, builds, installation)
 
 ## Agent Categories
 
@@ -24,7 +24,7 @@ This catalog documents all 45 production-ready agents available through the swif
 6. [Firebase & Analytics](#firebase--analytics) - 5 agents
 7. [Content & Publishing](#content--publishing) - 3 agents
 8. [Specialized Tools](#specialized-tools) - 4 agents
-9. [Agent Orchestration](#agent-orchestration) - 2 agents
+9. [Agent Orchestration](#agent-orchestration) - 1 agent
 
 ---
 
@@ -75,7 +75,6 @@ This catalog documents all 45 production-ready agents available through the swif
 | claude-code-plugin-builder | Sonnet | Build Claude Code plugins |
 | generic-assistant | Sonnet | General-purpose assistant |
 | release-manager | Sonnet | Release management workflow |
-| task-router | Haiku | Intelligent agent delegation |
 | architect | Opus | System architecture (advanced) |
 
 ---
@@ -482,14 +481,7 @@ This catalog documents all 45 production-ready agents available through the swif
 
 ## Agent Orchestration
 
-### 45. task-router
-- **Model**: Haiku
-- **Description**: Intelligent agent delegation using local LLM (OWL Intelligence)
-- **Tools**: Read, Grep, Glob
-- **MCP**: owl-intelligence
-- **Use When**: Routing tasks to appropriate agents, complex multi-agent workflows
-
-### 46. architect
+### 45. architect
 - **Model**: Opus
 - **Description**: System architecture expert with advanced reasoning (high-level design)
 - **Tools**: Read, Edit, Glob, Grep, Bash, WebSearch
@@ -629,4 +621,4 @@ To add a new agent to the catalog:
 
 **Generated**: 2025-10-15
 **CLI Version**: 1.4.0
-**Total Agents**: 45
+**Total Agents**: 44

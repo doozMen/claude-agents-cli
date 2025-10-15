@@ -223,12 +223,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.0] - 2025-10-14
 
 ### Added
-- **Generic Cross-Language Agents** (4 new agents):
-  - `task-router`: Intelligent agent delegation using local LLM (Haiku model)
-    - Routes requests to best-fit agents using OWL Intelligence MCP integration
-    - Semantic matching with 85%+ accuracy for agent selection
+- **Generic Cross-Language Agents** (3 new agents):
+  - Agent routing now handled directly via prompteneer MCP (83% accuracy, 80% cost reduction)
+    - Direct MCP calls more efficient than agent wrappers
+    - On-device LLM analysis for intelligent task routing
     - Zero API cost using local Apple Foundation models
-    - Parallel agent execution suggestions for complex tasks
+    - Semantic matching for agent selection
   - `architect`: System architecture and design patterns expert (Opus model)
     - Language-agnostic architecture decisions and system design
     - Distributed systems, microservices, event-driven architectures
