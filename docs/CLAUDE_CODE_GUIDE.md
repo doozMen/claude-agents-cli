@@ -67,22 +67,24 @@ Claude Code is available as a desktop application or CLI tool.
 
 Complete installation with enhanced capabilities (recommended):
 ```bash
-# Install both plugins for full functionality
-/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen agents-plugin@doozMen
+# Install the claude-agents-cli plugin
+/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen
 ```
 
 This installs:
 - **claude-agents-cli**: 45 specialized AI agents for development tasks
-- **agents-plugin**: Local LLM capabilities for privacy-preserving routing and optimization
 
-Individual installation (basic functionality):
+**Enhanced Capabilities with prompteneer MCP Server:**
+
+For local LLM capabilities and privacy-preserving routing, also install prompteneer MCP:
+
 ```bash
-# Just the agents
-/plugin marketplace add doozMen/claude-agents-cli
-/plugin install claude-agents-cli@doozMen
+# Install prompteneer MCP server
+git clone https://github.com/doozMen/prompteneer.git
+cd prompteneer
+swift package experimental-install --product prompteneer
 
-# Add agents-plugin later for enhanced features
-/plugin install agents-plugin@doozMen
+# Configure in ~/.claude/claude_mcp_settings.json
 ```
 
 **CLI (if available):**

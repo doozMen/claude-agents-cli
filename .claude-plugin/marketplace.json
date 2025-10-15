@@ -7,13 +7,13 @@
   },
   "description": "Production-ready AI agents for Claude Code with smart routing and zero configuration",
   "metadata": {
-    "description": "Curated collection of 43 production-ready AI agents for Claude Code covering Swift development, testing, documentation, CI/CD, Firebase, and more. Features smart routing, cost optimization, and zero-config installation."
+    "description": "Curated collection of 45 production-ready AI agents for Claude Code covering Swift development, testing, documentation, CI/CD, Firebase, and more. Features smart routing, cost optimization, and zero-config installation."
   },
   "plugins": [
     {
       "name": "claude-agents-cli",
       "source": "./.claude-plugin/plugin.json",
-      "description": "43 production-ready AI agents for Claude Code - Swift, testing, documentation, CI/CD, Firebase, and more",
+      "description": "45 production-ready AI agents for Claude Code - Swift, testing, documentation, CI/CD, Firebase, and more",
       "version": "1.5.0",
       "author": {
         "name": "Stijn Willems",

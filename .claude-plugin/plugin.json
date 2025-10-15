@@ -1,7 +1,7 @@
 {
   "name": "claude-agents-cli",
   "version": "1.5.0",
-  "description": "43 production-ready AI agents for Claude Code - Install specialized agents for Swift, testing, documentation, CI/CD, and more",
+  "description": "45 production-ready AI agents for Claude Code - Install specialized agents for Swift, testing, documentation, CI/CD, and more",
   "author": {
     "name": "Stijn Willems",
     "email": "stijn@dooz.be",
@@ -37,11 +37,13 @@
       "deckset-presenter",
       "documentation-verifier",
       "firebase-ecosystem-analyzer",
+      "generic-assistant",
       "ghost-specialist",
       "git-pr-specialist",
       "grdb-sqlite-specialist",
       "hummingbird-developer",
       "kmm-specialist",
+      "release-manager",
       "secrets-manager",
       "spm-specialist",
       "swift-architect",
@@ -83,7 +85,7 @@
     ],
     "command": "swift package experimental-install --product claude-agents",
     "postInstall": [
-      "echo 'Installing all 43 agents globally...'",
+      "echo 'Installing all 45 agents globally...'",
       "claude-agents install --all --global",
       "echo 'Installation complete! Run claude-agents list to see all available agents.'"
     ]
@@ -91,7 +93,7 @@
   "features": {
     "smartRouting": {
       "enabled": true,
-      "description": "Task-router agent uses local LLM (OWL Intelligence) for intelligent agent delegation"
+      "description": "Task-router agent uses local LLM (prompteneer MCP) for intelligent agent delegation"
     },
     "mcpIntegration": {
       "enabled": true,
@@ -101,9 +103,9 @@
     "costOptimization": {
       "enabled": true,
       "distribution": {
-        "opus": 1,
-        "sonnet": 31,
-        "haiku": 11
+        "opus": 2,
+        "sonnet": 30,
+        "haiku": 13
       },
       "description": "Mixed model strategy optimizes cost vs performance (Opus for complex, Haiku for simple)"
     }
@@ -167,6 +169,8 @@
     "specialized-tools": [
       "agent-writer",
       "claude-code-plugin-builder",
+      "generic-assistant",
+      "release-manager",
       "secrets-manager",
       "timestory-builder",
       "swift-cli-installer",

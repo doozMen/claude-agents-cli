@@ -66,41 +66,39 @@ curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/
 
 #### Installation for Users
 
-**Complete Installation (Recommended):**
+**Installation for Users:**
 ```bash
-# Install both plugins for full functionality
-/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen agents-plugin@doozMen
-```
-
-**Individual Installation:**
-```bash
-# Add your marketplace
-/plugin marketplace add doozMen/claude-agents-cli
-
-# Install just the agents
-/plugin install claude-agents-cli@doozMen
-
-# Optional: Install agents-plugin for enhanced capabilities
-/plugin install agents-plugin@doozMen
+# Install the claude-agents-cli plugin
+/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen
 ```
 
 #### Plugin Ecosystem
 
-**claude-agents-cli** (Base Plugin):
+**claude-agents-cli** (Claude Code Plugin):
 - 45 production-ready AI agents
 - Specialized expertise (Swift, testing, docs, CI/CD)
 - Works standalone
 - Core agent management
 
-**agents-plugin** (Enhancement Plugin):
+**prompteneer MCP Server** (Optional Enhancement):
 - Local LLM via MCP for privacy-preserving analysis
 - Intelligent agent routing with on-device processing
 - Prompt optimization and semantic analysis
 - Enhances task-router agent with local LLM capabilities
 - No cloud roundtrips for sensitive operations
 
-**Why Install Both?**
-- agents-plugin provides the local LLM backend that task-router uses
+**How to Configure prompteneer MCP:**
+```bash
+# Install prompteneer MCP server
+git clone https://github.com/doozMen/prompteneer.git
+cd prompteneer
+swift package experimental-install --product prompteneer
+
+# Configure in ~/.claude/claude_mcp_settings.json
+```
+
+**Why Use prompteneer MCP?**
+- Provides local LLM backend that 5 agents use (task-router, crashlytics-analyzer, etc.)
 - Privacy-preserving operations stay on your device
 - Faster routing decisions without API calls
 - Enhanced agent coordination and delegation
@@ -114,7 +112,7 @@ curl -I https://raw.githubusercontent.com/doozMen/claude-agents-cli/main/assets/
 - Full control over releases
 - Perfect for team/organization distribution
 - Beta testing before official submission
-- Enhanced capabilities with agents-plugin integration
+- Enhanced capabilities with prompteneer MCP (when configured)
 
 ---
 
@@ -205,9 +203,9 @@ claude plugin validate .
 
 # 2. Test complete installation
 /plugin marketplace add doozMen/claude-agents-cli
-/plugin install claude-agents-cli@doozMen agents-plugin@doozMen
+/plugin install claude-agents-cli@doozMen
 
-# 3. Verify both plugins installed
+# 3. Verify plugin installed
 /plugin list
 
 # 4. Test agent functionality

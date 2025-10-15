@@ -1,3 +1,4 @@
+import ClaudeAgents
 import Foundation
 
 /// Actor responsible for managing CLI tool dependencies

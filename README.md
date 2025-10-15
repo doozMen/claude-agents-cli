@@ -1,6 +1,6 @@
 # Claude Agents CLI
 
-**43 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
+**45 production-ready AI agents for Claude Code** - Install specialized agents for Swift, testing, documentation, CI/CD, and more.
 
 [![Swift 6.1](https://img.shields.io/badge/Swift-6.1-orange.svg)](https://swift.org)
 [![macOS 13.0+](https://img.shields.io/badge/macOS-13.0+-blue.svg)](https://www.apple.com/macos)
@@ -19,7 +19,7 @@ claude-agents list
 # Install essential agents globally
 claude-agents install swift-architect test-builder code-reviewer --global
 
-# Install all 43 agents
+# Install all 45 agents
 claude-agents install --all --global
 ```
 
@@ -27,7 +27,7 @@ That's it! Your agents are ready to use in Claude Code.
 
 ## What is This?
 
-Claude Agents CLI provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 43 production-ready agents covering:
+Claude Agents CLI provides a curated library of specialized AI agents that extend Claude Code's capabilities. Instead of writing agent markdown from scratch, choose from 45 production-ready agents covering:
 
 - **Swift & iOS Development** - Architecture, SwiftUI, testing, modernization
 - **Cross-Platform** - Generic agents for any language (architect, test-builder, code-reviewer)
@@ -53,7 +53,7 @@ claude-agents install azure-devops git-pr-specialist --global
 
 ## Key Features
 
-- **🚀 43 Embedded Agents** - Production-ready, no configuration needed
+- **🚀 45 Embedded Agents** - Production-ready, no configuration needed
 - **🧠 Smart Routing** - New task-router agent uses local LLM for intelligent delegation
 - **💰 Cost Optimized** - Mixed model strategy (Opus for complex, Haiku for simple tasks)
 - **🔧 Zero Config** - Agents work immediately after installation
@@ -78,7 +78,7 @@ swift package experimental-install --product claude-agents
 
 ### Discover Agents
 ```bash
-claude-agents list                    # List all 43 available agents
+claude-agents list                    # List all 45 available agents
 claude-agents list --verbose           # Include descriptions
 claude-agents list --tool Bash         # Filter by tool capability
 claude-agents list --installed         # Show what's installed
@@ -136,7 +136,7 @@ claude-agents uninstall <agent-name> --target local  # From project
 | **github-specialist** | GitHub Actions and workflows |
 | **gitlab-specialist** | GitLab CI/CD pipelines |
 
-[View all 43 agents →](docs/AGENTS.md)
+[View all 45 agents →](docs/AGENTS.md)
 
 ## Plugin & Marketplace Distribution
 
@@ -144,36 +144,36 @@ This CLI is available as a Claude Code plugin for easy discovery and installatio
 
 ### Install from GitHub Marketplace (Recommended) ⭐
 
-**Complete Installation (Both Plugins):**
+**Complete Installation:**
 ```bash
-# Install both plugins for full functionality
-/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen agents-plugin@doozMen
+# Install the claude-agents-cli plugin
+/plugin marketplace add doozMen/claude-agents-cli && /plugin install claude-agents-cli@doozMen
 ```
 
-This single command installs:
+This installs:
 - **claude-agents-cli**: 45 production-ready AI agents for specialized tasks
-- **agents-plugin**: Local LLM capabilities, prompt optimization, and privacy-preserving agent routing
 
 All 45 agents are available immediately after installation!
 
-**Individual Installation:**
+**Enhanced Capabilities with prompteneer MCP:**
+
+For local LLM capabilities and enhanced agent routing, configure the prompteneer MCP server:
+
 ```bash
-# Add the marketplace
-/plugin marketplace add doozMen/claude-agents-cli
+# Clone and install prompteneer MCP server
+git clone https://github.com/doozMen/prompteneer.git
+cd prompteneer
+swift package experimental-install --product prompteneer
 
-# Install just the agents (basic functionality)
-/plugin install claude-agents-cli@doozMen
-
-# Install agents-plugin separately for enhanced features (optional but recommended)
-/plugin install agents-plugin@doozMen
+# Configure in ~/.claude/claude_mcp_settings.json
 ```
 
-**What agents-plugin provides:**
+**What prompteneer MCP provides:**
 - On-device LLM analysis via MCP for privacy-preserving operations
 - Intelligent agent routing and task delegation
 - Prompt optimization and enhancement
 - Local semantic analysis without cloud roundtrips
-- Enhanced task-router agent capabilities
+- Enhanced task-router agent capabilities (used by 5 agents)
 
 ### Manual CLI Installation
 
@@ -219,7 +219,7 @@ claude-agents-cli/
 │   ├── Commands/              # CLI commands
 │   ├── Models/                 # Data models
 │   ├── Services/              # Business logic
-│   └── Resources/agents/      # 43 embedded agents
+│   └── Resources/agents/      # 45 embedded agents
 ├── assets/                    # Marketplace images
 └── docs/                      # Detailed documentation
 ```
@@ -230,9 +230,35 @@ claude-agents-cli/
 - Swift 6.1+
 - Claude Code Desktop App
 
+## Library Usage
+
+**NEW**: Use ClaudeAgents as a Swift library in your own projects!
+
+```swift
+// Add to your Package.swift
+.package(url: "https://github.com/doozMen/claude-agents-cli.git", from: "1.5.0")
+
+// Use in your code
+import ClaudeAgents
+
+let repository = AgentRepository()
+let agents = try await repository.loadAgents()
+let swiftArchitect = try await repository.getAgent(named: "swift-architect")
+print(swiftArchitect.content)  // Full markdown content
+```
+
+Perfect for:
+- **MCP Servers**: Serve agent prompts dynamically (like prompteneer)
+- **CLI Tools**: Build agent selection and recommendation tools
+- **Documentation**: Generate agent catalogs
+- **Validation**: Check dependencies and requirements
+
+[View Library Documentation →](LIBRARY_USAGE.md)
+
 ## Documentation
 
-- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 43 agents
+- [Agent Catalog](docs/AGENTS.md) - Detailed descriptions of all 45 agents
+- [Library Usage](LIBRARY_USAGE.md) - Use ClaudeAgents as a Swift library
 - [Architecture Guide](docs/ARCHITECTURE.md) - Technical details and design
 - [Claude Code Guide](docs/CLAUDE_CODE_GUIDE.md) - Best practices for Claude Code
 - [Secrets Management](docs/SECRETS.md) - Credential setup for MCP servers

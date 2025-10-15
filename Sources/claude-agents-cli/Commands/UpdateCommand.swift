@@ -1,4 +1,5 @@
 import ArgumentParser
+import ClaudeAgents
 import Foundation
 
 public struct UpdateCommand: AsyncParsableCommand {
