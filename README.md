@@ -142,27 +142,22 @@ claude-agents uninstall <agent-name> --target local  # From project
 
 This CLI is available as a Claude Code plugin for easy discovery and installation.
 
-### Install from Development Marketplace
-
-1. Add the development marketplace to your Claude Code settings (`~/.claude/settings.json`):
-```json
-{
-  "marketplaces": [
-    {
-      "name": "Development",
-      "type": "local",
-      "path": "/Users/stijnwillems/claude-marketplaces/dev-marketplace"
-    }
-  ]
-}
-```
-
-2. Browse the marketplace in Claude Code and install the plugin
-
-### Manual Installation (Current Method)
+### Install from GitHub Marketplace (Recommended) ⭐
 
 ```bash
-git clone https://github.com/stijnwillems/claude-agents-cli.git
+# Add the GitHub marketplace
+/plugin marketplace add doozMen/claude-agents-cli
+
+# Install the plugin
+/plugin install claude-agents-cli@doozMen
+```
+
+All 45 agents are available immediately after installation!
+
+### Manual CLI Installation
+
+```bash
+git clone https://github.com/doozMen/claude-agents-cli.git
 cd claude-agents-cli
 swift package experimental-install --product claude-agents
 claude-agents install --all --global
@@ -170,15 +165,18 @@ claude-agents install --all --global
 
 ### Distribution Options
 
-- **GitHub**: Clone repository and install manually
-- **Development Marketplace**: Local testing environment at `~/claude-marketplaces/dev-marketplace/`
-- **Official Marketplace**: Coming soon - submit via `.claude-plugin/marketplace.json`
+- **GitHub Marketplace**: ✅ Available now - install via `/plugin` commands (recommended)
+- **Official Marketplace**: Planned - awaiting submission review
+- **Community Marketplaces**: Planned - jeremylongshore, ananddtyagi hubs
+- **Manual CLI**: Clone repository and install via SPM
 
 **Plugin Features**:
-- All 43 agents included
-- Smart routing with OWL Intelligence
+- All 45 agents included (43 original + 2 new automation agents)
+- Smart routing with task-router agent (local LLM)
 - MCP integration (SwiftLens, Context7, SourceKit-LSP)
-- Cost-optimized model distribution (1 Opus, 31 Sonnet, 11 Haiku)
+- Cost-optimized model distribution (2 Opus, 30 Sonnet, 13 Haiku)
+- Professional marketplace assets (icon + 3 screenshots)
+- Complete validation passing
 
 ## Why Use This Instead of Official Claude CLI?
 

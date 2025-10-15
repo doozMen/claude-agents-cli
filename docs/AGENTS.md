@@ -1,6 +1,6 @@
 # Claude Agents CLI - Agent Catalog
 
-**Version**: 1.4.0
+**Version**: 1.5.1
 **Last Updated**: 2025-10-15
 **Total Agents**: 45
 
