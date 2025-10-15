@@ -5,7 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - experiment/mcp
+## [Unreleased]
+
+### Added
+- **Claude Code Plugin Builder Agent**:
+  - `claude-code-plugin-builder`: Expert in creating Claude Code plugins with commands, agents, hooks, and MCP servers (Sonnet model)
+    - Complete plugin lifecycle from development to marketplace distribution
+    - Plugin manifest creation (plugin.json) with schema validation
+    - Marketplace manifest creation (marketplace.json) for plugin catalogs
+    - Custom slash command development (markdown with frontmatter)
+    - Subagent creation (specialized agent markdown files)
+    - Hook configuration (event handlers for automation)
+    - MCP server integration (external tool connections with ${CLAUDE_PLUGIN_ROOT})
+    - Local testing workflows with development marketplaces
+    - Distribution strategies (GitHub, GitLab, local)
+    - Team plugin workflows and repository-level configuration
+    - Comprehensive debugging and validation guidance
+- **Agent Library**: 43 total agents (+1 from previous 42)
+
+### Changed
+- **Model Distribution**: 1 Opus, 31 Sonnet, 11 Haiku agents
+
+## [1.4.0 + MCP Integration] - experiment/mcp merged to main
 
 ### Added
 - **MCP Server Integration** (SwiftLens + Context7):
