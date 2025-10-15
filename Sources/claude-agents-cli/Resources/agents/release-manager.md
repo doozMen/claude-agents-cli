@@ -183,6 +183,184 @@ claude-agents install swift-architect --global
 # ...
 ```
 
+### Screenshot Tool: silicon
+
+**Installation**:
+```bash
+# Install via cargo (Rust package manager)
+cargo install silicon
+
+# Or via Homebrew (macOS)
+brew install silicon
+```
+
+**Purpose**: Create professional syntax-highlighted code and terminal screenshots for marketplace listings and documentation.
+
+**Why Screenshots Matter**:
+- **Marketplace Requirements**: Claude Code marketplace listings require 3-5 screenshots
+- **Visual Proof**: Show plugin/agents in action with real output
+- **Professional Appearance**: Syntax highlighting and shadows increase perceived quality
+- **User Engagement**: Visual examples help users understand functionality before installation
+- **Documentation**: Screenshots provide clear examples in README and guides
+
+**Key Features**:
+- Syntax highlighting for 100+ languages
+- Terminal output styling with ANSI color support
+- Customizable themes (Monokai, Dracula, Nord, etc.)
+- Shadow effects for polished appearance
+- Font customization (JetBrains Mono, Fira Code, etc.)
+- Export to PNG with transparency support
+
+**Usage Patterns**:
+
+```bash
+# Basic usage: Capture terminal output
+echo 'claude-agents list --verbose' | silicon --output screenshot.png
+
+# Capture command with execution output
+echo '$ claude-agents install --all --global
+✅ swift-architect
+✅ testing-specialist
+...
+📊 Summary: Installed 42 agents' | silicon --output screenshot-install.png
+
+# Capture code file with language detection
+silicon --language swift --output screenshot.png < Sources/Main.swift
+
+# Advanced styling
+silicon \
+    --output screenshot.png \
+    --theme "Monokai Extended" \
+    --font "JetBrains Mono" \
+    --no-line-number \
+    --shadow-blur-radius 10 \
+    --shadow-offset-x 5 \
+    --shadow-offset-y 5 \
+    --shadow-color '#00000066' \
+    --background '#1e1e1e' \
+    < input.txt
+
+# Capture terminal session with colors (use actual terminal output)
+claude-agents list --verbose | silicon --output screenshot.png
+
+# Multi-step workflow
+cat <<'EOF' | silicon --output workflow.png
+$ cd ~/Developer/my-project
+$ claude-agents install swift-architect --local
+✅ Installed to ./.claude/agents/
+
+$ claude agent swift-architect
+Loading swift-architect agent...
+[Agent output]
+EOF
+```
+
+**Screenshot Specifications** (from marketplace requirements):
+- **Dimensions**: 1280x800px minimum (recommended)
+- **Format**: PNG with transparency support
+- **Content Guidelines**:
+  - Show actual usage, not mockups
+  - Include terminal prompts ($) for context
+  - Capture realistic command output
+  - Show 3-5 key features across screenshots
+- **Visual Style**:
+  - Use consistent theme across all screenshots (e.g., Monokai Extended)
+  - Apply subtle shadows for depth (blur 10px, offset 5px)
+  - Use monospace fonts (JetBrains Mono, Fira Code)
+  - Maintain readable font sizes (14-16pt)
+- **Quantity**: 3-5 screenshots recommended per marketplace listing
+
+**Common Screenshot Scenarios**:
+
+1. **CLI Installation**: Show package installation process
+   ```bash
+   echo '$ swift package experimental-install --product claude-agents
+   Building for production...
+   ✅ Installed to ~/.swiftpm/bin/claude-agents' | silicon --output install.png
+   ```
+
+2. **Feature List**: Display available features/agents
+   ```bash
+   claude-agents list --verbose | silicon --output features.png
+   ```
+
+3. **Workflow Example**: Demonstrate typical usage
+   ```bash
+   echo '$ claude-agents install swift-architect --global
+   ✅ swift-architect installed to ~/.claude/agents/
+
+   $ claude agent swift-architect
+   [Agent loaded] Ready to architect Swift 6.0 systems' | silicon --output workflow.png
+   ```
+
+4. **Output Example**: Show command results
+   ```bash
+   echo '$ claude-agents list --installed
+   📁 Global (~/.claude/agents/):
+     • swift-architect
+     • testing-specialist
+     • documentation-writer
+
+   📁 Local (./.claude/agents/):
+     • project-specific-agent' | silicon --output output.png
+   ```
+
+**Integration with Release Workflow**:
+
+During Phase 3 (Asset Management), silicon should be used to:
+1. Verify installation (`command -v silicon`)
+2. Generate missing screenshots for marketplace listing
+3. Update existing screenshots if features changed
+4. Ensure screenshot specifications met (size, format, content)
+5. Commit screenshots to assets/ directory
+
+**Asset Checklist Addition**:
+```markdown
+## Screenshot Checklist
+- [ ] silicon installed (`cargo install silicon` or `brew install silicon`)
+- [ ] 3-5 screenshots captured showing key features
+- [ ] Screenshots meet dimensions (1280x800px minimum)
+- [ ] Consistent theme applied (Monokai Extended recommended)
+- [ ] Screenshots optimized and saved to assets/
+- [ ] assets/README.md updated with screenshot descriptions
+- [ ] marketplace.json references all screenshot URLs
+- [ ] Screenshot URLs validated (GitHub raw content accessible)
+```
+
+**Troubleshooting**:
+
+```bash
+# Silicon not found
+if ! command -v silicon &> /dev/null; then
+    echo "❌ Silicon not installed"
+    echo "Install with: cargo install silicon"
+    echo "Or via Homebrew: brew install silicon"
+    exit 1
+fi
+
+# Verify cargo installation (if using cargo)
+if ! command -v cargo &> /dev/null; then
+    echo "❌ Cargo (Rust) not installed"
+    echo "Install Rust/Cargo: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+    exit 1
+fi
+
+# Test silicon with simple capture
+echo "Hello, world!" | silicon --output test.png
+if [ -f "test.png" ]; then
+    echo "✅ Silicon working correctly"
+    rm test.png
+else
+    echo "❌ Silicon failed to generate screenshot"
+fi
+```
+
+**Performance Considerations**:
+- Screenshot generation is fast (<1 second per image)
+- Large terminal outputs may be slow (trim to relevant lines)
+- First run may be slower due to font loading
+- Use `--no-line-number` to reduce screenshot width
+
 **Update assets/README.md**:
 ```markdown
 # Assets Status
@@ -455,9 +633,32 @@ echo "📸 Phase 3: Managing assets..."
 # Check for silicon
 if ! command -v silicon &> /dev/null; then
     echo "⚠️  Silicon not installed. Skipping screenshot generation."
+    echo "   Install with: cargo install silicon (or: brew install silicon)"
 else
-    echo "Creating terminal screenshots..."
-    # Screenshot creation commands here
+    echo "Creating terminal screenshots with silicon..."
+    mkdir -p assets/
+
+    # Example: Generate screenshot of list command (customize per project)
+    echo "$ claude-agents list --verbose
+    Available agents (42):
+      • swift-architect - Swift 6.0 architecture expert
+      • testing-specialist - Swift Testing framework expert
+      ..." | silicon \
+        --output assets/screenshot-list.png \
+        --theme "Monokai Extended" \
+        --font "JetBrains Mono" \
+        --no-line-number \
+        --shadow-blur-radius 10 \
+        --shadow-offset-x 5 \
+        --shadow-offset-y 5
+
+    echo "✅ Screenshots generated in assets/"
+fi
+
+# Verify required assets exist
+if [ ! -f "assets/icon.png" ]; then
+    echo "⚠️  Warning: Icon not found at assets/icon.png"
+    echo "   Marketplace listings require an icon (512x512px recommended)"
 fi
 
 # Phase 4: Marketplace Updates

@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Marketplace Distribution Documentation**:
+  - `docs/MARKETPLACE-PUBLISHING.md`: Comprehensive marketplace publishing guide (384 lines)
+    - 3 distribution options: GitHub self-hosted, official marketplace, community hubs
+    - Pre-submission checklist and validation commands
+    - Azure DevOps and corporate marketplace setup
+    - Staged distribution strategy (Day 1 → Week 1 → Week 2)
+    - Troubleshooting guide and support resources
+- **New Automation Agents** (2 agents):
+  - `release-manager` (Sonnet): Automate complete release workflow
+    - 7-phase workflow: validation, version bump, assets, marketplace updates, git cleanup, release creation, verification
+    - Asset management with silicon screenshots
+    - CHANGELOG automation and GitHub/GitLab release creation
+    - Post-release verification
+  - `generic-assistant` (Haiku): Fast, cost-effective helper for common tasks
+    - 93% cost savings vs Sonnet ($1/M vs $15/M tokens)
+    - File operations, text processing, git checks, command execution
+    - Quick information gathering and data extraction
+- **GitHub Issues for Marketplace Distribution**:
+  - Issue #5: Add `/marketplace` slash command for simplified installation
+  - Issue #6: Submit plugin to community marketplaces (jeremylongshore, ananddtyagi, EveryInc)
+
+### Changed
+- **claude-code-plugin-builder Agent Enhancement** (345 lines added, 70% increase):
+  - **Phase 3.5: Asset Preparation**: Icon, screenshots, GitHub raw URL hosting
+  - **Manifest Validation**: `claude plugin validate` commands with error fixes
+  - **marketplace.json Formats Clarified**:
+    - Format 1: Marketplace Catalog (self-hosting on GitHub/GitLab/Azure DevOps)
+    - Format 2: Submission Metadata (official marketplace submission)
+  - **Distribution Options**: Comprehensive guide for 3 distribution methods
+  - **Enterprise & Corporate Distribution**: Azure DevOps, GitLab, GitHub Enterprise setup
+  - **Staged Distribution Strategy**: Day 1 (GitHub) → Week 1 (Official) → Week 2 (Community)
+  - **"When to Use" Updated**: 5 new marketplace-specific use cases
+- **marketplace.json Restructure**:
+  - Converted from submission metadata to marketplace catalog format
+  - Changed name to kebab-case: `claude-agents-marketplace`
+  - Added `owner`, `metadata.description`, `plugins` array
+  - Now passes validation: ✔ `claude plugin validate .claude-plugin/marketplace.json`
+  - Original rich metadata preserved in `.claude-plugin/submission-metadata.json`
+- **plugin.json Validation Fixes**:
+  - Updated version: 1.4.0 → 1.5.0
+  - Fixed author field: string → object format with name, email, url
+  - Updated repository URLs: stijnwillems → doozMen
+  - Now passes validation: ✔ `claude plugin validate .claude-plugin/plugin.json`
+
+### Fixed
+- **Azure DevOps Private Marketplace Investigation**:
+  - Created Task #43607 under work item #43272 (CORE - iOS - Integration IA)
+  - Documented that Azure Marketplace does NOT support Claude Code plugins
+  - Confirmed Azure DevOps Git repos CAN host private marketplaces
+  - Assigned to stijn.willems@rossel.be for corporate distribution research
+
 ## [1.5.0] - 2025-10-15
 
 ### Added
