@@ -133,7 +133,7 @@ claude-agents uninstall <agent-name> --target local  # From project
 |-------|---------|
 | **azure-devops** | Azure DevOps pipelines and automation |
 | **git-pr-specialist** | PR/MR workflows across platforms |
-| **github-specialist** | GitHub Actions and workflows |
+| **github-specialist** | GitHub MCP for pull requests, issues, and Actions |
 | **gitlab-specialist** | GitLab CI/CD pipelines |
 
 [View all 45 agents →](docs/AGENTS.md)
@@ -253,7 +253,7 @@ Perfect for:
 - **Documentation**: Generate agent catalogs
 - **Validation**: Check dependencies and requirements
 
-[View Library Documentation →](LIBRARY_USAGE.md)
+[View Library Documentation →](docs/LIBRARY_USAGE.md)
 
 ## Documentation
 

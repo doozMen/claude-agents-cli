@@ -8,6 +8,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **ClaudeAgents Library Target** (Issue #7):
+  - New library product `ClaudeAgents` for programmatic agent access
+  - `AgentRepository` actor with thread-safe caching and filtering
+  - Public API for downstream integration (prompteneer, IDE plugins, tooling)
+  - Zero dependencies - standalone library
+  - Resources: All 46 agent definitions bundled via `.copy("Resources/agents")`
+  - Performance: First load ~10-20ms, cached <1ms
+  - Documentation: `docs/LIBRARY_USAGE.md` (13,000+ words), `docs/LIBRARY_QUICKSTART.md`
+  - Core API:
+    - `loadAgents()` - Load all agent definitions
+    - `getAgent(named:)` - Get specific agent by name
+    - `getAgents(byTool:)` - Filter agents by tool
+    - `getAgents(byModel:)` - Filter agents by model
+    - `getAgents(byMCPServer:)` - Filter agents by MCP server
+    - `search(_:)` - Search agents by query
+  - Metadata API: `getAllTools()`, `getAllModels()`, `getAllMCPServers()`
+- **Installation Status API** (Issue #10):
+  - `InstallationScope` enum: global (~/.claude/agents/), project (./.claude/agents/), all
+  - `InstallationInfo` struct with metadata (location, date, size, name)
+  - `AgentRepository` extensions:
+    - `isInstalled(agentID:scope:)` - Check if agent is installed
+    - `installationInfo(for:scope:)` - Get installation metadata
+    - `installedAgents(scope:)` - Get all installed agents
+    - `notInstalledAgents(scope:)` - Get agents defined but not installed
+  - 5-minute cache TTL for filesystem operations
+  - Graceful handling of missing directories
+  - Enables intelligent agent routing based on actual availability
+- **github-specialist Agent** (Issue #11):
+  - Expert in GitHub workflows, pull requests, issues, and Actions using GitHub MCP
+  - Comprehensive GitHub MCP setup documentation with PAT configuration
+  - Prerequisites section with required scopes (repo, workflow, read:org, read:user)
+  - Error handling guidance with clear detection patterns and user prompts
+  - Automatic fallback to `gh` CLI with explanation when MCP fails
+  - Tool coverage: PRs, Issues, Actions, Repository management
+  - Dependencies: github MCP server, gh CLI (backup)
+- **Markdown Distribution Enhancement**: 46 agents (45 → 46 with github-specialist)
 - **Marketplace Distribution Documentation**:
   - `docs/MARKETPLACE-PUBLISHING.md`: Comprehensive marketplace publishing guide (384 lines)
     - 3 distribution options: GitHub self-hosted, official marketplace, community hubs
@@ -30,6 +66,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Issue #6: Submit plugin to community marketplaces (jeremylongshore, ananddtyagi, EveryInc)
 
 ### Changed
+- **azure-devops Agent Markdown-First Formatting Strategy** (Issue #12):
+  - Changed default from HTML to Markdown for work item descriptions
+  - Added pre-submission validation function (`validate_work_item_content()`)
+  - Implemented 3-tier retry logic: Markdown → Plain text → Summary only
+  - Token limit management for 25k token limit (safe limit: 10,000 tokens)
+  - Three strategies for large content: Summary + Attachments, Parent + Child items, Collapsible sections
+  - Formatting best practices section with ✅ good and ❌ bad examples
+  - Fix for 5 common HTML issues: escaped tags, broken checkboxes, malformed lists, code blocks, formatting
+  - **Impact**: Reduces work item formatting failures from 10.5% to <1%
+- **azure-devops and git-pr-specialist File Attachment Support** (Issue #13):
+  - Added Azure DevOps file attachment workflow documentation
+  - Local path detection patterns for macOS, Windows, Linux paths
+  - User prompting for attachment uploads vs local path references
+  - Complete workflow: Upload file → Get URL → Link to work item → Reference in description
+  - API reference for Azure DevOps attachments with authentication
+  - Best practices for file naming, security (PAT permissions), size limits (60-130MB)
+  - **Impact**: Enables team collaboration by replacing broken local paths with proper attachments
 - **claude-code-plugin-builder Agent Enhancement** (345 lines added, 70% increase):
   - **Phase 3.5: Asset Preparation**: Icon, screenshots, GitHub raw URL hosting
   - **Manifest Validation**: `claude plugin validate` commands with error fixes

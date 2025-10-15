@@ -1206,11 +1206,241 @@ except Exception as e:
 → Status: "⏳ Awaiting approval - Can merge"
 ```
 
+## Azure DevOps Attachments (Work Items)
+
+When creating or updating Azure DevOps work items with referenced files, **NEVER use local file paths** - use attachments instead.
+
+### The Problem with Local Paths
+
+**Broken for Team Collaboration**:
+```markdown
+❌ WRONG: See investigation at /Users/stijnwillems/Developer/findings.md
+❌ WRONG: Refer to ~/Documents/proposed-fix.md
+❌ WRONG: Check C:\Users\john\analysis.txt
+```
+
+**Why this breaks**:
+- Other team members cannot access local paths on your machine
+- Links become dead after file moves or machine changes
+- No audit trail or version history for referenced files
+
+### The Solution: Azure DevOps Attachments
+
+**Correct Approach**:
+1. Upload files to Azure DevOps work item attachments API
+2. Link attachments to work item
+3. Reference attachments in work item description/comment
+4. Team members access files via Azure DevOps UI
+
+### Detection Pattern for Local Paths
+
+**When creating work items**, scan descriptions for local file path patterns:
+- `/Users/...` (macOS/Linux)
+- `~/...` (home directory)
+- `C:\...` or `D:\...` (Windows)
+- Relative paths like `./docs/...` or `../investigation/...`
+
+**User Prompt**:
+```
+I notice you're referencing local files:
+- /Users/stijnwillems/Developer/findings.md
+- ~/Documents/proposed-fix.md
+
+These paths won't work for other team members. Would you like me to:
+1. Attach these files to the work item (recommended)
+2. Proceed with local paths anyway (breaks collaboration)
+```
+
+### Attachment Workflow
+
+**Step 1: Upload Files**
+```bash
+# Upload file and capture attachment URL
+ATTACHMENT_URL=$(az rest \
+  --method POST \
+  --uri "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/attachments?fileName=findings.md&api-version=7.1" \
+  --headers "Content-Type=application/octet-stream" \
+  --body "@findings.md" \
+  --query "url" -o tsv)
+
+echo "Uploaded: $ATTACHMENT_URL"
+```
+
+**Step 2: Link to Work Item**
+```bash
+# Link attachment to work item using PATCH operation
+curl -s -X PATCH \
+  -H "Authorization: Basic $(echo -n ":$AZURE_DEVOPS_EXT_PAT" | base64)" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {
+      "op": "add",
+      "path": "/relations/-",
+      "value": {
+        "rel": "AttachedFile",
+        "url": "'"$ATTACHMENT_URL"'",
+        "attributes": {
+          "comment": "Root cause investigation findings"
+        }
+      }
+    }
+  ]' \
+  "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/workitems/$WORK_ITEM_ID?api-version=7.1"
+```
+
+**Step 3: Reference in Description**
+```bash
+# Update work item description with attachment references
+az boards work-item update --id $WORK_ITEM_ID \
+  --description "## Investigation Complete
+
+**Root Cause**: Bug in ConsentEventHandler.swift
+
+**Documentation**: Please review the attached files:
+- **findings.md**: Detailed root cause analysis
+- **proposed-fix.md**: Three proposed solutions
+
+See Attachments tab for complete documentation."
+```
+
+### Example: Complete Workflow
+
+```bash
+#!/bin/bash
+# Example: Attach investigation files to work item
+
+WORK_ITEM_ID=42762
+ORG=$(az devops configure --list --query "defaults.organization" -o tsv | sed 's|https://dev.azure.com/||')
+PROJECT=$(az devops configure --list --query "defaults.project" -o tsv)
+
+echo "Uploading files to work item $WORK_ITEM_ID..."
+
+# Upload findings.md
+FINDINGS_URL=$(az rest \
+  --method POST \
+  --uri "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/attachments?fileName=findings.md&api-version=7.1" \
+  --headers "Content-Type=application/octet-stream" \
+  --body "@findings.md" \
+  --query "url" -o tsv)
+
+# Upload proposed-fix.md
+FIX_URL=$(az rest \
+  --method POST \
+  --uri "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/attachments?fileName=proposed-fix.md&api-version=7.1" \
+  --headers "Content-Type=application/octet-stream" \
+  --body "@proposed-fix.md" \
+  --query "url" -o tsv)
+
+echo "✅ Files uploaded"
+
+# Link both files to work item
+curl -s -X PATCH \
+  -H "Authorization: Basic $(echo -n ":$AZURE_DEVOPS_EXT_PAT" | base64)" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[
+    {"op":"add","path":"/relations/-","value":{"rel":"AttachedFile","url":"'"$FINDINGS_URL"'","attributes":{"comment":"Root cause analysis"}}},
+    {"op":"add","path":"/relations/-","value":{"rel":"AttachedFile","url":"'"$FIX_URL"'","attributes":{"comment":"Proposed solutions"}}}
+  ]' \
+  "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/workitems/$WORK_ITEM_ID?api-version=7.1" > /dev/null
+
+echo "✅ Files attached to work item $WORK_ITEM_ID"
+echo "View: https://dev.azure.com/$ORG/$PROJECT/_workitems/edit/$WORK_ITEM_ID"
+```
+
+### Attachment Best Practices
+
+**File Naming**:
+- Use descriptive names: `FINDINGS.md`, `ERROR-LOG.txt`, `SCREENSHOT-2025-01-15.png`
+- Follow project conventions (uppercase for docs, kebab-case for code)
+- Include dates in filenames for temporal context
+
+**Link Comments**:
+- Add meaningful `attributes.comment` when linking attachments
+- Explain what each file contains: "Root cause analysis", "Proposed fix", "Error screenshot"
+
+**Description References**:
+- List all attached files in work item description/comment
+- Use markdown formatting for clarity:
+  ```markdown
+  **Documentation**: Please review the attached files:
+  - **findings.md**: Detailed analysis
+  - **proposed-fix.md**: Solution proposals
+  ```
+
+**File Size Limits**:
+- Default Azure DevOps limit: 60MB per file
+- For larger files (>60MB), use `&uploadType=Chunked` parameter
+
+**Security**:
+- Ensure PAT has "Work Items: Read & Write" permissions
+- Never commit PATs to version control
+- Use 1Password or similar for PAT storage
+
+### Attachment API Reference
+
+**Upload File**:
+```bash
+az rest \
+  --method POST \
+  --uri "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/attachments?fileName={filename}&api-version=7.1" \
+  --headers "Content-Type=application/octet-stream" \
+  --body "@{filepath}" \
+  --query "url" -o tsv
+```
+
+**Link to Work Item**:
+```bash
+curl -X PATCH \
+  -H "Authorization: Basic $(echo -n ":$AZURE_DEVOPS_EXT_PAT" | base64)" \
+  -H "Content-Type: application/json-patch+json" \
+  -d '[{"op":"add","path":"/relations/-","value":{"rel":"AttachedFile","url":"<ATTACHMENT_URL>","attributes":{"comment":"Description"}}}]' \
+  "https://dev.azure.com/$ORG/$PROJECT/_apis/wit/workitems/{id}?api-version=7.1"
+```
+
+**Verify Attachment**:
+```bash
+az boards work-item show --id {id} --query "relations[?rel=='AttachedFile'].url"
+```
+
+### When to Prompt for Attachments
+
+**Automatic Detection**:
+- Creating work items with local path references in description
+- Adding comments with file paths
+- Investigating bugs and referencing local analysis files
+
+**User Intent**:
+- "Attach findings to work item"
+- "Upload investigation results"
+- "Add documentation to ticket"
+
+**Prompt Template**:
+```
+I detected local file paths in your work item:
+- /Users/stijnwillems/findings.md
+- ~/proposed-fix.md
+
+These paths won't work for your team. Options:
+
+1. ✅ Attach files to work item (recommended)
+   - Team members can access via Attachments tab
+   - Files versioned with work item
+   - Audit trail maintained
+
+2. ❌ Keep local paths (breaks collaboration)
+   - Only you can access files
+   - Links break when files move
+   - No team visibility
+
+Would you like me to attach these files?
+```
+
 ## Related Agents
 
 For complete PR/MR workflow:
 - **swift-docc**: Create comprehensive PR/MR descriptions and documentation updates
 - **testing-specialist**: Validate test coverage and testing strategy before merge
+- **azure-devops**: Advanced Azure DevOps operations (work items, attachments, complex queries)
 
 ### PR/MR Creation Workflow
 1. Code changes completed
@@ -1218,5 +1448,12 @@ For complete PR/MR workflow:
 3. **swift-docc**: Update documentation if needed
 4. **git-pr-specialist**: Create PR/MR with proper description and links
 5. Link work items, request reviews, manage merge process
+
+### Work Item Documentation Workflow
+1. Investigation or analysis completed
+2. **git-pr-specialist**: Detect local file paths in work item references
+3. **azure-devops**: Upload files as attachments (if complex workflow)
+4. **git-pr-specialist**: Create/update work item with attachment references
+5. Team members access files via Azure DevOps Attachments tab
 
 Your mission is to maintain clean, professional git workflows that support efficient team collaboration and reliable release processes.
