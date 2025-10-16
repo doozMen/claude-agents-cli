@@ -54,7 +54,7 @@ claude-agents install azure-devops git-pr-specialist --global
 ## Key Features
 
 - **🚀 44 Embedded Agents** - Production-ready, no configuration needed
-- **🧠 Smart Routing** - Use prompteneer MCP for intelligent agent discovery and routing
+- **🧠 Smart Routing** - Use edgeprompt MCP for intelligent agent discovery and routing
 - **💰 Cost Optimized** - Mixed model strategy (Opus for complex, Haiku for simple tasks)
 - **🔧 Zero Config** - Agents work immediately after installation
 - **📁 Flexible Installation** - Global (all projects) or local (project-specific)
@@ -154,20 +154,20 @@ This installs:
 
 All 44 agents are available immediately after installation!
 
-**Enhanced Capabilities with prompteneer MCP:**
+**Enhanced Capabilities with edgeprompt MCP:**
 
-For local LLM capabilities and enhanced agent routing, configure the prompteneer MCP server:
+For local LLM capabilities and enhanced agent routing, configure the edgeprompt MCP server:
 
 ```bash
-# Clone and install prompteneer MCP server
-git clone https://github.com/doozMen/prompteneer.git
-cd prompteneer
-swift package experimental-install --product prompteneer
+# Clone and install edgeprompt MCP server
+git clone https://github.com/doozMen/edgeprompt.git
+cd edgeprompt
+swift package experimental-install --product edgeprompt
 
 # Configure in ~/.claude/claude_mcp_settings.json
 ```
 
-**What prompteneer MCP provides:**
+**What edgeprompt MCP provides:**
 - On-device LLM analysis via MCP for privacy-preserving operations
 - Intelligent agent routing and task delegation with 83% accuracy
 - Prompt optimization and enhancement
@@ -192,8 +192,8 @@ claude-agents install --all --global
 
 **Plugin Features**:
 - All 44 agents included
-- Smart routing via prompteneer MCP (83% accuracy, 80% cost reduction)
-- MCP integration (SwiftLens, Context7, SourceKit-LSP, prompteneer)
+- Smart routing via edgeprompt MCP (83% accuracy, 80% cost reduction)
+- MCP integration (SwiftLens, Context7, SourceKit-LSP, edgeprompt)
 - Cost-optimized model distribution (2 Opus, 30 Sonnet, 12 Haiku)
 - Professional marketplace assets (icon + 3 screenshots)
 - Complete validation passing
@@ -205,7 +205,7 @@ The official `claude-code` CLI includes basic agent management. This tool provid
 - **Curated Library**: 44 production-ready agents vs. starting from scratch
 - **Smart Discovery**: Filter by tools, batch operations, descriptions
 - **Model Optimization**: Strategic use of Opus/Sonnet/Haiku for cost/performance
-- **Prompteneer MCP Integration**: Local LLM routing with 83% accuracy and 80% cost savings
+- **EdgePrompt MCP Integration**: Local LLM routing with 83% accuracy and 80% cost savings
 
 ## Project Structure
 
@@ -247,7 +247,7 @@ print(swiftArchitect.content)  // Full markdown content
 ```
 
 Perfect for:
-- **MCP Servers**: Serve agent prompts dynamically (like prompteneer)
+- **MCP Servers**: Serve agent prompts dynamically (like edgeprompt)
 - **CLI Tools**: Build agent selection and recommendation tools
 - **Documentation**: Generate agent catalogs
 - **Validation**: Check dependencies and requirements

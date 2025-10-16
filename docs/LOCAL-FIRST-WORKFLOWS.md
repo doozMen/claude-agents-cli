@@ -1,4 +1,4 @@
-# Local-First Workflow Patterns with Prompteneer MCP
+# Local-First Workflow Patterns with EdgePrompt MCP
 
 **Best practices for maximizing cost savings through local-first processing**
 
@@ -17,7 +17,7 @@
 
 ## Overview
 
-Local-first workflows prioritize on-device processing using Apple Foundation Models through prompteneer MCP, dramatically reducing Claude API token consumption while maintaining quality.
+Local-first workflows prioritize on-device processing using Apple Foundation Models through edgeprompt MCP, dramatically reducing Claude API token consumption while maintaining quality.
 
 ### Key Statistics
 
@@ -47,19 +47,19 @@ The local-first approach recognizes that:
 User Request
   │
   ├─→ 1. Can local tools handle this completely?
-  │      → mcp__prompteneer__query, summarize, analyze_sentiment
+  │      → mcp__edgeprompt__query, summarize, analyze_sentiment
   │      Cost: 0 tokens
   │
   ├─→ 2. Do I need project/git context?
-  │      → mcp__prompteneer__git_fetch_context, analyze_recent_changes
+  │      → mcp__edgeprompt__git_fetch_context, analyze_recent_changes
   │      Cost: 300 tokens (vs 800 tokens with bash commands)
   │
   ├─→ 3. Do I need agent routing?
-  │      → mcp__prompteneer__match_agents
+  │      → mcp__edgeprompt__match_agents
   │      Cost: 100 tokens (vs 500 tokens with Claude API)
   │
   ├─→ 4. Is there long content to process?
-  │      → mcp__prompteneer__summarize first
+  │      → mcp__edgeprompt__summarize first
   │      Cost: 400 tokens (vs 2,000 tokens with full content)
   │
   └─→ 5. Does this require complex reasoning?
@@ -77,18 +77,18 @@ User Request
 
 ```typescript
 // Step 1: Analyze request intent locally (50 tokens)
-const analysis = await mcp__prompteneer__analyze_request({
+const analysis = await mcp__edgeprompt__analyze_request({
   request: userRequest
 });
 
 // Step 2: Match agents with 83% accuracy (100 tokens)
-const matches = await mcp__prompteneer__match_agents({
+const matches = await mcp__edgeprompt__match_agents({
   request: userRequest,
   top_n: 3
 });
 
 // Step 3: Fetch git context if needed (300 tokens)
-const gitContext = await mcp__prompteneer__git_fetch_context({
+const gitContext = await mcp__edgeprompt__git_fetch_context({
   commit_count: 10
 });
 
@@ -117,17 +117,17 @@ Project context:
 
 ```typescript
 // Step 1: Analyze recent changes locally (200 tokens)
-const changes = await mcp__prompteneer__analyze_recent_changes({
+const changes = await mcp__edgeprompt__analyze_recent_changes({
   commit_count: 5
 });
 
 // Step 2: Classify change types locally (0 tokens)
-const sentiment = await mcp__prompteneer__analyze_sentiment({
+const sentiment = await mcp__edgeprompt__analyze_sentiment({
   text: changes.summary
 });
 
 // Step 3: Match appropriate reviewer agents (100 tokens)
-const reviewers = await mcp__prompteneer__match_agents({
+const reviewers = await mcp__edgeprompt__match_agents({
   request: `Review ${changes.change_types.join(', ')} changes in ${changes.affected_areas.join(', ')}`,
   top_n: 2
 });
@@ -151,10 +151,10 @@ if (sentiment.urgency === "high" || changes.impact === "high") {
 
 ```typescript
 // Step 1: Discover agents to document (0 tokens)
-const agents = await mcp__prompteneer__discover_agents();
+const agents = await mcp__edgeprompt__discover_agents();
 
 // Step 2: Fetch git context (300 tokens)
-const gitContext = await mcp__prompteneer__git_fetch_context();
+const gitContext = await mcp__edgeprompt__git_fetch_context();
 
 // Step 3: For each agent, analyze and summarize locally
 const agentSummaries = await Promise.all(
@@ -163,7 +163,7 @@ const agentSummaries = await Promise.all(
     const content = readAgentFile(agent.name);
 
     // Summarize locally (0 tokens per agent)
-    const summary = await mcp__prompteneer__summarize({
+    const summary = await mcp__edgeprompt__summarize({
       text: content,
       max_length: 50
     });
@@ -190,7 +190,7 @@ const issues = await fetchIssues();
 // Step 2: Analyze sentiment locally for all issues (0 tokens)
 const triaged = await Promise.all(
   issues.map(async (issue) => {
-    const sentiment = await mcp__prompteneer__analyze_sentiment({
+    const sentiment = await mcp__edgeprompt__analyze_sentiment({
       text: issue.body
     });
 
@@ -218,17 +218,17 @@ const topIssues = triaged.sort((a, b) => b.priority - a.priority).slice(0, 5);
 
 ```typescript
 // Step 1: Analyze recent changes (200 tokens)
-const changes = await mcp__prompteneer__analyze_recent_changes({
+const changes = await mcp__edgeprompt__analyze_recent_changes({
   commit_count: 10
 });
 
 // Step 2: Swift code analysis locally (0 tokens)
-const codeAnalysis = await mcp__prompteneer__swift_analyze({
+const codeAnalysis = await mcp__edgeprompt__swift_analyze({
   code: recentlyChangedFiles
 });
 
 // Step 3: Match testing specialist (100 tokens)
-const specialist = await mcp__prompteneer__match_agents({
+const specialist = await mcp__edgeprompt__match_agents({
   request: `Create test strategy for ${changes.affected_areas.join(', ')}`,
   top_n: 1
 });
@@ -254,7 +254,7 @@ const testPlan = {
 
 ```typescript
 // 1. Analyze request intent (50 tokens)
-const analysis = await mcp__prompteneer__analyze_request({ request });
+const analysis = await mcp__edgeprompt__analyze_request({ request });
 
 // 2. If complexity is "high", proceed with Opus reasoning
 if (analysis.complexity === "high") {
@@ -263,7 +263,7 @@ if (analysis.complexity === "high") {
 
 // 3. If complexity is "medium/low", summarize first
 if (analysis.complexity !== "high") {
-  const summary = await mcp__prompteneer__summarize({
+  const summary = await mcp__edgeprompt__summarize({
     text: architectureDocument,
     max_length: 500
   });
@@ -272,10 +272,10 @@ if (analysis.complexity !== "high") {
 }
 
 // 4. Fetch git context efficiently (300 tokens)
-const gitContext = await mcp__prompteneer__git_fetch_context();
+const gitContext = await mcp__edgeprompt__git_fetch_context();
 
 // 5. Detect platform for platform-specific patterns (0 tokens)
-const platform = await mcp__prompteneer__detect_git_platform();
+const platform = await mcp__edgeprompt__detect_git_platform();
 
 // Total savings: 40-60% on typical architecture tasks
 ```
@@ -286,14 +286,14 @@ const platform = await mcp__prompteneer__detect_git_platform();
 
 ```typescript
 // 1. Analyze recent changes to understand what needs testing (200 tokens)
-const changes = await mcp__prompteneer__analyze_recent_changes();
+const changes = await mcp__edgeprompt__analyze_recent_changes();
 
 // 2. Swift code validation locally (0 tokens)
-const validation = await mcp__prompteneer__swift_analyze({ code });
+const validation = await mcp__edgeprompt__swift_analyze({ code });
 
 // 3. Summarize test results if long (80% savings)
 if (testOutput.length > 1000) {
-  const summary = await mcp__prompteneer__summarize({
+  const summary = await mcp__edgeprompt__summarize({
     text: testOutput,
     max_length: 100
   });
@@ -310,18 +310,18 @@ if (testOutput.length > 1000) {
 
 ```typescript
 // 1. Summarize long documentation (80% savings)
-const summary = await mcp__prompteneer__summarize({
+const summary = await mcp__edgeprompt__summarize({
   text: longDocumentation,
   max_length: 500
 });
 
 // 2. Analyze tone locally (0 tokens)
-const sentiment = await mcp__prompteneer__analyze_sentiment({
+const sentiment = await mcp__edgeprompt__analyze_sentiment({
   text: summary
 });
 
 // 3. Fetch git context to identify recent doc changes (300 tokens)
-const gitContext = await mcp__prompteneer__git_fetch_context();
+const gitContext = await mcp__edgeprompt__git_fetch_context();
 
 // 4. Only use Claude API for detailed quality review
 // Total savings: 60-80%
@@ -333,23 +333,23 @@ const gitContext = await mcp__prompteneer__git_fetch_context();
 
 ```typescript
 // 1. Analyze recent changes (200 tokens)
-const changes = await mcp__prompteneer__analyze_recent_changes({
+const changes = await mcp__edgeprompt__analyze_recent_changes({
   commit_count: 3
 });
 
 // 2. Classify change types locally (0 tokens)
-const analysis = await mcp__prompteneer__analyze_request({
+const analysis = await mcp__edgeprompt__analyze_request({
   request: `Review ${changes.change_types.join(', ')} changes`
 });
 
 // 3. Match appropriate review patterns (100 tokens)
-const patterns = await mcp__prompteneer__match_agents({
+const patterns = await mcp__edgeprompt__match_agents({
   request: `Security review for ${changes.affected_areas}`,
   top_n: 2
 });
 
 // 4. Swift code validation locally (0 tokens)
-const codeAnalysis = await mcp__prompteneer__swift_analyze({ code });
+const codeAnalysis = await mcp__edgeprompt__swift_analyze({ code });
 
 // 5. Only use Claude API for security/architecture concerns
 // Total savings: 70%
@@ -365,7 +365,7 @@ const codeAnalysis = await mcp__prompteneer__swift_analyze({ code });
 // Use local routing to identify multiple agents, then execute in parallel
 
 // Step 1: Match agents (100 tokens)
-const agents = await mcp__prompteneer__match_agents({
+const agents = await mcp__edgeprompt__match_agents({
   request: "Implement and test new authentication feature",
   top_n: 3
 });
@@ -388,7 +388,7 @@ const results = await Promise.all([
 // Use local analysis to determine when to hand off between agents
 
 // Step 1: Analyze request complexity (50 tokens)
-const analysis = await mcp__prompteneer__analyze_request({ request });
+const analysis = await mcp__edgeprompt__analyze_request({ request });
 
 // Step 2: Route to appropriate agent based on complexity
 if (analysis.complexity === "high") {
@@ -417,7 +417,7 @@ async function reviewCode(code) {
 // After (incremental)
 async function reviewCode(code) {
   // Add local validation first
-  const validation = await mcp__prompteneer__swift_analyze({ code });
+  const validation = await mcp__edgeprompt__swift_analyze({ code });
 
   if (validation.issues.length === 0) {
     return "No issues found"; // 0 tokens
@@ -448,7 +448,7 @@ async function getProjectContext() {
 
 // After
 async function getProjectContext() {
-  return await mcp__prompteneer__git_fetch_context({ commit_count: 10 });
+  return await mcp__edgeprompt__git_fetch_context({ commit_count: 10 });
   // Cost: 300 tokens
 }
 
@@ -467,7 +467,7 @@ async function routeRequest(request) {
 
 // After (direct MCP call)
 async function routeRequest(request) {
-  return await mcp__prompteneer__match_agents({ request, top_n: 3 }); // 100 tokens
+  return await mcp__edgeprompt__match_agents({ request, top_n: 3 }); // 100 tokens
 }
 
 // Savings: 80%
@@ -490,7 +490,7 @@ async function getAgents() {
     return cachedAgents;
   }
 
-  cachedAgents = await mcp__prompteneer__discover_agents();
+  cachedAgents = await mcp__edgeprompt__discover_agents();
   cacheTimestamp = Date.now();
   return cachedAgents;
 }
@@ -503,9 +503,9 @@ async function getAgents() {
 ```typescript
 // Execute multiple local operations in parallel
 const [analysis, gitContext, agents] = await Promise.all([
-  mcp__prompteneer__analyze_request({ request }),
-  mcp__prompteneer__git_fetch_context(),
-  mcp__prompteneer__match_agents({ request, top_n: 3 })
+  mcp__edgeprompt__analyze_request({ request }),
+  mcp__edgeprompt__git_fetch_context(),
+  mcp__edgeprompt__match_agents({ request, top_n: 3 })
 ]);
 
 // Latency: <200ms (vs 600ms sequential)
@@ -519,7 +519,7 @@ const [analysis, gitContext, agents] = await Promise.all([
 ```typescript
 // Batch local operations for multiple items
 const sentiments = await Promise.all(
-  issues.map(issue => mcp__prompteneer__analyze_sentiment({ text: issue.body }))
+  issues.map(issue => mcp__edgeprompt__analyze_sentiment({ text: issue.body }))
 );
 
 // Cost: 0 tokens (vs 4,000 tokens with Claude API for 50 issues)
@@ -599,9 +599,9 @@ async function benchmarkWorkflow() {
   const start = Date.now();
 
   // Execute local-first workflow
-  const analysis = await mcp__prompteneer__analyze_request({ request });
-  const agents = await mcp__prompteneer__match_agents({ request, top_n: 3 });
-  const gitContext = await mcp__prompteneer__git_fetch_context();
+  const analysis = await mcp__edgeprompt__analyze_request({ request });
+  const agents = await mcp__edgeprompt__match_agents({ request, top_n: 3 });
+  const gitContext = await mcp__edgeprompt__git_fetch_context();
 
   const duration = Date.now() - start;
 
@@ -619,7 +619,7 @@ async function benchmarkWorkflow() {
 
 ## Summary
 
-Local-first workflows with prompteneer MCP deliver:
+Local-first workflows with edgeprompt MCP deliver:
 
 | Benefit | Impact |
 |---------|--------|

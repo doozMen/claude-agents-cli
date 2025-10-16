@@ -1,6 +1,6 @@
-# Using ClaudeAgents in Prompteneer MCP Server
+# Using ClaudeAgents in EdgePrompt MCP Server
 
-This example shows how to integrate the ClaudeAgents library into the prompteneer MCP server to serve agent markdown files as prompts.
+This example shows how to integrate the ClaudeAgents library into the edgeprompt MCP server to serve agent markdown files as prompts.
 
 ## Package.swift
 
@@ -9,7 +9,7 @@ This example shows how to integrate the ClaudeAgents library into the promptenee
 import PackageDescription
 
 let package = Package(
-    name: "prompteneer",
+    name: "edgeprompt",
     platforms: [.macOS(.v13)],
     dependencies: [
         .package(url: "https://github.com/doozMen/swift-agents-plugin.git", from: "1.5.0"),
@@ -17,7 +17,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "prompteneer",
+            name: "edgeprompt",
             dependencies: [
                 .product(name: "ClaudeAgents", package: "swift-agents-plugin"),
                 .product(name: "MCP", package: "swift-sdk")
@@ -102,10 +102,10 @@ import ClaudeAgents
 import MCP
 
 @main
-struct PrompteneerServer {
+struct EdgePromptServer {
     static func main() async throws {
         let service = PromptsService()
-        let server = MCPServer(name: "prompteneer", version: "1.0.0")
+        let server = MCPServer(name: "edgeprompt", version: "1.0.0")
         
         // Register prompts/list handler
         server.addPromptsListHandler { _ in
@@ -274,14 +274,14 @@ import ClaudeAgents
 swift build -c release
 
 # Install MCP server
-cp .build/release/prompteneer ~/.local/bin/
+cp .build/release/edgeprompt ~/.local/bin/
 
 # Configure in Claude Desktop
 # ~/.config/claude/mcp.json
 {
   "mcpServers": {
-    "prompteneer": {
-      "command": "prompteneer",
+    "edgeprompt": {
+      "command": "edgeprompt",
       "env": {
         "PATH": "/usr/local/bin:/usr/bin:/bin"
       }

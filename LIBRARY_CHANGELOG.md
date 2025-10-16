@@ -2,7 +2,7 @@
 
 ## Overview
 
-Successfully added a library target to the swift-agents-plugin package that exposes programmatic access to all 45 agent markdown files. This enables other Swift packages (like the prompteneer MCP server) to dynamically load and query agent content.
+Successfully added a library target to the swift-agents-plugin package that exposes programmatic access to all 45 agent markdown files. This enables other Swift packages (like the edgeprompt MCP server) to dynamically load and query agent content.
 
 ## Changes Made
 
@@ -144,7 +144,7 @@ Available agents (45):
 
 ## Use Cases
 
-1. **MCP Servers**: Serve agent prompts dynamically (prompteneer)
+1. **MCP Servers**: Serve agent prompts dynamically (edgeprompt)
 2. **CLI Tools**: Build agent selection and recommendation tools
 3. **Documentation**: Generate agent catalogs
 4. **Validation**: Check dependencies and requirements
@@ -174,7 +174,7 @@ None. CLI functionality unchanged. Library is additive.
 ## Next Steps
 
 1. Tag release as v1.5.0
-2. Update prompteneer MCP server to use ClaudeAgents
+2. Update edgeprompt MCP server to use ClaudeAgents
 3. Consider publishing to Swift Package Index
 4. Add unit tests for library (optional)
 

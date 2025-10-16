@@ -80,24 +80,24 @@ curl -I https://raw.githubusercontent.com/doozMen/swift-agents-plugin/main/asset
 - Works standalone
 - Core agent management
 
-**prompteneer MCP Server** (Optional Enhancement):
+**edgeprompt MCP Server** (Optional Enhancement):
 - Local LLM via MCP for privacy-preserving analysis
 - Intelligent agent routing with on-device processing
 - Prompt optimization and semantic analysis
 - Enhances task-router agent with local LLM capabilities
 - No cloud roundtrips for sensitive operations
 
-**How to Configure prompteneer MCP:**
+**How to Configure edgeprompt MCP:**
 ```bash
-# Install prompteneer MCP server
-git clone https://github.com/doozMen/prompteneer.git
-cd prompteneer
-swift package experimental-install --product prompteneer
+# Install edgeprompt MCP server
+git clone https://github.com/doozMen/edgeprompt.git
+cd edgeprompt
+swift package experimental-install --product edgeprompt
 
 # Configure in ~/.claude/claude_mcp_settings.json
 ```
 
-**Why Use prompteneer MCP?**
+**Why Use edgeprompt MCP?**
 - Provides local LLM backend that 5 agents use (task-router, crashlytics-analyzer, etc.)
 - Privacy-preserving operations stay on your device
 - Faster routing decisions without API calls
@@ -112,7 +112,7 @@ swift package experimental-install --product prompteneer
 - Full control over releases
 - Perfect for team/organization distribution
 - Beta testing before official submission
-- Enhanced capabilities with prompteneer MCP (when configured)
+- Enhanced capabilities with edgeprompt MCP (when configured)
 
 ---
 

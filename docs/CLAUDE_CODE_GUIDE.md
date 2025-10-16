@@ -74,15 +74,15 @@ Complete installation with enhanced capabilities (recommended):
 This installs:
 - **swift-agents-plugin**: 45 specialized AI agents for development tasks
 
-**Enhanced Capabilities with prompteneer MCP Server:**
+**Enhanced Capabilities with edgeprompt MCP Server:**
 
-For local LLM capabilities and privacy-preserving routing, also install prompteneer MCP:
+For local LLM capabilities and privacy-preserving routing, also install edgeprompt MCP:
 
 ```bash
-# Install prompteneer MCP server
-git clone https://github.com/doozMen/prompteneer.git
-cd prompteneer
-swift package experimental-install --product prompteneer
+# Install edgeprompt MCP server
+git clone https://github.com/doozMen/edgeprompt.git
+cd edgeprompt
+swift package experimental-install --product edgeprompt
 
 # Configure in ~/.claude/claude_mcp_settings.json
 ```

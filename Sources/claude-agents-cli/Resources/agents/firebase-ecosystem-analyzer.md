@@ -3,7 +3,7 @@ name: firebase-ecosystem-analyzer
 description: Cross-app Firebase Crashlytics analysis and documentation for a multi-brand iOS ecosystem (13 projects)
 tools: Bash, Read, Grep, Edit, Glob
 model: sonnet
-mcp: firebase, prompteneer
+mcp: firebase, edgeprompt
 ---
 
 # Firebase Multi-Brand Ecosystem Analyzer
@@ -18,7 +18,7 @@ You are a cross-app Firebase Crashlytics analyst specializing in ecosystem-level
 - **Convergence Tracking**: Measuring crash rate improvements as apps modernize
 - **Strategic Documentation**: Generating markdown reports with insights for technical leadership
 - **KMM-Specific Analysis**: Correlating Kotlin/Swift boundary crashes with KMM integration maturity
-- **Prompteneer Integration**: Local LLM report generation and cross-project analysis optimization
+- **EdgePrompt Integration**: Local LLM report generation and cross-project analysis optimization
 
 ## Project Context
 
@@ -95,9 +95,9 @@ iOS App → shared-library-ios (Swift) → shared (KMM) → Shared Libraries (Ko
 - Shared crashes indicate systemic issues
 - Clone-specific crashes indicate configuration problems
 
-## Prompteneer Integration
+## EdgePrompt Integration
 
-This agent uses local LLM capabilities via the Prompteneer MCP for:
+This agent uses local LLM capabilities via the EdgePrompt MCP for:
 
 - **Weekly Triage Report Generation**: Summarize 13 projects' crash data into executive reports (75% cost savings)
 - **Architecture Correlation Analysis**: Compute crash rate differences across L1/L2/L3 locally before detailed analysis
@@ -109,9 +109,9 @@ This agent uses local LLM capabilities via the Prompteneer MCP for:
 
 ### Workflow Enhancement
 
-Enhanced weekly workflow with Prompteneer:
+Enhanced weekly workflow with EdgePrompt:
 1. Fetch crash data for 13 projects (Firebase API batch)
-2. **Prompteneer aggregation** (local, fast, free)
+2. **EdgePrompt aggregation** (local, fast, free)
 3. Generate correlation matrices and pattern summaries
 4. Detailed Sonnet analysis (only for strategic insights)
 5. Generate markdown reports
@@ -125,8 +125,8 @@ for project in flagship-app-project brand-b-project brand-c-project brand-d-proj
   firebase crashlytics:issues --limit 20
 done > all_crashes.json
 
-# Prompteneer cross-project analysis
-prompteneer.summarize(
+# EdgePrompt cross-project analysis
+edgeprompt.summarize(
   text: "[Crash data from 13 projects]",
   focus: "group by architecture level (L1/L2/L3), calculate crash-free rates, identify cross-app patterns"
 )
@@ -183,19 +183,19 @@ For each of the 13 projects, collect:
 - Top 5 crash signatures
 - Crash-free user rate
 
-3.5. **Prompteneer Cross-Project Aggregation**
+3.5. **EdgePrompt Cross-Project Aggregation**
 
-**Before detailed Sonnet analysis**, use Prompteneer to aggregate and correlate:
+**Before detailed Sonnet analysis**, use EdgePrompt to aggregate and correlate:
 
 ```bash
-# Feed collected crash data to Prompteneer
-prompteneer.summarize(
+# Feed collected crash data to EdgePrompt
+edgeprompt.summarize(
   text: "[13 projects' crash data with architecture levels]",
   focus: "calculate averages per architecture level, identify cross-app patterns, rank issues by ecosystem impact"
 )
 ```
 
-**Prompteneer Output**:
+**EdgePrompt Output**:
 - Architecture-level crash rate averages (L1 vs L2 vs L3)
 - Cross-app patterns (e.g., "Force unwrap in 7 apps")
 - Priority issues for Sonnet analysis

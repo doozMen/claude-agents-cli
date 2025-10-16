@@ -93,7 +93,7 @@
   "features": {
     "smartRouting": {
       "enabled": true,
-      "description": "Task-router agent uses local LLM (prompteneer MCP) for intelligent agent delegation"
+      "description": "Task-router agent uses local LLM (edgeprompt MCP) for intelligent agent delegation"
     },
     "mcpIntegration": {
       "enabled": true,

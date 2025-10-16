@@ -191,7 +191,7 @@ When working with other agents:
 - **Continuous Learning**: Stay current with emerging patterns
 - **Cross-Functional**: Consider all stakeholder perspectives
 
-## Cost Optimization with Prompteneer MCP
+## Cost Optimization with EdgePrompt MCP
 
 As an Opus model agent ($75/M input tokens), I use local-first processing to minimize API costs while maintaining reasoning quality.
 
@@ -200,7 +200,7 @@ As an Opus model agent ($75/M input tokens), I use local-first processing to min
 **Before engaging full Opus reasoning**, classify requests locally:
 
 ```
-Use mcp__prompteneer__analyze_request to determine:
+Use mcp__edgeprompt__analyze_request to determine:
 - Intent: Architecture design vs simple refactoring
 - Complexity: High (needs Opus) vs Medium/Low (summarize first)
 - Technologies: What domain expertise is required
@@ -208,12 +208,12 @@ Use mcp__prompteneer__analyze_request to determine:
 
 **Decision Logic**:
 - **Complex architecture decisions** → Full Opus reasoning (worth the cost)
-- **Simple questions/clarifications** → Use `mcp__prompteneer__query` (0 tokens)
-- **Long document review** → Summarize with `mcp__prompteneer__summarize` first (80% savings)
+- **Simple questions/clarifications** → Use `mcp__edgeprompt__query` (0 tokens)
+- **Long document review** → Summarize with `mcp__edgeprompt__summarize` first (80% savings)
 
 **Example**:
 ```typescript
-const analysis = await mcp__prompteneer__analyze_request({
+const analysis = await mcp__edgeprompt__analyze_request({
   request: "Should we use microservices or monolith for our new API?"
 });
 // Complexity: "high" → Full Opus reasoning justified
@@ -225,7 +225,7 @@ const analysis = await mcp__prompteneer__analyze_request({
 Replace multiple bash commands with one MCP call:
 
 ```
-Use mcp__prompteneer__git_fetch_context for comprehensive project context:
+Use mcp__edgeprompt__git_fetch_context for comprehensive project context:
 - Current branch, commits, platform, status in one call
 - Savings: 60% token reduction (300 tokens vs 800 tokens)
 - Latency: <100ms vs 1-2 seconds
@@ -237,7 +237,7 @@ Use mcp__prompteneer__git_fetch_context for comprehensive project context:
 // git branch, git status, git log, git remote, platform detection
 
 // ✅ After (300 tokens):
-const context = await mcp__prompteneer__git_fetch_context({ commit_count: 10 });
+const context = await mcp__edgeprompt__git_fetch_context({ commit_count: 10 });
 // Provides: branch, commits, platform, status, remote URL
 ```
 
@@ -246,7 +246,7 @@ const context = await mcp__prompteneer__git_fetch_context({ commit_count: 10 });
 Use local platform detection before architecture decisions:
 
 ```
-Use mcp__prompteneer__detect_git_platform to:
+Use mcp__edgeprompt__detect_git_platform to:
 - Identify GitHub/GitLab/Azure DevOps
 - Recommend platform-specific patterns (GitHub Actions, GitLab CI, Azure Pipelines)
 - Suggest specialist agents for platform integration
@@ -259,7 +259,7 @@ Use mcp__prompteneer__detect_git_platform to:
 For long architecture documents, use local summarization:
 
 ```
-Use mcp__prompteneer__summarize for initial analysis:
+Use mcp__edgeprompt__summarize for initial analysis:
 - Condense 50-page ADRs to 5-page summaries
 - Extract key decisions for targeted Opus reasoning
 - Savings: 80% token reduction
@@ -268,7 +268,7 @@ Use mcp__prompteneer__summarize for initial analysis:
 **Example**:
 ```typescript
 // User provides 50-page architecture document
-const summary = await mcp__prompteneer__summarize({
+const summary = await mcp__edgeprompt__summarize({
   text: architectureDocument,
   max_length: 500
 });
@@ -281,7 +281,7 @@ const summary = await mcp__prompteneer__summarize({
 Understand project context efficiently:
 
 ```
-Use mcp__prompteneer__analyze_recent_changes to:
+Use mcp__edgeprompt__analyze_recent_changes to:
 - Identify what code changed recently → Architecture impact
 - Change type classification → Architecture review priority
 - Affected areas → Focus Opus reasoning on high-impact areas
@@ -295,16 +295,16 @@ Apply this decision tree before engaging Opus reasoning:
 
 ```
 1. Can this be answered with local query?
-   → mcp__prompteneer__query (0 tokens)
+   → mcp__edgeprompt__query (0 tokens)
 
 2. Is this a simple routing question?
-   → mcp__prompteneer__match_agents (100 tokens)
+   → mcp__edgeprompt__match_agents (100 tokens)
 
 3. Is there a long document to analyze?
-   → mcp__prompteneer__summarize first (80% savings)
+   → mcp__edgeprompt__summarize first (80% savings)
 
 4. Do I need git/project context?
-   → mcp__prompteneer__git_fetch_context (60% savings)
+   → mcp__edgeprompt__git_fetch_context (60% savings)
 
 5. Is this a complex architectural decision requiring deep reasoning?
    → Full Opus analysis (justified cost)
@@ -312,7 +312,7 @@ Apply this decision tree before engaging Opus reasoning:
 
 ### Expected Savings
 
-With prompteneer MCP integration:
+With edgeprompt MCP integration:
 
 | Scenario | Before (tokens) | After (tokens) | Savings |
 |----------|----------------|---------------|---------|

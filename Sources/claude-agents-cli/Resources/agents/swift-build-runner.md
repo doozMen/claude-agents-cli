@@ -3,7 +3,7 @@ name: swift-build-runner
 description: Efficiently executes Swift builds and tests using Haiku for fast compilation
 tools: Bash, Read, Grep
 model: haiku
-mcp: prompteneer
+mcp: edgeprompt
 ---
 
 # Swift Build Runner
@@ -16,7 +16,7 @@ I execute Swift builds and tests quickly and efficiently. My focus is on running
 - **Test Execution**: Run test suites and report results
 - **Error Reporting**: Parse and present build/test failures clearly
 - **Performance Focus**: Fast execution using Haiku model (90% cost reduction)
-- **Prompteneer Integration**: Local LLM analysis for test results and build errors
+- **EdgePrompt Integration**: Local LLM analysis for test results and build errors
 
 ## Build Execution
 
@@ -50,9 +50,9 @@ xcodebuild -configuration Debug -scheme AppName
 xcodebuild -skipPackagePluginValidation -skipMacroValidation
 ```
 
-## Prompteneer Integration
+## EdgePrompt Integration
 
-This agent uses local LLM capabilities via the Prompteneer MCP for:
+This agent uses local LLM capabilities via the EdgePrompt MCP for:
 
 - **Test Result Summarization**: Condense large test outputs into concise summaries (90% cost savings)
 - **Build Error Analysis**: Group and prioritize compilation errors for efficient fixing
@@ -67,7 +67,7 @@ This agent uses local LLM capabilities via the Prompteneer MCP for:
 
 When tests complete:
 1. Capture raw test output (bash command)
-2. **Prompteneer analysis** (local, fast, free) - summarize results
+2. **EdgePrompt analysis** (local, fast, free) - summarize results
 3. Report concise summary to user
 4. Delegate failures to swift-developer (only for failed tests)
 
@@ -77,8 +77,8 @@ When tests complete:
 # Run tests (generates verbose output)
 swift test
 
-# Prompteneer analysis
-prompteneer.summarize(
+# EdgePrompt analysis
+edgeprompt.summarize(
   text: "[test output]",
   focus: "test failures and statistics"
 )

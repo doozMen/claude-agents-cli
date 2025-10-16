@@ -73,7 +73,7 @@ Agent instructions...
 - Renamed: documentation-writer → swift-docc
 - Added swift-format-specialist (Haiku) for mechanical formatting
 - Model distribution: 2 Opus, 30 Sonnet, 12 Haiku
-- Removed task-router (redundant with direct prompteneer MCP calls)
+- Removed task-router (redundant with direct edgeprompt MCP calls)
 
 ## Testing
 

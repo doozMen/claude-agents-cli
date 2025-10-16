@@ -10,21 +10,21 @@
 - [x] Updated plugin.json description: "45 production-ready AI agents"
 - [x] Updated marketplace.json descriptions to 45 agents
 - [x] Updated model distribution: 2 Opus, 30 Sonnet, 13 Haiku
-- [x] Changed OWL Intelligence → prompteneer MCP in plugin.json
+- [x] Changed OWL Intelligence → edgeprompt MCP in plugin.json
 
 #### Agent Updates (5 Agents)
-- [x] task-router.md: owl-intelligence → prompteneer (14 references)
-- [x] crashlytics-analyzer.md: owl-intelligence → prompteneer (12 references)
-- [x] firebase-ecosystem-analyzer.md: owl-intelligence → prompteneer (11 references)
-- [x] swift-build-runner.md: owl-intelligence → prompteneer (8 references)
-- [x] technical-debt-eliminator.md: owl-intelligence → prompteneer (10 references)
+- [x] task-router.md: owl-intelligence → edgeprompt (14 references)
+- [x] crashlytics-analyzer.md: owl-intelligence → edgeprompt (12 references)
+- [x] firebase-ecosystem-analyzer.md: owl-intelligence → edgeprompt (11 references)
+- [x] swift-build-runner.md: owl-intelligence → edgeprompt (8 references)
+- [x] technical-debt-eliminator.md: owl-intelligence → edgeprompt (10 references)
 - [x] swift-architect.md: model upgraded from sonnet → opus
 
 #### Documentation Updates
 - [x] README.md: Updated to 45 agents throughout
-- [x] README.md: Clarified prompteneer as MCP server (not plugin)
+- [x] README.md: Clarified edgeprompt as MCP server (not plugin)
 - [x] docs/CLAUDE_CODE_GUIDE.md: Removed agents-plugin references
-- [x] docs/MARKETPLACE-PUBLISHING.md: Clarified prompteneer MCP setup
+- [x] docs/MARKETPLACE-PUBLISHING.md: Clarified edgeprompt MCP setup
 - [x] docs/AGENTS.md: Created comprehensive 45-agent catalog
 
 #### Library Target
@@ -32,7 +32,7 @@
 - [x] Created AgentRepository public API
 - [x] CLI now imports and uses ClaudeAgents library
 - [x] Created LIBRARY_USAGE.md documentation
-- [x] GitHub Issue #19 created in prompteneer repo for integration
+- [x] GitHub Issue #19 created in edgeprompt repo for integration
 
 #### GitHub Issues Created
 - [x] Issue #4: Submit to Claude Code Official Marketplaces
@@ -115,9 +115,9 @@ claude-agents list --verbose | grep "release-manager"
 ```bash
 # Check MCP references
 grep -r "owl-intelligence" Sources/claude-agents-cli/Resources/agents/
-# Expected: No results (all migrated to prompteneer)
+# Expected: No results (all migrated to edgeprompt)
 
-grep -r "prompteneer" Sources/claude-agents-cli/Resources/agents/ | wc -l
+grep -r "edgeprompt" Sources/claude-agents-cli/Resources/agents/ | wc -l
 # Expected: 55+ references
 ```
 
@@ -143,12 +143,12 @@ grep "1.5" Sources/claude-agents-cli/Main.swift
 ### 1. Commit Final Changes
 ```bash
 git add -A
-git commit -m "chore: v1.5.1 release - 45 agents, prompteneer MCP, library API
+git commit -m "chore: v1.5.1 release - 45 agents, edgeprompt MCP, library API
 
 - Added generic-assistant and release-manager agents (45 total)
-- Migrated 5 agents from owl-intelligence to prompteneer MCP
+- Migrated 5 agents from owl-intelligence to edgeprompt MCP
 - Added ClaudeAgents Swift library for programmatic access
-- Updated documentation to clarify prompteneer as MCP server
+- Updated documentation to clarify edgeprompt as MCP server
 - Model distribution: 2 Opus, 30 Sonnet, 13 Haiku"
 ```
 
@@ -159,7 +159,7 @@ git tag -a v1.5.1 -m "Release v1.5.1: 45 agents with library API
 Features:
 - 45 production-ready agents (added generic-assistant, release-manager)
 - ClaudeAgents library for programmatic agent access
-- prompteneer MCP integration for 5 agents
+- edgeprompt MCP integration for 5 agents
 - Comprehensive agent catalog documentation"
 ```
 
@@ -176,7 +176,7 @@ gh release create v1.5.1 \
   --notes "### What's New
 - 🎯 **45 Agents Total**: Added generic-assistant and release-manager
 - 📚 **ClaudeAgents Library**: Programmatic access to agent strings
-- 🔄 **prompteneer MCP**: Migrated from owl-intelligence
+- 🔄 **edgeprompt MCP**: Migrated from owl-intelligence
 - 📖 **Complete Documentation**: Agent catalog, library usage guide
 - 🎨 **Model Distribution**: 2 Opus, 30 Sonnet, 13 Haiku
 
@@ -208,13 +208,13 @@ let agents = try await repo.loadAgents()
 - [ ] Submit to official marketplace (Issue #4)
 - [ ] Submit to community marketplaces (Issue #6)
 - [ ] Create `/marketplace` command (Issue #5)
-- [ ] Update prompteneer with ClaudeAgents integration (Issue #19)
+- [ ] Update edgeprompt with ClaudeAgents integration (Issue #19)
 
 ---
 
 ## Known Issues to Address Later
 
-1. **agents-plugin confusion**: Documentation previously referenced non-existent plugin (now clarified as prompteneer MCP)
+1. **agents-plugin confusion**: Documentation previously referenced non-existent plugin (now clarified as edgeprompt MCP)
 2. **spm-specialist delegation**: Should delegate to builders/testers (Issue #9)
 3. **Slash command missing**: Need `/marketplace` command (Issue #5)
 
@@ -223,7 +223,7 @@ let agents = try await repo.loadAgents()
 ## Success Criteria ✅
 
 - [x] 45 agents listed and accessible
-- [x] All agents reference prompteneer (not owl-intelligence)
+- [x] All agents reference edgeprompt (not owl-intelligence)
 - [x] Plugin passes validation
 - [x] Library builds and works
 - [x] CLI continues to function
@@ -236,8 +236,8 @@ let agents = try await repo.loadAgents()
 
 ## Notes
 
-- prompteneer MCP is responsible for its own setup (writing to CLAUDE.md, installing commands)
-- swift-agents-plugin documents that 5 agents use prompteneer when available
+- edgeprompt MCP is responsible for its own setup (writing to CLAUDE.md, installing commands)
+- swift-agents-plugin documents that 5 agents use edgeprompt when available
 - Library API enables other Swift packages to access agent content
 - Version kept at 1.5.0 (or bump to 1.5.1 if desired)
 

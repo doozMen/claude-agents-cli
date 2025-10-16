@@ -128,7 +128,7 @@ let mcpServers = try await repository.getAllMCPServers()
 
 ### 1. MCP Server Implementation
 
-The `prompteneer` MCP server uses this library to serve agent prompts dynamically:
+The `edgeprompt` MCP server uses this library to serve agent prompts dynamically:
 
 ```swift
 import ClaudeAgents

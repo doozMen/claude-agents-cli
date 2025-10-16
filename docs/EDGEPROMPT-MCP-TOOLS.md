@@ -1,6 +1,6 @@
-# Prompteneer MCP Tools Reference
+# EdgePrompt MCP Tools Reference
 
-**Complete guide to the 16 prompteneer MCP tools for cost reduction and intelligent agent routing**
+**Complete guide to the 16 edgeprompt MCP tools for cost reduction and intelligent agent routing**
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@
 
 ## Overview
 
-Prompteneer MCP provides 16 tools that enable **local-first processing** to dramatically reduce Claude API token consumption. All processing happens on-device using Apple Foundation Models, ensuring privacy and zero API costs for routine operations.
+EdgePrompt MCP provides 16 tools that enable **local-first processing** to dramatically reduce Claude API token consumption. All processing happens on-device using Apple Foundation Models, ensuring privacy and zero API costs for routine operations.
 
 ### Expected Benefits
 
@@ -43,16 +43,16 @@ Prompteneer MCP provides 16 tools that enable **local-first processing** to dram
 ## Installation
 
 ```bash
-# Install prompteneer MCP server
-git clone https://github.com/doozMen/prompteneer.git
-cd prompteneer
-swift package experimental-install --product prompteneer
+# Install edgeprompt MCP server
+git clone https://github.com/doozMen/edgeprompt.git
+cd edgeprompt
+swift package experimental-install --product edgeprompt
 
 # Configure in ~/.claude/claude_mcp_settings.json
 {
   "mcpServers": {
-    "prompteneer": {
-      "command": "prompteneer",
+    "edgeprompt": {
+      "command": "edgeprompt",
       "args": ["--log-level", "info"],
       "env": {
         "PATH": "$HOME/.swiftpm/bin:/usr/local/bin:/usr/bin:/bin"
@@ -66,7 +66,7 @@ swift package experimental-install --product prompteneer
 
 ## Tool Categories
 
-The 16 prompteneer MCP tools are organized into 4 categories:
+The 16 edgeprompt MCP tools are organized into 4 categories:
 
 | Category | Tools | Primary Use Case |
 |----------|-------|-----------------|
@@ -81,7 +81,7 @@ The 16 prompteneer MCP tools are organized into 4 categories:
 
 **Purpose**: Execute LLM operations locally for zero API cost
 
-### 1. `mcp__prompteneer__query`
+### 1. `mcp__edgeprompt__query`
 
 Execute LLM queries locally with complete privacy.
 
@@ -101,7 +101,7 @@ Execute LLM queries locally with complete privacy.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__query({
+const result = await mcp__edgeprompt__query({
   prompt: "Is this commit message well-formatted: 'fix bug'?",
   model: "apple-intelligence",
   temperature: 0.3
@@ -112,7 +112,7 @@ const result = await mcp__prompteneer__query({
 
 ---
 
-### 2. `mcp__prompteneer__summarize`
+### 2. `mcp__edgeprompt__summarize`
 
 Summarize text locally with privacy preservation.
 
@@ -130,7 +130,7 @@ Summarize text locally with privacy preservation.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__summarize({
+const result = await mcp__edgeprompt__summarize({
   text: "...[30 lines of detailed crash report]...",
   max_length: 100
 });
@@ -140,7 +140,7 @@ const result = await mcp__prompteneer__summarize({
 
 ---
 
-### 3. `mcp__prompteneer__analyze_sentiment`
+### 3. `mcp__edgeprompt__analyze_sentiment`
 
 Analyze sentiment locally for content filtering.
 
@@ -157,7 +157,7 @@ Analyze sentiment locally for content filtering.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__analyze_sentiment({
+const result = await mcp__edgeprompt__analyze_sentiment({
   text: "This feature is completely broken and causing production issues!"
 });
 // Result: { sentiment: "negative", score: 0.85, urgency: "high" }
@@ -166,7 +166,7 @@ const result = await mcp__prompteneer__analyze_sentiment({
 
 ---
 
-### 4. `mcp__prompteneer__detect_pii`
+### 4. `mcp__edgeprompt__detect_pii`
 
 Detect personally identifiable information before sharing data.
 
@@ -183,7 +183,7 @@ Detect personally identifiable information before sharing data.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__detect_pii({
+const result = await mcp__edgeprompt__detect_pii({
   text: "Contact john.doe@company.com at 555-1234 or SSN 123-45-6789"
 });
 // Result: { found: true, types: ["email", "phone", "ssn"], redacted: "Contact [EMAIL] at [PHONE] or SSN [SSN]" }
@@ -196,7 +196,7 @@ const result = await mcp__prompteneer__detect_pii({
 
 **Purpose**: Intelligent agent routing and prompt optimization
 
-### 5. `mcp__prompteneer__analyze_request`
+### 5. `mcp__edgeprompt__analyze_request`
 
 Analyze user requests to understand intent and complexity.
 
@@ -213,7 +213,7 @@ Analyze user requests to understand intent and complexity.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__analyze_request({
+const result = await mcp__edgeprompt__analyze_request({
   request: "Create a Swift CLI tool with ArgumentParser that validates Package.swift dependencies"
 });
 // Result: {
@@ -227,7 +227,7 @@ const result = await mcp__prompteneer__analyze_request({
 
 ---
 
-### 6. `mcp__prompteneer__discover_agents`
+### 6. `mcp__edgeprompt__discover_agents`
 
 Discover available Claude agents from `~/.claude/agents/`.
 
@@ -243,7 +243,7 @@ Discover available Claude agents from `~/.claude/agents/`.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__discover_agents();
+const result = await mcp__edgeprompt__discover_agents();
 // Result: {
 //   agents: [
 //     { name: "swift-architect", tools: ["Read", "Edit", "Bash"], model: "opus" },
@@ -256,7 +256,7 @@ const result = await mcp__prompteneer__discover_agents();
 
 ---
 
-### 7. `mcp__prompteneer__match_agents`
+### 7. `mcp__edgeprompt__match_agents`
 
 Match available agents to a request with 83% accuracy.
 
@@ -276,7 +276,7 @@ Match available agents to a request with 83% accuracy.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__match_agents({
+const result = await mcp__edgeprompt__match_agents({
   request: "Create a Swift CLI tool with ArgumentParser that validates Package.swift dependencies",
   top_n: 3
 });
@@ -291,7 +291,7 @@ const result = await mcp__prompteneer__match_agents({
 
 ---
 
-### 8. `mcp__prompteneer__explain_routing`
+### 8. `mcp__edgeprompt__explain_routing`
 
 Explain why specific agents were recommended.
 
@@ -309,7 +309,7 @@ Explain why specific agents were recommended.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__explain_routing({
+const result = await mcp__edgeprompt__explain_routing({
   request: "Fix Swift concurrency warnings in my code",
   top_n: 2
 });
@@ -338,7 +338,7 @@ const result = await mcp__prompteneer__explain_routing({
 
 ---
 
-### 9. `mcp__prompteneer__optimize_prompt`
+### 9. `mcp__edgeprompt__optimize_prompt`
 
 Intelligently rebuild prompts with agent injection and git context.
 
@@ -360,7 +360,7 @@ Intelligently rebuild prompts with agent injection and git context.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__optimize_prompt({
+const result = await mcp__edgeprompt__optimize_prompt({
   prompt: "I need to add tests for the new authentication feature",
   inject_agents: true,
   max_agents: 2,
@@ -393,7 +393,7 @@ const result = await mcp__prompteneer__optimize_prompt({
 
 ---
 
-### 10. `mcp__prompteneer__validate_agent_match`
+### 10. `mcp__edgeprompt__validate_agent_match`
 
 Validate agent match before execution (quality gate).
 
@@ -415,7 +415,7 @@ Validate agent match before execution (quality gate).
 
 **Purpose**: Efficient git context gathering
 
-### 11. `mcp__prompteneer__git_fetch_context`
+### 11. `mcp__edgeprompt__git_fetch_context`
 
 Fetch comprehensive git repository context in one call.
 
@@ -442,7 +442,7 @@ Fetch comprehensive git repository context in one call.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__git_fetch_context({
+const result = await mcp__edgeprompt__git_fetch_context({
   working_directory: "/Users/dev/myproject",
   commit_count: 5
 });
@@ -464,7 +464,7 @@ const result = await mcp__prompteneer__git_fetch_context({
 
 ---
 
-### 12. `mcp__prompteneer__detect_git_platform`
+### 12. `mcp__edgeprompt__detect_git_platform`
 
 Detect git hosting platform and recommend specialist agents.
 
@@ -487,7 +487,7 @@ Detect git hosting platform and recommend specialist agents.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__detect_git_platform();
+const result = await mcp__edgeprompt__detect_git_platform();
 // Result: {
 //   platform: "github",
 //   recommended_agent: "git-pr-specialist",
@@ -499,7 +499,7 @@ const result = await mcp__prompteneer__detect_git_platform();
 
 ---
 
-### 13. `mcp__prompteneer__analyze_recent_changes`
+### 13. `mcp__edgeprompt__analyze_recent_changes`
 
 Analyze recent git commits and working directory changes.
 
@@ -524,7 +524,7 @@ Analyze recent git commits and working directory changes.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__analyze_recent_changes({
+const result = await mcp__edgeprompt__analyze_recent_changes({
   commit_count: 3
 });
 // Result: {
@@ -544,7 +544,7 @@ const result = await mcp__prompteneer__analyze_recent_changes({
 
 **Purpose**: Privacy-filtered code analysis
 
-### 14. `mcp__prompteneer__swift_analyze`
+### 14. `mcp__edgeprompt__swift_analyze`
 
 Analyze Swift code using SwiftLens (privacy-filtered).
 
@@ -569,7 +569,7 @@ Analyze Swift code using SwiftLens (privacy-filtered).
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__swift_analyze({
+const result = await mcp__edgeprompt__swift_analyze({
   code: "func fetchUser() async throws -> User { ... }"
 });
 // Result: {
@@ -583,7 +583,7 @@ const result = await mcp__prompteneer__swift_analyze({
 
 ---
 
-### 15. `mcp__prompteneer__swift_symbol_lookup`
+### 15. `mcp__edgeprompt__swift_symbol_lookup`
 
 Look up Swift symbols using SwiftLens index.
 
@@ -607,7 +607,7 @@ Look up Swift symbols using SwiftLens index.
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__swift_symbol_lookup({
+const result = await mcp__edgeprompt__swift_symbol_lookup({
   symbol: "UserViewModel"
 });
 // Result: {
@@ -620,7 +620,7 @@ const result = await mcp__prompteneer__swift_symbol_lookup({
 
 ---
 
-### 16. `mcp__prompteneer__docs_search`
+### 16. `mcp__edgeprompt__docs_search`
 
 Search documentation using Context7 (privacy-filtered).
 
@@ -644,7 +644,7 @@ Search documentation using Context7 (privacy-filtered).
 
 **Example**:
 ```typescript
-const result = await mcp__prompteneer__docs_search({
+const result = await mcp__edgeprompt__docs_search({
   query: "SwiftUI @Observable macro usage"
 });
 // Result: {
@@ -662,7 +662,7 @@ const result = await mcp__prompteneer__docs_search({
 ### Pattern 1: Summarization Pipeline
 
 **Before**: Send full 30-line report to Claude (2,000 tokens)
-**After**: Use `mcp__prompteneer__summarize` → 5-line summary (400 tokens)
+**After**: Use `mcp__edgeprompt__summarize` → 5-line summary (400 tokens)
 **Savings**: **80%** token reduction
 
 ```typescript
@@ -670,7 +670,7 @@ const result = await mcp__prompteneer__docs_search({
 const analysis = await claude.analyze(fullReport);
 
 // ✅ After (400 tokens)
-const summary = await mcp__prompteneer__summarize({ text: fullReport, max_length: 100 });
+const summary = await mcp__edgeprompt__summarize({ text: fullReport, max_length: 100 });
 const analysis = await claude.analyze(summary);
 ```
 
@@ -679,7 +679,7 @@ const analysis = await claude.analyze(summary);
 ### Pattern 2: Agent Routing
 
 **Before**: Send request to Claude for agent selection (500 tokens)
-**After**: Use `mcp__prompteneer__match_agents` (100 tokens)
+**After**: Use `mcp__edgeprompt__match_agents` (100 tokens)
 **Savings**: **80%** token reduction, **83% accuracy** (vs 40%)
 
 ```typescript
@@ -687,7 +687,7 @@ const analysis = await claude.analyze(summary);
 const agents = await claude.selectAgents(userRequest);
 
 // ✅ After (100 tokens, 83% accuracy, <200ms)
-const agents = await mcp__prompteneer__match_agents({
+const agents = await mcp__edgeprompt__match_agents({
   request: userRequest,
   top_n: 3
 });
@@ -698,7 +698,7 @@ const agents = await mcp__prompteneer__match_agents({
 ### Pattern 3: Git Context Gathering
 
 **Before**: Multiple bash commands + parsing (800 tokens)
-**After**: One `mcp__prompteneer__git_fetch_context` call (300 tokens)
+**After**: One `mcp__edgeprompt__git_fetch_context` call (300 tokens)
 **Savings**: **60%** token reduction
 
 ```typescript
@@ -710,7 +710,7 @@ const remote = await bash("git remote get-url origin");
 const platform = detectPlatform(remote); // Claude API call
 
 // ✅ After (300 tokens, 1 MCP call)
-const gitContext = await mcp__prompteneer__git_fetch_context({ commit_count: 10 });
+const gitContext = await mcp__edgeprompt__git_fetch_context({ commit_count: 10 });
 ```
 
 ---
@@ -718,7 +718,7 @@ const gitContext = await mcp__prompteneer__git_fetch_context({ commit_count: 10 
 ### Pattern 4: Local LLM Classification
 
 **Before**: Claude API for simple classification (150 tokens)
-**After**: Local query with `mcp__prompteneer__query` (0 tokens)
+**After**: Local query with `mcp__edgeprompt__query` (0 tokens)
 **Savings**: **100%** token reduction
 
 ```typescript
@@ -726,7 +726,7 @@ const gitContext = await mcp__prompteneer__git_fetch_context({ commit_count: 10 
 const classification = await claude.classify("Is this commit message well-formatted?");
 
 // ✅ After (0 tokens)
-const classification = await mcp__prompteneer__query({
+const classification = await mcp__edgeprompt__query({
   prompt: "Is this commit message well-formatted?",
   model: "apple-intelligence"
 });
@@ -737,7 +737,7 @@ const classification = await mcp__prompteneer__query({
 ### Pattern 5: Sentiment-Based Prioritization
 
 **Before**: Claude API for sentiment analysis (80 tokens per issue)
-**After**: Local `mcp__prompteneer__analyze_sentiment` (0 tokens)
+**After**: Local `mcp__edgeprompt__analyze_sentiment` (0 tokens)
 **Savings**: **100%** token reduction
 
 ```typescript
@@ -749,7 +749,7 @@ for (const issue of issues) {
 
 // ✅ After (0 tokens)
 for (const issue of issues) {
-  const sentiment = await mcp__prompteneer__analyze_sentiment({ text: issue.body });
+  const sentiment = await mcp__edgeprompt__analyze_sentiment({ text: issue.body });
   issue.priority = sentiment.urgency;
 }
 ```
@@ -759,7 +759,7 @@ for (const issue of issues) {
 ### Pattern 6: Prompt Enhancement
 
 **Before**: Manual git context + agent selection (800 tokens)
-**After**: `mcp__prompteneer__optimize_prompt` (300 tokens)
+**After**: `mcp__edgeprompt__optimize_prompt` (300 tokens)
 **Savings**: **60%** token reduction
 
 ```typescript
@@ -769,7 +769,7 @@ const agents = await selectAgents(prompt); // 500 tokens
 const enhancedPrompt = buildPrompt(prompt, gitContext, agents);
 
 // ✅ After (300 tokens)
-const result = await mcp__prompteneer__optimize_prompt({
+const result = await mcp__edgeprompt__optimize_prompt({
   prompt,
   inject_agents: true,
   generate_todos: true
@@ -781,7 +781,7 @@ const result = await mcp__prompteneer__optimize_prompt({
 ### Pattern 7: PII Sanitization
 
 **Before**: Send unsanitized logs to Claude (risk + 500 tokens)
-**After**: Sanitize with `mcp__prompteneer__detect_pii` (0 tokens)
+**After**: Sanitize with `mcp__edgeprompt__detect_pii` (0 tokens)
 **Savings**: **100%** token reduction + privacy compliance
 
 ```typescript
@@ -789,7 +789,7 @@ const result = await mcp__prompteneer__optimize_prompt({
 const analysis = await claude.analyzeLogs(rawLogs);
 
 // ✅ After (0 tokens, privacy-compliant)
-const piiResult = await mcp__prompteneer__detect_pii({ text: rawLogs });
+const piiResult = await mcp__edgeprompt__detect_pii({ text: rawLogs });
 const sanitizedLogs = piiResult.redacted;
 const analysis = await claude.analyzeLogs(sanitizedLogs);
 ```
@@ -803,13 +803,13 @@ const analysis = await claude.analyzeLogs(sanitizedLogs);
 **Add to swift-architect.md**:
 
 ```markdown
-## Cost Optimization with Prompteneer MCP
+## Cost Optimization with EdgePrompt MCP
 
 Before analyzing architecture, use these tools to reduce token consumption:
 
 1. **Analyze Request Intent**:
    ```
-   Use mcp__prompteneer__analyze_request to classify the request type:
+   Use mcp__edgeprompt__analyze_request to classify the request type:
    - Architecture design → Use full Opus reasoning
    - Simple refactoring → Use local summarization first
    ```
@@ -817,7 +817,7 @@ Before analyzing architecture, use these tools to reduce token consumption:
 2. **Fetch Git Context Efficiently**:
    ```
    Replace multiple bash commands with:
-   mcp__prompteneer__git_fetch_context
+   mcp__edgeprompt__git_fetch_context
 
    Provides: branch, commits, platform, status in one call (60% token savings)
    ```
@@ -825,8 +825,8 @@ Before analyzing architecture, use these tools to reduce token consumption:
 3. **Local Swift Analysis**:
    ```
    For code validation, use:
-   mcp__prompteneer__swift_analyze for syntax/semantic checks
-   mcp__prompteneer__swift_symbol_lookup for dependency analysis
+   mcp__edgeprompt__swift_analyze for syntax/semantic checks
+   mcp__edgeprompt__swift_symbol_lookup for dependency analysis
 
    Only send complex architectural questions to Claude API.
    ```
@@ -841,11 +841,11 @@ Before analyzing architecture, use these tools to reduce token consumption:
 **Add to testing-specialist.md**:
 
 ```markdown
-## Cost Optimization with Prompteneer MCP
+## Cost Optimization with EdgePrompt MCP
 
 1. **Analyze Test Coverage Locally**:
    ```
-   Use mcp__prompteneer__swift_analyze to validate test code before Claude API:
+   Use mcp__edgeprompt__swift_analyze to validate test code before Claude API:
    - Syntax validation
    - Symbol resolution
    - Basic coverage checks
@@ -855,7 +855,7 @@ Before analyzing architecture, use these tools to reduce token consumption:
 
 2. **Summarize Test Results**:
    ```
-   For long test outputs, use mcp__prompteneer__summarize:
+   For long test outputs, use mcp__edgeprompt__summarize:
 
    Input: 200 lines of test output
    Output: 10-line summary with failure patterns
@@ -864,7 +864,7 @@ Before analyzing architecture, use these tools to reduce token consumption:
 
 3. **Git Context for Test Strategy**:
    ```
-   Use mcp__prompteneer__analyze_recent_changes to understand:
+   Use mcp__edgeprompt__analyze_recent_changes to understand:
    - What code changed recently → What needs testing
    - Change types → Test strategy selection
    ```
@@ -879,11 +879,11 @@ Before analyzing architecture, use these tools to reduce token consumption:
 **Add to documentation-verifier.md**:
 
 ```markdown
-## Cost Optimization with Prompteneer MCP
+## Cost Optimization with EdgePrompt MCP
 
 1. **Local Summarization for Long Docs**:
    ```
-   Use mcp__prompteneer__summarize for initial doc review:
+   Use mcp__edgeprompt__summarize for initial doc review:
    - Condense 50-page docs to 5-page summaries
    - Extract key sections for targeted analysis
    - Reduce token consumption by 80%
@@ -891,7 +891,7 @@ Before analyzing architecture, use these tools to reduce token consumption:
 
 2. **Sentiment Analysis for Tone Check**:
    ```
-   Use mcp__prompteneer__analyze_sentiment for:
+   Use mcp__edgeprompt__analyze_sentiment for:
    - Documentation tone consistency
    - User-facing messaging friendliness
    - Error message helpfulness
@@ -901,7 +901,7 @@ Before analyzing architecture, use these tools to reduce token consumption:
 
 3. **Git Context for Documentation Scope**:
    ```
-   Use mcp__prompteneer__analyze_recent_changes to:
+   Use mcp__edgeprompt__analyze_recent_changes to:
    - Identify which docs need updates based on code changes
    - Prioritize documentation work
    ```
@@ -916,19 +916,19 @@ Before analyzing architecture, use these tools to reduce token consumption:
 ```
 User Request
   │
-  ├─→ Simple Query? → Use mcp__prompteneer__query (0 tokens)
+  ├─→ Simple Query? → Use mcp__edgeprompt__query (0 tokens)
   │
-  ├─→ Need Agent? → Use mcp__prompteneer__match_agents (100 tokens, 83% accuracy)
+  ├─→ Need Agent? → Use mcp__edgeprompt__match_agents (100 tokens, 83% accuracy)
   │    │
-  │    └─→ Get Git Context? → Use mcp__prompteneer__git_fetch_context (300 tokens)
+  │    └─→ Get Git Context? → Use mcp__edgeprompt__git_fetch_context (300 tokens)
   │
-  ├─→ Long Content? → Use mcp__prompteneer__summarize (80% savings)
+  ├─→ Long Content? → Use mcp__edgeprompt__summarize (80% savings)
   │
-  ├─→ Classification? → Use mcp__prompteneer__analyze_sentiment (0 tokens)
+  ├─→ Classification? → Use mcp__edgeprompt__analyze_sentiment (0 tokens)
   │
-  ├─→ Privacy Check? → Use mcp__prompteneer__detect_pii (0 tokens)
+  ├─→ Privacy Check? → Use mcp__edgeprompt__detect_pii (0 tokens)
   │
-  ├─→ Swift Code Analysis? → Use mcp__prompteneer__swift_analyze (0 tokens)
+  ├─→ Swift Code Analysis? → Use mcp__edgeprompt__swift_analyze (0 tokens)
   │
   └─→ Complex Reasoning? → Use Claude API (full cost)
 ```
@@ -970,14 +970,14 @@ User Request
 
 ## Troubleshooting
 
-### Issue 1: prompteneer MCP not found
+### Issue 1: edgeprompt MCP not found
 
-**Symptoms**: `Error: MCP server 'prompteneer' not found`
+**Symptoms**: `Error: MCP server 'edgeprompt' not found`
 
 **Solutions**:
-1. Verify installation: `which prompteneer`
+1. Verify installation: `which edgeprompt`
 2. Check PATH in MCP config: `"PATH": "$HOME/.swiftpm/bin:/usr/local/bin:/usr/bin:/bin"`
-3. Reinstall: `swift package experimental-install --product prompteneer`
+3. Reinstall: `swift package experimental-install --product edgeprompt`
 
 ---
 
@@ -1009,7 +1009,7 @@ User Request
 
 **Solutions**:
 1. Increase `top_n` parameter (try 5 instead of 3)
-2. Use `mcp__prompteneer__explain_routing` to understand reasoning
+2. Use `mcp__edgeprompt__explain_routing` to understand reasoning
 3. Refine request with more specific keywords
 4. Update agent descriptions in agent markdown files
 
@@ -1049,16 +1049,16 @@ Local tools are fast (<100ms), but still cache results when appropriate:
 
 ```
 Best results come from combining multiple tools:
-1. mcp__prompteneer__analyze_request (understand intent)
-2. mcp__prompteneer__match_agents (find best agent)
-3. mcp__prompteneer__git_fetch_context (gather context)
-4. mcp__prompteneer__optimize_prompt (build enhanced prompt)
+1. mcp__edgeprompt__analyze_request (understand intent)
+2. mcp__edgeprompt__match_agents (find best agent)
+3. mcp__edgeprompt__git_fetch_context (gather context)
+4. mcp__edgeprompt__optimize_prompt (build enhanced prompt)
 ```
 
 ### 4. Monitor Savings
 
 ```
-Track token consumption before/after prompteneer integration:
+Track token consumption before/after edgeprompt integration:
 - Log tokens saved per operation
 - Calculate cost savings (token × model rate)
 - Identify highest-impact optimization opportunities
@@ -1073,7 +1073,7 @@ Track token consumption before/after prompteneer integration:
 Add cost optimization section to agent markdown files:
 
 ```markdown
-## Cost Optimization with Prompteneer MCP
+## Cost Optimization with EdgePrompt MCP
 
 [Tool recommendations for this agent]
 ```
@@ -1084,7 +1084,7 @@ Remove redundant agent layers (like task-router):
 
 ```diff
 - Use task-router agent for routing
-+ Use mcp__prompteneer__match_agents directly
++ Use mcp__edgeprompt__match_agents directly
 ```
 
 ### Step 3: Update Workflows
@@ -1093,7 +1093,7 @@ Replace bash command chains with single MCP calls:
 
 ```diff
 - git status && git branch && git log
-+ mcp__prompteneer__git_fetch_context
++ mcp__edgeprompt__git_fetch_context
 ```
 
 ### Step 4: Test and Measure
@@ -1115,7 +1115,7 @@ Savings: 70%
 
 ## Summary
 
-The 16 prompteneer MCP tools enable **local-first processing** with dramatic cost reductions:
+The 16 edgeprompt MCP tools enable **local-first processing** with dramatic cost reductions:
 
 - **Category 1 (Local AI)**: 4 tools for zero-cost queries, summarization, sentiment, PII detection
 - **Category 2 (Agent Orchestration)**: 6 tools for 83% accurate routing, discovery, optimization
@@ -1132,8 +1132,8 @@ The 16 prompteneer MCP tools enable **local-first processing** with dramatic cos
 ---
 
 **References**:
-- [Prompteneer Repository](https://github.com/doozMen/prompteneer)
-- [Issue #16: Evaluate prompteneer MCP integration](https://github.com/doozMen/swift-agents-plugin/issues/16)
+- [EdgePrompt Repository](https://github.com/doozMen/edgeprompt)
+- [Issue #16: Evaluate edgeprompt MCP integration](https://github.com/doozMen/swift-agents-plugin/issues/16)
 - [MCP Protocol Documentation](https://modelcontextprotocol.io)
 
 ---

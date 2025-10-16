@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **ClaudeAgents Library Target** (Issue #7):
   - New library product `ClaudeAgents` for programmatic agent access
   - `AgentRepository` actor with thread-safe caching and filtering
-  - Public API for downstream integration (prompteneer, IDE plugins, tooling)
+  - Public API for downstream integration (edgeprompt, IDE plugins, tooling)
   - Zero dependencies - standalone library
   - Resources: All 46 agent definitions bundled via `.copy("Resources/agents")`
   - Performance: First load ~10-20ms, cached <1ms
@@ -224,7 +224,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Generic Cross-Language Agents** (3 new agents):
-  - Agent routing now handled directly via prompteneer MCP (83% accuracy, 80% cost reduction)
+  - Agent routing now handled directly via edgeprompt MCP (83% accuracy, 80% cost reduction)
     - Direct MCP calls more efficient than agent wrappers
     - On-device LLM analysis for intelligent task routing
     - Zero API cost using local Apple Foundation models

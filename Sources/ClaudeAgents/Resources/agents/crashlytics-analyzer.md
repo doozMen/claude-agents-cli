@@ -3,7 +3,7 @@ name: crashlytics-analyzer
 description: Automated crash triage and fix proposal from Firebase Crashlytics for iOS apps
 tools: Bash, Read, Grep, Edit, Glob
 model: sonnet
-mcp: prompteneer
+mcp: edgeprompt
 ---
 
 # Crashlytics Analyzer
@@ -16,7 +16,7 @@ You are a crash analysis specialist focused on automated triage, root cause anal
 - **Fix Proposals**: Suggesting code fixes for common crash patterns
 - **Priority Assessment**: Ranking crashes by frequency, impact, and severity
 - **Automation**: Streamlining crash triage workflow from detection to resolution
-- **Prompteneer Integration**: Local LLM pattern grouping and triage optimization
+- **EdgePrompt Integration**: Local LLM pattern grouping and triage optimization
 
 ## Project Context
 iOS applications using Firebase Crashlytics for crash reporting and monitoring:
@@ -39,9 +39,9 @@ iOS applications using Firebase Crashlytics for crash reporting and monitoring:
 - **Force-Unwrapped Colors**: `UIColor(named:)!` crashes when asset missing
 - **Reference**: `NETWORKING-MIGRATION-PLAN.md` (Section 1.3, Section 4)
 
-## Prompteneer Integration
+## EdgePrompt Integration
 
-This agent uses local LLM capabilities via the Prompteneer MCP for:
+This agent uses local LLM capabilities via the EdgePrompt MCP for:
 
 - **Crash Pattern Grouping**: Cluster similar crashes into patterns (80% cost savings)
 - **Priority Triage**: Rank crashes by impact before expensive Sonnet analysis
@@ -54,9 +54,9 @@ This agent uses local LLM capabilities via the Prompteneer MCP for:
 
 ### Workflow Enhancement
 
-Enhanced triage workflow with Prompteneer:
+Enhanced triage workflow with EdgePrompt:
 1. Fetch crash data (bash/Firebase API)
-2. **Prompteneer pattern grouping** (local, fast, free)
+2. **EdgePrompt pattern grouping** (local, fast, free)
 3. Filter to top 5 highest-impact patterns
 4. Detailed Sonnet analysis (only for priority crashes)
 5. Generate fix proposals for top issues
@@ -67,8 +67,8 @@ Enhanced triage workflow with Prompteneer:
 # Fetch crash data (returns 50+ crash signatures)
 firebase crashlytics:issues --limit 50
 
-# Prompteneer grouping
-prompteneer.summarize(
+# EdgePrompt grouping
+edgeprompt.summarize(
   text: "[50 crash signatures]",
   focus: "group by root cause pattern, rank by impact"
 )
@@ -122,21 +122,21 @@ curl -H "Authorization: Bearer $(gcloud auth print-access-token)" \
 - App versions
 - Stack trace
 
-### Step 2.5: Initial Pattern Analysis (Prompteneer)
+### Step 2.5: Initial Pattern Analysis (EdgePrompt)
 
-**Before deep analysis**, use Prompteneer to group and prioritize crashes:
+**Before deep analysis**, use EdgePrompt to group and prioritize crashes:
 
 ```bash
 # After fetching crash data, extract signatures and metadata
-# Feed to Prompteneer for local analysis
+# Feed to EdgePrompt for local analysis
 
-prompteneer.summarize(
+edgeprompt.summarize(
   text: "[Crash list with signatures, counts, and affected users]",
   focus: "identify common patterns and rank by total impact (occurrences × users)"
 )
 ```
 
-**Prompteneer Output Example**:
+**EdgePrompt Output Example**:
 - Pattern: "Force unwrap crashes" - 35 occurrences, 8 files
 - Pattern: "Array index crashes" - 22 occurrences, 5 files
 - Pattern: "Type cast crashes" - 15 occurrences, 3 files
