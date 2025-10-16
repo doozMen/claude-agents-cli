@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:swift-agents-plugin}",
+            "name": "Debug claude-agents",
+            "program": "${workspaceFolder:swift-agents-plugin}/.build/debug/claude-agents",
+            "preLaunchTask": "swift: Build Debug claude-agents"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:swift-agents-plugin}",
+            "name": "Release claude-agents",
+            "program": "${workspaceFolder:swift-agents-plugin}/.build/release/claude-agents",
+            "preLaunchTask": "swift: Build Release claude-agents"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:swift-agents-plugin}",
+            "name": "Debug test-installation-api",
+            "program": "${workspaceFolder:swift-agents-plugin}/.build/debug/test-installation-api",
+            "preLaunchTask": "swift: Build Debug test-installation-api"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:swift-agents-plugin}",
+            "name": "Release test-installation-api",
+            "program": "${workspaceFolder:swift-agents-plugin}/.build/release/test-installation-api",
+            "preLaunchTask": "swift: Build Release test-installation-api"
+        }
+    ]
+}

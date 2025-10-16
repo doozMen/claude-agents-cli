@@ -39,21 +39,21 @@ public struct InstallCommand: AsyncParsableCommand {
       target = .global
     }
 
-    let parser = AgentParser()
+    let repository = AgentRepository()
     let installService = InstallService()
 
     // Determine which agents to install
     let agentsToInstall: [Agent]
 
     if all {
-      agentsToInstall = try await parser.loadAgents()
+      agentsToInstall = try await repository.loadAgents()
       if agentsToInstall.isEmpty {
         print("No agents available to install")
         return
       }
     } else if agentNames.isEmpty {
       // Interactive mode - show available agents
-      let availableAgents = try await parser.loadAgents()
+      let availableAgents = try await repository.loadAgents()
       guard !availableAgents.isEmpty else {
         print("No agents available to install")
         return
@@ -86,9 +86,13 @@ public struct InstallCommand: AsyncParsableCommand {
       // Install specified agents
       var agents: [Agent] = []
       for name in agentNames {
-        if let agent = try await parser.findAgent(byIdentifier: name) {
-          agents.append(agent)
-        } else {
+        do {
+          if let agent = try await repository.getAgent(named: name) {
+            agents.append(agent)
+          } else {
+            print("Warning: Agent '\(name)' not found, skipping...")
+          }
+        } catch {
           print("Warning: Agent '\(name)' not found, skipping...")
         }
       }

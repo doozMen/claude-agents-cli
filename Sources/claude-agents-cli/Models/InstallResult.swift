@@ -1,4 +1,5 @@
 import Foundation
+import ClaudeAgents
 
 /// Represents the result of an agent installation operation
 public struct InstallResult: Sendable {

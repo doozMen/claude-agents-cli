@@ -32,9 +32,6 @@ let package = Package(
       dependencies: [
         "ClaudeAgents",
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
-      ],
-      resources: [
-        .copy("Resources/agents")
       ]
     ),
     // Test target for ClaudeAgents library

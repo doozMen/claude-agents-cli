@@ -19,7 +19,7 @@ public struct DoctorCommand: AsyncParsableCommand {
   public func run() async throws {
     print("🔍 Checking CLI tool dependencies...\n")
 
-    let parser = AgentParser()
+    let parser = AgentRepository()
     let dependencyService = DependencyService()
 
     // Load agents

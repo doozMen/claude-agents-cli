@@ -31,8 +31,8 @@ public struct ListCommand: AsyncParsableCommand {
   }
 
   private func listAvailable() async throws {
-    let parser = AgentParser()
-    let agents = try await parser.loadAgents()
+    let repository = AgentRepository()
+    let agents = try await repository.loadAgents()
 
     // Filter by tool if specified
     let filteredAgents =

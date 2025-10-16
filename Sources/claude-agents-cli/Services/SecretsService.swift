@@ -1,4 +1,5 @@
 import Foundation
+import ClaudeAgents
 
 /// Azure CLI authentication information
 public struct AzureAuthInfo: Sendable {
